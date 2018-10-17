@@ -1,0 +1,167 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>RadiusCSharp.WinForms</name>
+    </assembly>
+    <members>
+        <member name="T:RadiusCSharp.WinForms.Dialogs.FrmErrorMessage">
+            <summary>
+            This form is used to display error messages to the user.
+            </summary>
+        </member>
+        <member name="F:RadiusCSharp.WinForms.Dialogs.FrmErrorMessage.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:RadiusCSharp.WinForms.Dialogs.FrmErrorMessage.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:RadiusCSharp.WinForms.Dialogs.FrmErrorMessage.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:RadiusCSharp.WinForms.Dialogs.FrmMessagePrompt.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:RadiusCSharp.WinForms.Dialogs.FrmMessagePrompt.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:RadiusCSharp.WinForms.Dialogs.FrmMessagePrompt.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:RadiusCSharp.WinForms.Dialogs.MessageBoxFunctions">
+            <summary>
+            Provides functions for standard message dialogs.
+            </summary>
+        </member>
+        <member name="M:RadiusCSharp.WinForms.Dialogs.MessageBoxFunctions.ShowErrorMessage(System.Exception)">
+            <summary>
+            Show exception message in simple MessageBox.
+            </summary>
+            <param name="ex"></param>
+        </member>
+        <member name="M:RadiusCSharp.WinForms.Dialogs.MessageBoxFunctions.LogAndShowErrorMessage(System.Exception)">
+            <summary>
+            Show exception message in simple MessageBox.
+            </summary>
+            <param name="ex"></param>
+        </member>
+        <member name="M:RadiusCSharp.WinForms.Dialogs.MessageBoxFunctions.ShowExceptionDialog(System.Exception)">
+            <summary>
+            Show exception in detailed Exception dialog. Includes Stack Trace and Copy function.
+            </summary>
+            <param name="ex"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RadiusCSharp.WinForms.Dialogs.MessageBoxFunctions.LogAndShowExceptionDialog(System.Exception)">
+            <summary>
+            Log the exception and show the exception dialog.
+            </summary>
+            <param name="ex"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RadiusCSharp.WinForms.Dialogs.YesNoResponse">
+            <summary>
+            Use by dialogs.
+            </summary>
+        </member>
+        <member name="T:RadiusCSharp.WinForms.Progress.FrmProgress">
+            <summary>
+            Progress bar form.
+            </summary>
+        </member>
+        <member name="P:RadiusCSharp.WinForms.Progress.FrmProgress.ProgressData">
+            <summary>
+            Current progress data.
+            </summary>
+        </member>
+        <member name="M:RadiusCSharp.WinForms.Progress.FrmProgress.UpdateProgress">
+            <summary>
+            Update the current progress position.
+            </summary>
+        </member>
+        <member name="M:RadiusCSharp.WinForms.Progress.FrmProgress.UpdateProgressBarMaximum">
+            <summary>
+            Update the progress bar's maximum value.
+            </summary>
+        </member>
+        <member name="F:RadiusCSharp.WinForms.Progress.FrmProgress.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:RadiusCSharp.WinForms.Progress.FrmProgress.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:RadiusCSharp.WinForms.Progress.FrmProgress.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:RadiusCSharp.WinForms.Progress.ProgressData">
+            <summary>
+            Current progress data.
+            </summary>
+        </member>
+        <member name="P:RadiusCSharp.WinForms.Progress.ProgressData.Caption">
+            <summary>
+            Progress bar caption.
+            </summary>
+        </member>
+        <member name="P:RadiusCSharp.WinForms.Progress.ProgressData.IncrementCurrentPosition">
+            <summary>
+            Function for incrementing the current position. Takes an int which is added to the CurrentPosition.
+            
+            e.g.: progressData.IncrementCurrentPosition(1);
+            e.g.: progressData.IncrementCurrentPosition(-1);
+            </summary>
+        </member>
+        <member name="P:RadiusCSharp.WinForms.Progress.ProgressData.SetMaxPosition">
+            <summary>
+            Function for setting the max position. Takes an int which MaxPosition is set to.
+            </summary>
+        </member>
+        <member name="P:RadiusCSharp.WinForms.Progress.ProgressData.SetCurrentPosition">
+            <summary>
+            Function for setting the current position. Takes an int which CurrentPosition is set to.
+            </summary>
+        </member>
+        <member name="P:RadiusCSharp.WinForms.Progress.ProgressData.CloseProgressWindow">
+            <summary>
+            Function for closing the progress window.
+            </summary>
+        </member>
+        <member name="T:RadiusCSharp.WinForms.Progress.ProgressWindowFunctions">
+            <summary>
+            Progress bar functions.
+            </summary>
+        </member>
+        <member name="M:RadiusCSharp.WinForms.Progress.ProgressWindowFunctions.NewProgressData(System.String,System.Int32,System.Int32)">
+            <summary>
+            Initialise a new Progress Window.
+            </summary>
+            <param name="caption"></param>
+            <param name="maxPosition"></param>
+            <param name="startingPosition">Initial starting position.</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

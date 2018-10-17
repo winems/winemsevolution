@@ -1,2 +1,1 @@
-# winemsevolution
-repository for winems evolution integration
+# WineMS Sage Evolution integration tool

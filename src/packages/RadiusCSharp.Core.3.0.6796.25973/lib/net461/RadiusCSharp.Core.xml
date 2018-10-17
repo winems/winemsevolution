@@ -1,0 +1,2033 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>RadiusCSharp.Core</name>
+    </assembly>
+    <members>
+        <member name="T:RadiusCSharp.Core.AppConfiguration.BoolSwitch.RadiusConfigurationSection">
+            <summary>
+            App.config section definition.
+            </summary>
+        </member>
+        <member name="T:RadiusCSharp.Core.AppConfiguration.BoolSwitch.RadiusSwitchElement">
+            <summary>
+            Radius Switch configuration element.
+            </summary>
+        </member>
+        <member name="T:RadiusCSharp.Core.AppConfiguration.BoolSwitch.RadiusSwitchElementCollection">
+            <summary>
+            RadiusSwitchElement collection.
+            </summary>
+        </member>
+        <member name="T:RadiusCSharp.Core.AppConfiguration.BoolSwitch.RadiusSwitchFunctions">
+            <summary>
+            Radius Switch helper functions.
+            </summary>
+            <example>
+            Add the following to the App.config configSections element:
+            <code language="xml" title="Example Configuration">
+            <![CDATA[
+            <configuration>
+              <configSections>
+                <section
+                  name="radiusConfiguration"
+                  type="RadiusCSharp.AppConfiguration.BoolSwitch.RadiusConfigurationSection, RadiusCSharp"
+                  allowDefinition="Everywhere"/>
+              </configSections>
+            <!-- ... more configuration ... -->
+            </configuration>]]>
+            </code>
+            
+            Add the following to the App.config configuration element. This will define a switch called "test-switch-off" and set it to disabled, and a switch called "test-switch-on"
+            and set it to enabled.
+            <code language="xml" title="Example Configuration">
+            <![CDATA[
+            <configuration>
+              <configSections>
+            <!-- ... configuration section definitions ... -->
+              </configSections>
+            <!-- ... more configuration ... -->
+              <radiusConfiguration>
+                <switches>
+                  <add switchName="test-switch-off" enabled="false" />
+                  <add switchName="test-switch-on" enabled="true" />
+                </switches>
+              </radiusConfiguration>
+            <!-- ... more configuration ... -->
+            </configuration>]]>
+            </code>
+            </example>
+        </member>
+        <member name="M:RadiusCSharp.Core.AppConfiguration.BoolSwitch.RadiusSwitchFunctions.SwitchEnabled(System.String)">
+            <summary>
+            Get the switch state.
+            </summary>
+            <example>
+            Assuming you added a switch called "test-switch" to App.config. (See <see cref="T:RadiusCSharp.Core.AppConfiguration.BoolSwitch.RadiusSwitchFunctions"/> for an example of the App.config setup.)
+            <code>
+            if ("test-switch".SwitchEnabled()) {
+              Console.WriteLine("switch on...");
+            }
+            else {
+              Console.WriteLine("switch off...");        
+            }
+            </code>
+            </example>
+            <param name="switchName"></param>
+            <returns>true if the switch is enabled, else false. Returns false if the switch does not exist.</returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.AppConfiguration.BoolSwitch.RadiusSwitchFunctions.SwitchEnabled(System.String,System.Action)">
+            <summary>
+            Executes action is the switch is enabled. (See <see cref="M:RadiusCSharp.Core.AppConfiguration.BoolSwitch.RadiusSwitchFunctions.SwitchEnabled(System.String)"/> for an example.)
+            </summary>
+            <param name="switchName"></param>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.AppConfiguration.BoolSwitch.RadiusSwitchFunctions.SwitchNotEnabled(System.String,System.Action)">
+            <summary>
+            Executes action is the switch is NOT enabled. (See <see cref="M:RadiusCSharp.Core.AppConfiguration.BoolSwitch.RadiusSwitchFunctions.SwitchEnabled(System.String)"/> for an example.)
+            </summary>
+            <param name="switchName"></param>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.AppConfiguration.BoolSwitch.RadiusSwitchFunctions.SwitchEnabled``1(System.String,System.Func{``0})">
+            <summary>
+            Executes fn is the switch is enabled. (See <see cref="M:RadiusCSharp.Core.AppConfiguration.BoolSwitch.RadiusSwitchFunctions.SwitchEnabled(System.String)"/> for an example.)
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="switchName"></param>
+            <param name="fn"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.AppConfiguration.BoolSwitch.RadiusSwitchFunctions.SwitchNotEnabled``1(System.String,System.Func{``0})">
+            <summary>
+            Executes fn is the switch is NOT enabled. (See <see cref="M:RadiusCSharp.Core.AppConfiguration.BoolSwitch.RadiusSwitchFunctions.SwitchEnabled(System.String)"/> for an example.)
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="switchName"></param>
+            <param name="fn"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.AppConfiguration.ConfigurationFunctions.LoadConfiguration(System.String)">
+            <summary>
+            Load configuration from fileName using KeyValueFileFunctions.LoadKeyValueFile.
+            </summary>
+            <param name="fileName"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RadiusCSharp.Core.AppSettings.AppSettingsFunctions">
+            <summary>
+            Provides functions for reading appSettings and connectionStrings from the App.config file.
+            </summary>
+            <example>
+            <code>
+            // If you have an appSetting called SmtpPort in the App.Config
+            // you will read the value as follows:
+            var port = "SmtpPort".AppSettingAsInt();
+            </code>
+            </example>
+        </member>
+        <member name="M:RadiusCSharp.Core.AppSettings.AppSettingsFunctions.AppSetting(System.String)">
+            <summary>
+            Get an app setting value as a string.
+            </summary>
+            <param name="keyName">The name of the appSetting key.</param>
+            <returns>The string value defined for the key.</returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.AppSettings.AppSettingsFunctions.AppSettings(System.String)">
+            <summary>
+            Returns an array of values for an app setting. The app settings values should be separated by a semie-colon (;) or a comma (,)
+            <add key="paths" value="C:\test1;C:\test2;C:\test3" />
+            </summary>
+            <param name="keyName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.AppSettings.AppSettingsFunctions.AppSettingAsInt(System.String)">
+            <summary>
+            Get an app setting value as a integer.
+            </summary>
+            <param name="keyName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.AppSettings.AppSettingsFunctions.AppSettingAsInts(System.String)">
+            <summary>
+            Get an app setting value as an array of integers.
+            </summary>
+            <param name="keyName"></param>
+            <returns>array of int</returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.AppSettings.AppSettingsFunctions.ConnectionStringExists(System.String)">
+            <summary>
+            Check if a connection string has been defined.
+            </summary>
+            <param name="connectionStringName">The name of the connection string to check for.</param>
+            <returns>true if the connection string exists.</returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.AppSettings.AppSettingsFunctions.GetConnectionString(System.String)">
+            <summary>
+            Read a connection string from the App.config.
+            </summary>
+            <param name="connectionStringName">The name of the connection string to read.</param>
+            <returns></returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.AppSettings.AppSettingsFunctions.GetDefaultConnectionString">
+            <summary>
+            Returns the connection string for a connection string defined as ConnectionString.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:RadiusCSharp.Core.AssemblyPlugin.AssemblyPluginFunctions">
+            <summary>
+            Provides functions for loading and running a function from an assembly dll.
+            </summary>
+        </member>
+        <member name="M:RadiusCSharp.Core.AssemblyPlugin.AssemblyPluginFunctions.RunPlugin(System.String,System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Loads the assembly and then calls the static method in the class.
+            </summary>
+            <param name="assemblyFileName">Assembly file name.</param>
+            <param name="fullClassName">Full class name including the namespace.</param>
+            <param name="methodName">Static method to invoke.</param>
+            <param name="cancellationToken">Cancellation token used by the plugin to know when to terminate.</param>
+        </member>
+        <member name="M:RadiusCSharp.Core.AssemblyPlugin.AssemblyPluginFunctions.InvokePluginMethod(System.Reflection.Assembly,System.String,System.String,System.Object[])">
+            <summary>
+            
+            </summary>
+            <param name="assembly"></param>
+            <param name="fullClassName">Full class name including the namespace.</param>
+            <param name="methodName"></param>
+            <param name="parameters">Parameters to pass to the method.</param>
+            <returns></returns>
+            <exception cref="T:System.Exception">If the method cannot be found.</exception>
+        </member>
+        <member name="T:RadiusCSharp.Core.AssemblyTools.AssemblyLoaderFunctions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:RadiusCSharp.Core.AssemblyTools.AssemblyLoaderFunctions.GetTypeForTypeName(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="typeName"></param>
+            <returns>Type for typeName</returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.AssemblyTools.AssemblyLoaderFunctions.GetAssemblyForType(System.Type)">
+            <summary>
+            Gets the currently loaded assembly in which the specified class is defined.
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.AssemblyTools.AssemblyLoaderFunctions.LoadAssembly(System.String)">
+            <summary>
+            Load a .Net assembly from a file.
+            </summary>
+            <param name="assemblyFileName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.AssemblyTools.AssemblyLoaderFunctions.GetAssemblyVersion(System.String)">
+            <summary>
+            Get the file version information for the assembly file.
+            </summary>
+            <param name="assemblyFileName"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RadiusCSharp.Core.AssemblyTools.AssemblyMethodInvokeFunctions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:RadiusCSharp.Core.AssemblyTools.AssemblyMethodInvokeFunctions.HasMethod(System.Type,System.String,System.Object[])">
+            <summary>
+            
+            </summary>
+            <param name="classType"></param>
+            <param name="methodName"></param>
+            <param name="parameters"></param>
+            <returns>true if the methos exists on the type.</returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.AssemblyTools.AssemblyMethodInvokeFunctions.InvokeStaticMethod(System.Reflection.Assembly,System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="assembly"></param>
+            <param name="fullClassName">Full class name including the namespace.</param>
+            <param name="methodName"></param>
+            <returns></returns>
+            <exception cref="T:System.Exception">If the method cannot be found.</exception>
+        </member>
+        <member name="M:RadiusCSharp.Core.AssemblyTools.AssemblyMethodInvokeFunctions.InvokeStaticMethod(System.Reflection.Assembly,System.String,System.String,System.Object[])">
+            <summary>
+            
+            </summary>
+            <param name="assembly"></param>
+            <param name="fullClassName">Full class name including the namespace.</param>
+            <param name="methodName"></param>
+            <param name="parameters">Parameters to pass to the method.</param>
+            <returns></returns>
+            <exception cref="T:System.Exception">If the method cannot be found.</exception>
+        </member>
+        <member name="M:RadiusCSharp.Core.AssemblyTools.AssemblyMethodInvokeFunctions.InvokeStaticMethod(System.Type,System.String)">
+            <summary>
+            Invokde a parameterless static method.
+            </summary>
+            <param name="classType">Type to invoke the method on.</param>
+            <param name="methodName">Method to invoke.</param>
+            <returns></returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.AssemblyTools.AssemblyMethodInvokeFunctions.InvokeStaticMethod(System.Type,System.String,System.Object[])">
+            <summary>
+            Invokde a static method.
+            </summary>
+            <param name="classType">Type to invoke the method on.</param>
+            <param name="methodName">Method to invoke.</param>
+            <param name="parameters">Parameters to pass to the method.</param>
+            <returns></returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.AssemblyTools.AssemblyMethodInvokeFunctions.InvokeMethod(System.Type,System.Object,System.String)">
+            <summary>
+            Invoke a parameterless method on a object.
+            </summary>
+            <param name="classType"></param>
+            <param name="obj"></param>
+            <param name="methodName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.AssemblyTools.AssemblyMethodInvokeFunctions.InvokeMethod(System.Type,System.Object,System.String,System.Object[])">
+            <summary>
+            Invoke a method on a object.
+            </summary>
+            <param name="classType"></param>
+            <param name="obj"></param>
+            <param name="methodName"></param>
+            <param name="parameters"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.AssemblyTools.AssemblyMethodInvokeFunctions.InvokeMethod(System.Type,System.Object,System.String,System.Object[],System.Type[])">
+            <summary>
+            Invoke a method on the object or type if object is null.
+            </summary>
+            <param name="classType">Object's Type</param>
+            <param name="obj">Instance of classType</param>
+            <param name="methodName">Method to invoke.</param>
+            <param name="parameters">Parameters to pass to the method.</param>
+            <param name="signatureTypes">Parameter signature types.</param>
+            <returns></returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.AssemblyTools.AssemblyMethodInvokeFunctions.ResolveParameterTypes(System.Object[])">
+            <summary>
+            Resolve the parameter types.
+            </summary>
+            <param name="parameters"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RadiusCSharp.Core.AssemblyTools.AssemblyVersionFunctions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:RadiusCSharp.Core.AssemblyTools.AssemblyVersionFunctions.MajorMinor">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.AssemblyTools.AssemblyVersionFunctions.Full">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:RadiusCSharp.Core.Bootstrap.RadiusBootstrapFunctions">
+            <summary>
+            Bootstrap the application.
+            </summary>
+        </member>
+        <member name="M:RadiusCSharp.Core.Bootstrap.RadiusBootstrapFunctions.Bootstrap">
+            <summary>
+            Initialises the application.
+            </summary>
+            <remarks>Initialises the log4net logging system and sets the default connection string provider</remarks>
+        </member>
+        <member name="T:RadiusCSharp.Core.Bootstrap.RadiusProgramMainFunctions">
+            <summary>
+            Provides a template for a typical Program.Main function. Provides try/catch/finally with exception and finally hanlders.
+            </summary>
+        </member>
+        <member name="T:RadiusCSharp.Core.Bootstrap.RadiusProgramMainFunctions.FinallyPause">
+            <summary>
+            Options for end of program pausing.
+            </summary>
+        </member>
+        <member name="F:RadiusCSharp.Core.Bootstrap.RadiusProgramMainFunctions.FinallyPause.Yes">
+            <summary>
+            Use Yes to pause the application before it terminates.
+            </summary>
+        </member>
+        <member name="F:RadiusCSharp.Core.Bootstrap.RadiusProgramMainFunctions.FinallyPause.No">
+            <summary>
+            Use No to prevent pausing before application termination.
+            </summary>
+        </member>
+        <member name="F:RadiusCSharp.Core.Bootstrap.RadiusProgramMainFunctions.FinallyPause.IfDebuggerAttached">
+            <summary>
+            Use IfDebuggerAttached to pause if the debugger is attached.
+            </summary>
+        </member>
+        <member name="M:RadiusCSharp.Core.Bootstrap.RadiusProgramMainFunctions.ProgramMain(System.String,System.Action,System.Action,System.Action{System.Exception},System.Action,RadiusCSharp.Core.Bootstrap.RadiusProgramMainFunctions.FinallyPause)">
+            <summary>
+            Program main template function. All exceptions are logged by the catch block before calling the exception handler.
+            </summary>
+            <example><code source="..\..\RadiusConsoleApp\RadiusConsoleApp\Program.cs" language="c#" /></example>
+            <param name="logName">The name of the application logger.</param>
+            <param name="afterBootstrapAction">Optional. Continuation called after calling RadiusBootstrapFunctions.Bootstrap but before calling the mainAction.</param>
+            <param name="mainAction">Main application continuation.</param>
+            <param name="onExceptionAction">Optional. Exception handler.</param>
+            <param name="onFinallyAction">Optional. Finally continuation. Called before closing the logger and pausing if turned on.</param>
+            <param name="finallyPause">Optional. Indicates whether to pause before application termination or not. Default is No.</param>
+        </member>
+        <member name="T:RadiusCSharp.Core.DataAccess.ConnectionStringFunctions">
+            <summary>
+            Provides functions for working with connection strings.
+            </summary>
+        </member>
+        <member name="M:RadiusCSharp.Core.DataAccess.ConnectionStringFunctions.GetConnectionString">
+            <summary>
+            Get the default application connection string from App.config.
+            
+            </summary>
+            <returns>Returns the connection string assigned to ConnectionStringDev if it is 
+            defined and Debugger.IsAttached otherwise the connection string for ConnectionString.</returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.DataAccess.ConnectionStringFunctions.BuildSqlConnectionString(System.String,System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            Builds a MS SQL connection string from the parameters.
+            </summary>
+            <param name="databaseName"></param>
+            <param name="serverName"></param>
+            <param name="userName"></param>
+            <param name="password"></param>
+            <param name="multipleActiveResultSets"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.DataAccess.DataAccessConnectionFunctions.SetConnectionStringProvider(System.Func{System.String})">
+            <summary>
+            Set the application connection string provider.
+            </summary>
+            <param name="connectionStringProvider">Function that returns the application's connection string.</param>
+        </member>
+        <member name="M:RadiusCSharp.Core.DataAccess.DataAccessConnectionFunctions.WrapInSerializableTransaction(System.String,System.Action{RadiusCSharp.Core.DataAccess.DatabaseConnection},RadiusCSharp.Core.ExceptionHandling.TransientExceptionHandlerContext)">
+            <summary>
+            Wrap action in a serializable transaction.
+            </summary>
+            <param name="connectionString"></param>
+            <param name="action"></param>
+            <param name="transientExceptionHandlerContext"></param>
+        </member>
+        <member name="M:RadiusCSharp.Core.DataAccess.DataAccessConnectionFunctions.WrapInSerializableTransaction``1(System.String,System.Func{RadiusCSharp.Core.DataAccess.DatabaseConnection,``0},RadiusCSharp.Core.ExceptionHandling.TransientExceptionHandlerContext)">
+            <summary>
+            Wrap action in a serializable transaction.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="connectionString"></param>
+            <param name="fn"></param>
+            <param name="transientExceptionHandlerContext"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RadiusCSharp.Core.DataAccess.KeyValueFunctions">
+            <summary>
+            Provides a mechanism to get and set configuration values using a Key/Value concept.
+            </summary>
+            <remarks>
+            The following table needs to be created for this to work:
+            <code language="sql">
+            CREATE TABLE KeyValues (
+              [KeyName] [varchar](100) NOT NULL,
+              [KeyValue] [sql_variant] NULL,
+              CONSTRAINT [PK_KeyValues] PRIMARY KEY CLUSTERED (
+                [KeyName] ASC
+              ) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+            ) ON [PRIMARY]
+            </code>
+            </remarks>
+        </member>
+        <member name="F:RadiusCSharp.Core.DataAccess.KeyValueFunctions.GetKeyValueProvider">
+            <summary>
+            Extension for providing a custom function for retrieving the value for a key. If not defined the default provider will be used.
+            
+            This can be used to fake out the KeyValue provider for unit tests.
+            </summary>
+        </member>
+        <member name="F:RadiusCSharp.Core.DataAccess.KeyValueFunctions.KeyValuesTableName">
+            <summary>
+            Get/Set the database table name in which to store key/value pairs. The default name is KeyValues..
+            </summary>
+        </member>
+        <member name="M:RadiusCSharp.Core.DataAccess.KeyValueFunctions.GetKeyValueAsString(System.String)">
+             <summary>
+            
+             </summary>
+             <param name="keyName"></param>
+             <returns>Values as string.</returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.DataAccess.KeyValueFunctions.GetKeyValueAsInt(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="keyName"></param>
+            <returns>Values as int.</returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.DataAccess.KeyValueFunctions.GetKeyValueAsLong(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="keyName"></param>
+            <returns>Values as long.</returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.DataAccess.KeyValueFunctions.GetKeyValueAsDouble(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="keyName"></param>
+            <returns>Values as double.</returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.DataAccess.KeyValueFunctions.GetKeyValueAsDateTime(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="keyName"></param>
+            <returns>Values as DateTime</returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.DataAccess.KeyValueFunctions.GetKeyValueAsBool(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="keyName"></param>
+            <returns>Values as bool.</returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.DataAccess.KeyValueFunctions.GetKeyNameExists(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="keyName"></param>
+            <returns>true if keyName exists.</returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.DataAccess.KeyValueFunctions.GetKeyValue(System.String)">
+            <summary>
+            Gets the value from the cache if present, else from the table.
+            </summary>
+            <param name="keyName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.DataAccess.KeyValueFunctions.SetKeyValue(System.String,System.Object)">
+            <summary>
+            Add/update the value for the key on the table. Also removes the key from cache if present.
+            </summary>
+            <param name="keyName"></param>
+            <param name="keyValue"></param>
+        </member>
+        <member name="T:RadiusCSharp.Core.Dates.ClockFunctions">
+            <summary>
+            Provides clock functions for working with time.
+            </summary>
+        </member>
+        <member name="M:RadiusCSharp.Core.Dates.ClockFunctions.AdjustForTimeZone(System.DateTime,System.String)">
+            <summary>
+            See https://msdn.microsoft.com/en-us/library/gg154758.aspx for a list if time zone id values.
+            </summary>
+            <param name="date"></param>
+            <param name="timeZoneId">As defined xxx. E.g.: "South Africa Standard Time"</param>
+            <returns></returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.Dates.ClockFunctions.AdjustForZaTimeZone(System.DateTime)">
+            <summary>
+            Adjust the date/time to the ZA time zone.
+            </summary>
+            <param name="date"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.Dates.ClockFunctions.FromUnixTimeLocal(System.Int64)">
+            <summary>
+            
+            </summary>
+            <param name="unixTime"></param>
+            <returns>DateTime based on the unix time provided.</returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.Dates.ClockFunctions.FromUnixTimeUtc(System.Int64)">
+            <summary>
+            
+            </summary>
+            <param name="unixTime"></param>
+            <returns>DateTime based on the unix time provided.</returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.Dates.ClockFunctions.FromUnixTimeZa(System.Int64)">
+            <summary>
+            
+            </summary>
+            <param name="unixTime"></param>
+            <returns>DateTime based on the unix time provided adjusted for ZA Time zone.</returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.Dates.ClockFunctions.TimeHasPassedLocal(System.DateTime)">
+            <summary>
+            
+            </summary>
+            <param name="dateTime"></param>
+            <returns>true if dateTime is in the past</returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.Dates.ClockFunctions.TimeHasPassedUtc(System.DateTime)">
+            <summary>
+            
+            </summary>
+            <param name="dateTime"></param>
+            <returns>true if dateTime is in the past</returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.Dates.ClockFunctions.TimeHasPassedZa(System.DateTime)">
+            <summary>
+            
+            </summary>
+            <param name="dateTime"></param>
+            <returns>true if dateTime is in the past based on Za time zone.</returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.Dates.ClockFunctions.TodayAtLocal(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="hours"></param>
+            <param name="minutes"></param>
+            <param name="seconds"></param>
+            <returns>Today's date at the provided time.</returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.Dates.ClockFunctions.TodayAtUtc(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="hours"></param>
+            <param name="minutes"></param>
+            <param name="seconds"></param>
+            <returns>Today's date at the provided time.</returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.Dates.ClockFunctions.TodayAtZa(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="hours"></param>
+            <param name="minutes"></param>
+            <param name="seconds"></param>
+            <returns>Today's date (based on for ZA Time zone) at the provided time.</returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.Dates.ClockFunctions.TodayZa">
+            <summary>
+            
+            </summary>
+            <returns>Today's date adjusted for ZA Time zone.</returns>
+        </member>
+        <member name="T:RadiusCSharp.Core.Dates.DateTimeFunctions">
+            <summary>
+            Date/Time helper functions.
+            </summary>
+        </member>
+        <member name="M:RadiusCSharp.Core.Dates.DateTimeFunctions.IsMinValue(System.DateTime)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <returns>true of value == DateTime.MinValue</returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.Dates.DateTimeFunctions.MaxOfThisAnd(System.DateTime,System.DateTime)">
+            <summary>
+            Return the largest of the two dates.
+            </summary>
+            <param name="date1"></param>
+            <param name="date2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.Dates.DateTimeFunctions.LastDayOfLastMonth(System.DateTime)">
+            <summary>
+            
+            </summary>
+            <param name="referenceDate"></param>
+            <returns>The last day of the month before referenceDate.</returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.Dates.DateTimeFunctions.FirstDayOfMonth(System.DateTime)">
+            <summary>
+            
+            </summary>
+            <param name="referenceDate"></param>
+            <returns>The first day of the month in which referenceDate falls.</returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.Dates.DateTimeFunctions.LastDayOfMonth(System.DateTime)">
+            <summary>
+            
+            </summary>
+            <param name="referenceDate"></param>
+            <returns>The last day of the month in which referenceDate falls.</returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.Dates.DateTimeFunctions.StartOfDay(System.DateTime)">
+            <summary>
+            
+            </summary>
+            <param name="referenceDate"></param>
+            <returns>referenceDate with time set to 00:00:00</returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.Dates.DateTimeFunctions.EndOfDay(System.DateTime)">
+            <summary>
+            
+            </summary>
+            <param name="referenceDate"></param>
+            <returns>referenceDate with time set to 23:59:59</returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.Dates.DateTimeFunctions.WholeYearsBetween(System.DateTime,System.DateTime)">
+            <summary>
+            Gets the number of whole years between two dates.
+            </summary>
+            <param name="pastDate"></param>
+            <param name="futureDate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.Dates.DateTimeFunctions.DayBefore(System.DateTime)">
+            <summary>
+            
+            </summary>
+            <param name="referenceDate"></param>
+            <returns>day before referenceDate</returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.Email.ContentTypeFunctions.GetContentType(System.String)">
+            <summary>
+            Gets the MIME type corresponding to the extension of the specified file name.
+            </summary>
+            <param name="fileName">The file name to determine the MIME type for.</param>
+            <returns>The MIME type corresponding to the extension of the specified file name, if found; otherwise, null.</returns>
+        </member>
+        <member name="T:RadiusCSharp.Core.Email.EmailAddress">
+            <summary>
+            Email address.
+            </summary>
+        </member>
+        <member name="P:RadiusCSharp.Core.Email.EmailAddress.Name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:RadiusCSharp.Core.Email.EmailAddress.EMailAddress">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:RadiusCSharp.Core.Email.EmailAddress.#ctor(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <param name="emailAddress"></param>
+        </member>
+        <member name="T:RadiusCSharp.Core.Email.EmailAttachment">
+            <summary>
+            Email attachment abstraction.
+            </summary>
+        </member>
+        <member name="P:RadiusCSharp.Core.Email.EmailAttachment.FileDescription">
+            <summary>
+            Friendly file description. This is what the recipient will see in their email client.
+            </summary>
+        </member>
+        <member name="P:RadiusCSharp.Core.Email.EmailAttachment.FileName">
+            <summary>
+            Absolute file name of the file to attach to the email.
+            </summary>
+        </member>
+        <member name="P:RadiusCSharp.Core.Email.EmailAttachment.FileDataStream">
+            <summary>
+            Data for the file to attach. If this is provided <see cref="P:RadiusCSharp.Core.Email.EmailAttachment.FileName"/> will be ignored.
+            </summary>
+        </member>
+        <member name="P:RadiusCSharp.Core.Email.EmailAttachment.HasFileDataStream">
+            <summary>
+            True if the FileDataStream has a length > 0.
+            </summary>
+        </member>
+        <member name="M:RadiusCSharp.Core.Email.EmailAttachment.#ctor(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="fileDescription">Friendly file description. This is what the recipient will see in their email client.</param>
+            <param name="fileName">Absolute file name of the file to attach to the email.</param>
+        </member>
+        <member name="T:RadiusCSharp.Core.Email.EMailMessage">
+            <summary>
+            Email message abstration.
+            </summary>
+        </member>
+        <member name="P:RadiusCSharp.Core.Email.EMailMessage.FromEmailAddress">
+            <summary>
+            From email address.
+            </summary>
+        </member>
+        <member name="P:RadiusCSharp.Core.Email.EMailMessage.ToAddresses">
+            <summary>
+            To email addresses.
+            </summary>
+        </member>
+        <member name="P:RadiusCSharp.Core.Email.EMailMessage.Subject">
+            <summary>
+            Email subject.
+            </summary>
+        </member>
+        <member name="P:RadiusCSharp.Core.Email.EMailMessage.Body">
+            <summary>
+            Html Email body.
+            </summary>
+        </member>
+        <member name="P:RadiusCSharp.Core.Email.EMailMessage.TextBody">
+            <summary>
+            Text only email body
+            </summary>
+        </member>
+        <member name="P:RadiusCSharp.Core.Email.EMailMessage.Attachments">
+            <summary>
+            List files to attach to the email.
+            </summary>
+        </member>
+        <member name="M:RadiusCSharp.Core.Email.EMailMessage.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:RadiusCSharp.Core.Email.EmailMessageFunctions">
+            <summary>
+            Provides functionallity for sending email messages.
+            </summary>
+            <example><code source="..\..\RadiusConsoleApp\RadiusConsoleApp\SendEmailTestFunctions.cs" region="Send email message example" removeRegionMarkers="true" language="c#" /></example>
+        </member>
+        <member name="M:RadiusCSharp.Core.Email.EmailMessageFunctions.CreateEMailMessageWithSubject(System.String)">
+            <summary>
+            Create new email message using provided subject.
+            </summary>
+            <param name="subject">New email message subject.</param>
+            <returns>New EMailMessage</returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.Email.EmailMessageFunctions.CreateEMailMessage">
+            <summary>
+            Create new email message .
+            </summary>
+            <returns>New EMailMessage</returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.Email.EmailMessageFunctions.SetFromEmailAddress(RadiusCSharp.Core.Email.EMailMessage,System.String,System.String)">
+            <summary>
+            Set from email address.
+            </summary>
+            <remarks>You can only add one from email address.</remarks>
+            <param name="emailMessage">Email message object.</param>
+            <param name="fromName">From name.</param>
+            <param name="fromEmailAddress">From email address.</param>
+            <returns>Updated EMailMessage</returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.Email.EmailMessageFunctions.SetToEmailAddresses(RadiusCSharp.Core.Email.EMailMessage,RadiusCSharp.Core.Email.EmailAddress[])">
+            <summary>
+            Set one or more to email addresses.
+            </summary>
+            <remarks>You can add one or more to email addresses. Separate email addresses by using either a comma (,) or a semicolon (;).</remarks>
+            <param name="emailMessage">Email message object.</param>
+            <param name="toEmailAddresses">To email address(s)</param>
+            <returns>Updated EMailMessage</returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.Email.EmailMessageFunctions.SetToEmailAddresses(RadiusCSharp.Core.Email.EMailMessage,System.String)">
+            <summary>
+            Set one or more to email addresses.
+            </summary>
+            <remarks>You can add one or more to email addresses. Separate email addresses by using either a comma (,) or a semicolon (;).</remarks>
+            <param name="emailMessage">Email message object.</param>
+            <param name="toEmailAddresses">To email address(s)</param>
+            <returns>Updated EMailMessage</returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.Email.EmailMessageFunctions.SetSubject(RadiusCSharp.Core.Email.EMailMessage,System.String,System.Object[])">
+            <summary>
+            Set the email message subject by specifying a format string and arguments.
+            </summary>
+            <param name="emailMessage">Email message object.</param>
+            <param name="format">Format string.</param>
+            <param name="args">Format arguments.</param>
+            <returns>Updated EMailMessage</returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.Email.EmailMessageFunctions.SetSubject(RadiusCSharp.Core.Email.EMailMessage,System.String)">
+            <summary>
+            Set the email message subject.
+            </summary>
+            <param name="emailMessage">Email message object.</param>
+            <param name="subject">New subject.</param>
+            <returns>Updated EMailMessage</returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.Email.EmailMessageFunctions.SetBody(RadiusCSharp.Core.Email.EMailMessage,System.String)">
+            <summary>
+            Set the email message HTML body content.
+            </summary>
+            <remarks>The body is added as Html.</remarks>
+            <param name="emailMessage">Email message object.</param>
+            <param name="body"></param>
+            <returns>Updated EMailMessage</returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.Email.EmailMessageFunctions.SetTextBody(RadiusCSharp.Core.Email.EMailMessage,System.String)">
+            <summary>
+            Set the email message plain text body content.
+            </summary>
+            <remarks>The body is added as plain text.</remarks>
+            <param name="emailMessage">Email message object.</param>
+            <param name="body"></param>
+            <returns>Updated EMailMessage</returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.Email.EmailMessageFunctions.AddAttachment(RadiusCSharp.Core.Email.EMailMessage,RadiusCSharp.Core.Email.EmailAttachment)">
+            <summary>
+            Add an attachment to the email message.
+            </summary>
+            <param name="emailAttachment">The email attachment to add.</param>
+        </member>
+        <member name="M:RadiusCSharp.Core.Email.EmailMessageFunctions.AddFileAttachment(RadiusCSharp.Core.Email.EMailMessage,System.String,System.String)">
+            <summary>
+            Add an file attachment to the email message.
+            </summary>
+            <param name="emailMessage">Email message object.</param>
+            <param name="fileDescription">Friendly file description. This is what the recipient will see in their email client.</param>
+            <param name="fileName">Absolute file name of the file to attach to the email.</param>
+            <returns>Updated EMailMessage</returns>
+        </member>
+        <member name="T:RadiusCSharp.Core.Email.MailMessageBuilderFunctions">
+            <summary>
+            Provides functions for transforming an EMailMessage to a MailMessage.
+            </summary>
+        </member>
+        <member name="M:RadiusCSharp.Core.Email.MailMessageBuilderFunctions.NewMailMessage(RadiusCSharp.Core.Email.EMailMessage)">
+            <summary>
+            Transforms the EMailMessage to a MailMessage.
+            </summary>
+            <param name="emailMessage">EMailMessage to transform.</param>
+            <returns>Populated MailMessage.</returns>
+        </member>
+        <member name="T:RadiusCSharp.Core.Email.SendEmailNotificationAsyncFunctions">
+            <summary>
+            Provides functions for sending email messages in a separate thread.
+            </summary>
+            <example><code source="..\..\RadiusConsoleApp\RadiusConsoleApp\SendEmailAsyncTestFunctions.cs" region="Send email message async example" removeRegionMarkers="true" language="c#" /></example>
+        </member>
+        <member name="F:RadiusCSharp.Core.Email.SendEmailNotificationAsyncFunctions.EmailQueue">
+            <summary>
+            Email message queue.
+            </summary>
+            <remarks>Add EMailMessage objects to this queue for async delivery.</remarks>
+        </member>
+        <member name="M:RadiusCSharp.Core.Email.SendEmailNotificationAsyncFunctions.EmailQueueMessageCount">
+            <summary>
+            
+            </summary>
+            <returns>The number of messages in the queue.</returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.Email.SendEmailNotificationAsyncFunctions.HasMessagesInQueue">
+            <summary>
+            
+            </summary>
+            <returns>True is there are messages in the queue.</returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.Email.SendEmailNotificationAsyncFunctions.HasMessagesInQueueOrBeingSent">
+            <summary>
+            
+            </summary>
+            <returns>True if there are messages in the queue of one or more messages are being sent.</returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.Email.SendEmailNotificationAsyncFunctions.QueueEmailNotificationForDelivery(RadiusCSharp.Core.Email.EMailMessage)">
+            <summary>
+            Add an email message to the EmailQueue for delivery.
+            </summary>
+            <param name="emailMessage"></param>
+        </member>
+        <member name="M:RadiusCSharp.Core.Email.SendEmailNotificationAsyncFunctions.StartEmailQueueProcessing(RadiusCSharp.Core.Email.SmtpServer)">
+            <summary>
+            Start the email queue processing thread. The queue processing service will start only the first time this 
+            functions is called. Consecutive calles will be ignored.
+            </summary>
+            <param name="smtpServer">Smtp server settings.</param>
+            <returns>CancellationToken for the running thread.</returns>
+        </member>
+        <member name="T:RadiusCSharp.Core.Email.SendEmailNotificationFunctions">
+            <summary>
+            Provides functionality for sending an email message.
+            </summary>
+            <remarks>This code provides transient error handling with retry.</remarks>
+        </member>
+        <member name="F:RadiusCSharp.Core.Email.SendEmailNotificationFunctions.EmailsBusyBeingSentCount">
+            <summary>
+            Func that returns the number of messages still being sent.
+            </summary>
+        </member>
+        <member name="M:RadiusCSharp.Core.Email.SendEmailNotificationFunctions.AreEmailsBeingSent">
+            <summary>
+            
+            </summary>
+            <returns>true is there are one or more emails in the process of being sent.</returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.Email.SendEmailNotificationFunctions.SendEmailNotificationWithRetry(RadiusCSharp.Core.Email.EMailMessage,RadiusCSharp.Core.Email.SmtpServer,System.Boolean,System.Action{System.Exception},System.Action{RadiusCSharp.Core.Email.EMailMessage,RadiusCSharp.Core.Email.SendEmailNotificationStatus})">
+            <summary>
+            Send the email message.
+            </summary>
+            <remarks>The email body is marked as being Html.</remarks>
+            <param name="emailMessage">Email message to send.</param>
+            <param name="smtpServer">SMTP server details.</param>
+            <param name="sendAsync">If true Send the message in a separate thread.</param>
+            <param name="onException">Called if an exception occurs.</param>
+            <param name="onAsyncComplete">Called on completion. Only called when sendAsync is true.</param>
+        </member>
+        <member name="T:RadiusCSharp.Core.Email.SendEmailNotificationStatus">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:RadiusCSharp.Core.Email.SendEmailNotificationStatus.Sent">
+            <summary>
+            Email was sent.
+            </summary>
+        </member>
+        <member name="F:RadiusCSharp.Core.Email.SendEmailNotificationStatus.Failed">
+            <summary>
+            Email send failed.
+            </summary>
+        </member>
+        <member name="T:RadiusCSharp.Core.Email.SmtpServer">
+            <summary>
+            Smtp Server settings.
+            </summary>
+        </member>
+        <member name="F:RadiusCSharp.Core.Email.SmtpServer.ServerName">
+            <summary>
+            Server name.
+            </summary>
+        </member>
+        <member name="F:RadiusCSharp.Core.Email.SmtpServer.ServerPort">
+            <summary>
+            Server port.
+            </summary>
+            <remarks>Set to 0 to use default port 25.</remarks>
+        </member>
+        <member name="F:RadiusCSharp.Core.Email.SmtpServer.UserName">
+            <summary>
+            Smtp server user name.
+            </summary>
+            <remarks>Leave empty or null if no authentication is required.</remarks>
+        </member>
+        <member name="F:RadiusCSharp.Core.Email.SmtpServer.UserPassword">
+            <summary>
+            Smtp server user password.
+            </summary>
+            <remarks>Leave empty or null if no authentication is required.</remarks>
+        </member>
+        <member name="F:RadiusCSharp.Core.Email.SmtpServer.UseSsl">
+            <summary>
+            Use SSL when sending emails.
+            </summary>
+            <remarks>Default is false.</remarks>
+        </member>
+        <member name="F:RadiusCSharp.Core.Email.SmtpServer.PerSecondRateLimit">
+            <summary>
+            Max number of email allowed per second.
+            </summary>
+            <remarks>Default value is 5.</remarks>
+        </member>
+        <member name="M:RadiusCSharp.Core.Email.SmtpServer.#ctor(System.String,System.Int32,System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="serverName"></param>
+            <param name="serverPort"></param>
+            <param name="userName"></param>
+            <param name="userPassword"></param>
+        </member>
+        <member name="T:RadiusCSharp.Core.Encryption.EncryptionFunctions">
+            <summary>
+            Provides functions for encrypting and decrypting data.
+            </summary>
+            <remarks>Uses DataProtectionScope.LocalMachine. The encrypted data can only be decrypted on the machine that it was encrypted on.</remarks>
+        </member>
+        <member name="M:RadiusCSharp.Core.Encryption.EncryptionFunctions.Encrypt(System.String)">
+            <summary>
+            Encrypt a string.
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.Encryption.EncryptionFunctions.EncryptToBase64(System.Byte[])">
+            <summary>
+            Encrypt the data and convert the encrypted data to a Base64 string.
+            </summary>
+            <param name="data">Data to encrypt.</param>
+            <returns>Base64 string containing the encrypted data.</returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.Encryption.EncryptionFunctions.Encrypt(System.Byte[])">
+            <summary>
+            Encrypt the data.
+            </summary>
+            <param name="data">Data to encrypt.</param>
+            <returns>Byte array of encrypted data.</returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.Encryption.EncryptionFunctions.DecryptToString(System.Byte[])">
+            <summary>
+            Decrypt data and convert to string.
+            </summary>
+            <param name="data">Byte array to descrypt.</param>
+            <returns>Decrypted string.</returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.Encryption.EncryptionFunctions.DecryptFromBase64(System.String)">
+            <summary>
+            Descrypt data.
+            </summary>
+            <param name="base64EncryptedData">Base64 string containing the encrypted data.</param>
+            <returns>Byte array of decrypted data.</returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.Encryption.EncryptionFunctions.Decrypt(System.Byte[])">
+            <summary>
+            Descrypt data.
+            </summary>
+            <param name="encryptedData">Encrypted data.</param>
+            <returns>Byte array of decrypted data.</returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.ExceptionHandling.ExceptionHandlerFunctions.TryCatchFinally(System.Action,System.Action{System.Exception},System.Action)">
+            <summary>
+            
+            </summary>
+            <remarks>Catches the exception and calls the onException action after which the exception is logged and control is returned to the calling function.</remarks>
+            <param name="doAction">Action to perform in the Try/Catch/Finally.</param>
+            <param name="onException">Exception handler. Ignored if null.</param>
+            <param name="onFinally">Finally handler. Ignored if null.</param>
+        </member>
+        <member name="M:RadiusCSharp.Core.ExceptionHandling.ExceptionHandlerFunctions.GetDefaultDelayStrategy">
+            <summary>
+            Delays are in seconds.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.ExceptionHandling.ExceptionHandlerFunctions.GetDelayStrategy(System.Collections.Generic.IEnumerable{System.Int32})">
+            <summary>
+            Delays are in seconds.
+            </summary>
+            <param name="delays"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RadiusCSharp.Core.ExceptionHandling.ResultFunctions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:RadiusCSharp.Core.ExceptionHandling.ResultFunctions.Try``1(System.Func{CSharpFunctionalExtensions.Result{``0}},System.String)">
+            <summary>
+            Wraps func in a try/catch block. No logging is done.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="func"></param>
+            <param name="exceptionMessageFormatString">Included in the error passed to Result.Fail</param>
+            <returns>The return value of func or Result.Fail.</returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.ExceptionHandling.ResultFunctions.Try``1(System.Func{``0},System.String)">
+            <summary>
+            Wraps func in a try/catch block. No logging is done.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="func"></param>
+            <param name="exceptionMessageFormatString">Included in the error passed to Result.Fail</param>
+            <returns>The return value of func or Result.Fail.</returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.ExceptionHandling.ResultFunctions.TryCatchWithLogging``1(System.Func{CSharpFunctionalExtensions.Result{``0}},System.String)">
+            <summary>
+            Wraps func in a Try/Catch block. Additionally logs the Exception using the logging system (e.LogException()).
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="func"></param>
+            <param name="exceptionMessageFormatString">Included in the error passed to Result.Fail. Also written to the Error log.</param>
+            <returns>The return value of func or Result.Fail.</returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.ExceptionHandling.ResultFunctions.ValueOrDefault``1(CSharpFunctionalExtensions.Result{``0})">
+            <summary>
+            Unwraps the Result of T.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="result"></param>
+            <returns>If result.IsSuccess then result.Value else default(T)</returns>
+        </member>
+        <member name="T:RadiusCSharp.Core.FileSystem.FileDescriptor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:RadiusCSharp.Core.FileSystem.FileFunctions">
+            <summary>
+            Common file read/write functions.
+            </summary>
+        </member>
+        <member name="M:RadiusCSharp.Core.FileSystem.FileFunctions.DeleteFile(System.String)">
+            <summary>
+            Delete fileName if it exists.
+            </summary>
+            <param name="fileName"></param>
+        </member>
+        <member name="M:RadiusCSharp.Core.FileSystem.FileFunctions.SaveIntToFile(System.Int32,System.String)">
+            <summary>
+            Save the value to the file.
+            </summary>
+            <param name="value"></param>
+            <param name="fileName"></param>
+        </member>
+        <member name="M:RadiusCSharp.Core.FileSystem.FileFunctions.SaveTextToFile(System.String,System.String)">
+            <summary>
+            Save the value to the file.
+            </summary>
+            <param name="text"></param>
+            <param name="fileName"></param>
+        </member>
+        <member name="M:RadiusCSharp.Core.FileSystem.FileFunctions.AppendTextToFile(System.String,System.String)">
+            <summary>
+            Add the text to the file.
+            </summary>
+            <param name="text"></param>
+            <param name="fileName"></param>
+        </member>
+        <member name="M:RadiusCSharp.Core.FileSystem.FileFunctions.ReadBytesFromFile(System.String)">
+            <summary>
+            Read the value from the file.
+            </summary>
+            <param name="fileName"></param>
+        </member>
+        <member name="M:RadiusCSharp.Core.FileSystem.FileFunctions.ReadTextFromFile(System.String)">
+            <summary>
+            Read the value from the file.
+            </summary>
+            <param name="fileName"></param>
+        </member>
+        <member name="M:RadiusCSharp.Core.FileSystem.FileFunctions.EnsureTargetFileNameAbsolute(System.String,System.String)">
+            <summary>
+            Ensures that targetFileName includes a path. If not, sourceFileName's path is added to targetFileName.
+            </summary>
+            <param name="sourceFileName"></param>
+            <param name="targetFileName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.FileSystem.FileFunctions.GetDirectory(System.String)">
+            <summary>
+            Returns sourceFileName's directory.
+            </summary>
+            <param name="sourceFileName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.FileSystem.FileFunctions.GetFileName(System.String)">
+            <summary>
+            Returns sourceFileName's file name.
+            </summary>
+            <param name="sourceFileName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.FileSystem.FileFunctions.RenameFileTo(System.String,System.String)">
+            <summary>
+            Rename the file.
+            </summary>
+            <param name="originalFileName"></param>
+            <param name="newFileName"></param>
+            <returns>The value of newFileName.</returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.FileSystem.FileFunctions.RenameFileToUnique(System.String,System.String)">
+            <summary>
+            Renames originalFileName to newFileName ensuring that newFileName is unique in the
+            destination folder.
+            See <see cref="M:RadiusCSharp.Core.FileSystem.FileFunctions.MakeFileNameUnique(System.String)"/> for details on how the file is made unique.
+            </summary>
+            <param name="originalFileName"></param>
+            <param name="newFileName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.FileSystem.FileFunctions.RenameExistingFile(System.String)">
+            <summary>
+            Rename fileName to the next unique name if the file exists.
+            See <see cref="M:RadiusCSharp.Core.FileSystem.FileFunctions.MakeFileNameUnique(System.String)"/> for details on how the file is made unique.
+            </summary>
+            <param name="fileName"></param>
+        </member>
+        <member name="M:RadiusCSharp.Core.FileSystem.FileFunctions.MakeFileNameUnique(System.String)">
+            <summary>
+            If fileName exists this function will append (n) to the file name.
+            Where n is a number between 1 and int.MaxValue.
+            e.g.: error.txt will become error (1).txt
+            </summary>
+            <param name="fileName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.FileSystem.FileFunctions.FileNameContainsInvalidCharacters(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="fileName"></param>
+            <returns>true if file name contains invalid chars.</returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.FileSystem.FileFunctions.RemoveInvalidCharsFromFileName(System.String)">
+            <summary>
+            Remove any invalid chars from the file name.
+            </summary>
+            <param name="fileName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.FileSystem.FileFunctions.FileExists(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="fileName"></param>
+            <returns>true if the file exists.</returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.FileSystem.FileFunctions.FileNotExists(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="fileName"></param>
+            <returns>true if the file does not exist.</returns>
+        </member>
+        <member name="T:RadiusCSharp.Core.FileSystem.FolderFunctions">
+            <summary>
+            Common folder functions.
+            </summary>
+        </member>
+        <member name="M:RadiusCSharp.Core.FileSystem.FolderFunctions.ApplicationRootPath">
+            <summary>
+            Returns the running application's root path.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.FileSystem.FolderFunctions.GetCommonDataFolder(System.String)">
+            <summary>
+            Returns the absolute application data folder name.
+            </summary>
+            <param name="applicationDataFolderName">Name of the application's data sub-folder.</param>
+            <returns>applicationDataFolderName appended to Environment.SpecialFolder.ApplicationData</returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.FileSystem.FolderFunctions.PathContainsInvalidCharacters(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="pathName"></param>
+            <returns>true if the pathName contains invalid characters.</returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.FileSystem.FolderFunctions.RemoveInvalidCharsPathFileName(System.String)">
+            <summary>
+            Remove invalid chars from path name.
+            </summary>
+            <param name="pathName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.FileSystem.FolderFunctions.EnsureFolderExists(System.String)">
+            <summary>
+            Ensures that the folder exist. Creates it if it does not exist.
+            </summary>
+            <param name="folderName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.FileSystem.FolderFunctions.IfFolderExists``1(System.String,System.Func{System.String,``0},``0)">
+            <summary>
+            Calls onFolderExists if folderName exists.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="folderName"></param>
+            <param name="onFolderExists"></param>
+            <param name="defaultValue">Returned if folderName does not exist.</param>
+            <returns></returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.FileSystem.FolderFunctions.ListFilesInFolder(System.String)">
+            <summary>
+            Lists the files in folderName.
+            </summary>
+            <param name="folderName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.FileSystem.FolderFunctions.ListFilesInFolder(System.String,System.String,System.IO.SearchOption)">
+            <summary>
+            Lists the files in folderName.
+            </summary>
+            <param name="folderName"></param>
+            <param name="searchPattern"></param>
+            <param name="searchOption"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.FileSystem.FolderFunctions.DeleteEmptyFolder(System.String)">
+            <summary>
+            Deletes folderName if it is empty.
+            </summary>
+            <param name="folderName"></param>
+        </member>
+        <member name="M:RadiusCSharp.Core.FileSystem.FolderFunctions.FolderIsEmpty(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="folderName"></param>
+            <returns>true if folder contains no files or folders.</returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.FileSystem.FolderFunctions.DeleteFolder(System.String,System.Boolean)">
+            <summary>
+            Deletes folderName.
+            </summary>
+            <param name="folderName"></param>
+            <param name="mustBeEmpty"></param>
+        </member>
+        <member name="M:RadiusCSharp.Core.FileSystem.FolderFunctions.FolderExists(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="folderName"></param>
+            <returns>true if folderName exists.</returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.FileSystem.FolderFunctions.UseFolderOrDefault(System.String,System.String)">
+            <summary>
+            User folderName if it is a valid folder else use the defaultFolder.
+            </summary>
+            <param name="folderName"></param>
+            <param name="defaultFolder"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RadiusCSharp.Core.FileSystem.KeyChainStoreFunctions">
+            <summary>
+            Provides functions to storing and retrieving data in an encrypted Key Chain.
+            </summary>
+        </member>
+        <member name="M:RadiusCSharp.Core.FileSystem.KeyChainStoreFunctions.SetKeyChainStorePath(System.String)">
+            <summary>
+            Set the KeyChain store path to use for the application. If not specified the 
+            application's root path will be used.
+            </summary>
+            <param name="keyChainStorePath"></param>
+        </member>
+        <member name="M:RadiusCSharp.Core.FileSystem.KeyChainStoreFunctions.StoreKey(RadiusCSharp.Core.FileSystem.KeyChainData)">
+            <summary>
+            Store the key in the Key Chain.
+            </summary>
+            <param name="keyChainData"></param>
+        </member>
+        <member name="M:RadiusCSharp.Core.FileSystem.KeyChainStoreFunctions.LoadKeyFromKeyChain(System.String)">
+            <summary>
+            Load the key from the Key Chain.
+            </summary>
+            <param name="keyName">Key name to load.</param>
+            <returns></returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.FileSystem.KeyValueFileFunctions.LoadKeyValueFile(System.String)">
+            <summary>
+            Loads Key/Value pairs from fileName. Empty lines and lines starting with #
+            will be ignored.
+            
+            If there is a duplicate key in the file the first occurence will be used.
+            </summary>
+            <param name="fileName"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RadiusCSharp.Core.FlowControl.ConditionalAssignment`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="F:RadiusCSharp.Core.FlowControl.ConditionalAssignment`1.Assigned">
+            <summary>
+            Indicates whether or not Value has been assigned.
+            </summary>
+        </member>
+        <member name="F:RadiusCSharp.Core.FlowControl.ConditionalAssignment`1.Value">
+            <summary>
+            Value that was assgned if Assigned is true.
+            </summary>
+        </member>
+        <member name="T:RadiusCSharp.Core.FlowControl.ConditionalAssignmentFunctions">
+            <summary>
+            Used to assign a value based on multiple conditions.
+            </summary>
+        </member>
+        <member name="M:RadiusCSharp.Core.FlowControl.ConditionalAssignmentFunctions.AssignIf``1(RadiusCSharp.Core.FlowControl.ConditionalAssignment{``0},System.Boolean,``0)">
+            <summary>
+            Assign value if predicate is true. 
+            Sets conditionalAssignment.Assigned = true if the assignment was made.
+            Simply returns conditionalAssignment if conditionalAssignment.Assigned || !predicate.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="conditionalAssignment"></param>
+            <param name="predicate"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.FlowControl.ConditionalAssignmentFunctions.GetValue``1(RadiusCSharp.Core.FlowControl.ConditionalAssignment{``0},``0)">
+            <summary>
+            Unwraps value from conditionalAssignment.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="conditionalAssignment"></param>
+            <param name="defaultValue">Value to return if none of the predicates were true.</param>
+            <returns>conditionalAssignment.Value if conditionalAssignment.Assigned is true else defaultValue.</returns>
+        </member>
+        <member name="T:RadiusCSharp.Core.FlowControl.ConditionalExecuteAction">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:RadiusCSharp.Core.FlowControl.ConditionalExecuteAction.Executed">
+            <summary>
+            Indicates whether or not Value has been assigned.
+            </summary>
+        </member>
+        <member name="T:RadiusCSharp.Core.FlowControl.ConditionalExecuteFunction`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="F:RadiusCSharp.Core.FlowControl.ConditionalExecuteFunction`1.Executed">
+            <summary>
+            Indicates whether or not Value has been assigned.
+            </summary>
+        </member>
+        <member name="F:RadiusCSharp.Core.FlowControl.ConditionalExecuteFunction`1.Result">
+            <summary>
+            Result returned by the code that executed.
+            </summary>
+        </member>
+        <member name="T:RadiusCSharp.Core.FlowControl.ConditionalExecuteFunctions">
+            <summary>
+            Conditional execution.
+            </summary>
+        </member>
+        <member name="M:RadiusCSharp.Core.FlowControl.ConditionalExecuteFunctions.ExecuteIf``1(RadiusCSharp.Core.FlowControl.ConditionalExecuteFunction{``0},System.Boolean,System.Func{``0})">
+            <summary>
+            Calls fn if predicate is true.
+            Sets conditionalExecute.Executed = true if fn was called.
+            Simply returns conditionalExecute if conditionalExecute.Executed || !predicate.
+            
+            Assigns the return value of fn to conditionalExecute.Result.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="conditionalExecuteFunction"></param>
+            <param name="predicate"></param>
+            <param name="fn"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.FlowControl.ConditionalExecuteFunctions.ExecuteIf(RadiusCSharp.Core.FlowControl.ConditionalExecuteAction,System.Boolean,System.Action)">
+            <summary>
+            Calls action if predicate is true.
+            Simply returns conditionalExecute if conditionalExecute.Executed || !predicate.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="conditionalExecute"></param>
+            <param name="predicate"></param>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.FlowControl.ConditionalExecuteFunctions.GetResult``1(RadiusCSharp.Core.FlowControl.ConditionalExecuteFunction{``0},``0)">
+            <summary>
+            Unwraps value from conditionalExecute.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="conditionalExecuteFunction"></param>
+            <param name="defaultValue">Value to return if none of the predicates were true.</param>
+            <returns>conditionalExecute.Result if conditionalAssignment.Executed is true else defaultValue.</returns>
+        </member>
+        <member name="T:RadiusCSharp.Core.Http.ExceptionRetryMode">
+            <summary>
+            Transient exception retry mode.
+            </summary>
+        </member>
+        <member name="F:RadiusCSharp.Core.Http.ExceptionRetryMode.RetryWithDelay">
+            <summary>
+            Retry after applying delay strategy.
+            </summary>
+        </member>
+        <member name="F:RadiusCSharp.Core.Http.ExceptionRetryMode.Throw">
+            <summary>
+            Throw an exception without retrying.
+            </summary>
+        </member>
+        <member name="F:RadiusCSharp.Core.Http.ExceptionRetryMode.SilentReturn">
+            <summary>
+            Suppress the exception and return.
+            </summary>
+        </member>
+        <member name="T:RadiusCSharp.Core.Http.HttpClientRequestContext">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:RadiusCSharp.Core.Http.HttpClientRequestContext.HttpClientRestRequest">
+            <summary>
+            Request configuration.
+            </summary>
+        </member>
+        <member name="F:RadiusCSharp.Core.Http.HttpClientRequestContext.HttpClientRestResponse">
+            <summary>
+            Response from the remote server.
+            </summary>
+        </member>
+        <member name="F:RadiusCSharp.Core.Http.HttpClientRequestContext.GetHttpClient">
+            <summary>
+            Factory function for building the HttpClient.
+            The default function is HttpClientFunctions.GetHttpClientFunc()
+            </summary>
+        </member>
+        <member name="F:RadiusCSharp.Core.Http.HttpClientRequestContext.CancellationToken">
+            <summary>
+            Cancellation token used to cancel the request.
+            </summary>
+        </member>
+        <member name="F:RadiusCSharp.Core.Http.HttpClientRequestContext.ExceptionHandler">
+            <summary>
+            Custom exception handler used to tell the framework how to react to a specific exception.
+            </summary>
+        </member>
+        <member name="F:RadiusCSharp.Core.Http.HttpClientRequestContext.RequestException">
+            <summary>
+            This is set to the exception returned by the request.
+            </summary>
+        </member>
+        <member name="F:RadiusCSharp.Core.Http.HttpClientRequestContext.RetryDelays">
+            <summary>
+            Custom retry delay strategy. If not set the default delay strategy will be used.
+            </summary>
+        </member>
+        <member name="M:RadiusCSharp.Core.Http.HttpClientRequestFunctions.ExecuteHttpRequest(RadiusCSharp.Core.Http.HttpClientRequestContext)">
+            <summary>
+            Execute the Http request.
+            </summary>
+            <param name="httpClientRequestContext"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RadiusCSharp.Core.Http.HttpClientRestRequest">
+            <summary>
+            Defines the attributes of the request.
+            </summary>
+        </member>
+        <member name="F:RadiusCSharp.Core.Http.HttpClientRestRequest.EndPointAddress">
+            <summary>
+            URL of the web service.
+            </summary>
+        </member>
+        <member name="F:RadiusCSharp.Core.Http.HttpClientRestRequest.AuthenticationHeader">
+            <summary>
+            Set this to the authentication token provided by the web service.
+            </summary>
+        </member>
+        <member name="F:RadiusCSharp.Core.Http.HttpClientRestRequest.RequestType">
+            <summary>
+            Get, Post, etc.
+            </summary>
+        </member>
+        <member name="F:RadiusCSharp.Core.Http.HttpClientRestRequest.ContentType">
+            <summary>
+            Body content type. E.g. application/json
+            </summary>
+        </member>
+        <member name="F:RadiusCSharp.Core.Http.HttpClientRestRequest.Content">
+            <summary>
+            Text to use as the body content of the post.
+            </summary>
+        </member>
+        <member name="F:RadiusCSharp.Core.Http.HttpClientRestRequest.AdditionalHeaders">
+            <summary>
+            Assign a dictionary containing custom headers to add to the request.
+            </summary>
+        </member>
+        <member name="T:RadiusCSharp.Core.Lists.EnumeratorFunctions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:RadiusCSharp.Core.Lists.EnumeratorFunctions.FindFirst``1(System.Collections.IEnumerable,System.Func{``0,System.Boolean})">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="enumerable"></param>
+            <param name="predicate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.Lists.EnumeratorFunctions.Iter``1(System.Collections.IEnumerable,System.Action{``0})">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="enumerable"></param>
+            <param name="fn"></param>
+        </member>
+        <member name="M:RadiusCSharp.Core.Lists.EnumeratorFunctions.Iter``1(System.Collections.IEnumerable,System.Action{``0},System.Func{System.Object,``0})">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="enumerable"></param>
+            <param name="fn"></param>
+            <param name="cast">function for casting the iteree to T.</param>
+        </member>
+        <member name="M:RadiusCSharp.Core.Lists.EnumeratorFunctions.IterWithBreak``1(System.Collections.IEnumerable,System.Func{``0,RadiusCSharp.Core.Lists.IterBreakOption})">
+            <summary>
+            Iterate over the enumerable until complete or fn returns true.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="enumerable"></param>
+            <param name="fn"></param>
+        </member>
+        <member name="M:RadiusCSharp.Core.Lists.EnumFunctions.EnumToArray``1">
+            <summary>
+            Converts enum of T to an array of EnumDescriptor.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns>Array of EnumDescriptor setting the EnumDescriptor.Value to the index of the enum element in the enum. IMPORTANT: This is not
+            the value assigned to the enum.</returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.Lists.EnumFunctions.EnumToArrayWithValues``1">
+            <summary>
+            Converts enum of T to an array of EnumDescriptor.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns>Array of EnumDescriptor setting the EnumDescriptor.Value to the value assigned to the enum.</returns>
+        </member>
+        <member name="T:RadiusCSharp.Core.Lists.LoopFunctions">
+            <summary>
+            Provides looping functions.
+            </summary>
+        </member>
+        <member name="M:RadiusCSharp.Core.Lists.LoopFunctions.InfiniteLoop(System.Int32,System.Action)">
+            <summary>
+            Calls action from within an infinite loop.
+            </summary>
+            <param name="withMillisecondsDelay">Thread.Sleep delay in seconds between calls to action.</param>
+            <param name="action">Continuation to call from within the loop.</param>
+        </member>
+        <member name="M:RadiusCSharp.Core.Lists.LoopFunctions.InfiniteLoop(System.Int32)">
+            <summary>
+            Infinite loop.
+            </summary>
+            <remarks>This loop does nothing other than causing an infinite loop. You would typically use this when you are wating for the user to press Ctrl-C.</remarks>
+            <param name="withMillisecondsDelay">Thread.Sleep delay in seconds between calls to action.</param>
+        </member>
+        <member name="M:RadiusCSharp.Core.Lists.LoopFunctions.LoopWhileTrue(System.Int32,System.Func{System.Boolean},System.Action)">
+            <summary>
+            Calls action from within a loop.
+            </summary>
+            <param name="withMillisecondsDelay">Thread.Sleep delay in seconds between calls to action.</param>
+            <param name="predicate">Function to call in order to see if the loop should continue.</param>
+            <param name="action">Continuation to call from within the loop.</param>
+        </member>
+        <member name="M:RadiusCSharp.Core.Lists.LoopFunctions.LoopWhileTrue(System.Int32,System.Func{System.Boolean})">
+            <summary>
+            Loop while predicate is true.
+            </summary>
+            <remarks>This loop does nothing other than wait for predicate to become false.</remarks>
+            <param name="withMillisecondsDelay"></param>
+            <param name="predicate"></param>
+        </member>
+        <member name="M:RadiusCSharp.Core.Lists.LoopFunctions.LoopWhileTrueAsync(System.Int32,System.Func{System.Boolean},System.Action)">
+            <summary>
+            Calls action from within a loop.
+            </summary>
+            <remarks>Wraps the loop in a Task.Run and uses Task.Delay between calls to action.</remarks>
+            <param name="withMillisecondsDelay">Thread.Sleep delay in seconds between calls to action.</param>
+            <param name="predicate">Function to call in order to see if the loop should continue.</param>
+            <param name="action">Continuation to call from within the loop.</param>
+        </member>
+        <member name="M:RadiusCSharp.Core.Lists.LoopFunctions.LoopUntilCancellationRequest(System.Threading.CancellationToken,System.String,System.Func{System.DateTime},System.Action,System.Action{System.Exception},System.Int32,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <remarks>Will loop until cancellationToken.IsCancellationRequested becomes true. 
+            Action is called immediately on entry and then repeatedly after waiting for getWaitUntil's return value to arrive.</remarks>
+            <param name="cancellationToken"></param>
+            <param name="loopName"></param>
+            <param name="getWaitUntil">Function for getting the date/time until when to wait before calling the action.</param>
+            <param name="action">Loop continuation.</param>
+            <param name="onException">Optional exception handler. The built-in exception handler writes to the log, so you can used this for additional processing.</param>
+            <param name="withMillisecondsDelay">Thread.Sleep delay in seconds between calls to action.</param>
+            <param name="reEvaluateWaitUntil">If true getWaitUntil will be called on each loop.</param>
+        </member>
+        <member name="T:RadiusCSharp.Core.Logging.LoggingFactory">
+            <summary>
+            Create new LoggerContext.
+            Call LoggingFactory.NewLoggerContext to create a new LoggerContext.
+            </summary>
+        </member>
+        <member name="F:RadiusCSharp.Core.Logging.LoggingFactory.NewLoggerContext">
+            <summary>
+            Factory function to create new LoggerContext passing in the logger's name.
+            </summary>
+        </member>
+        <member name="M:RadiusCSharp.Core.Logging.LoggingFormatFunctions.GetExceptionMessages(System.Exception)">
+            <summary>
+            Returs a string containing the messges from the Exception including the inner exceptions.
+            </summary>
+            <param name="ex"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RadiusCSharp.Core.Logging.LoggingFunctions">
+            <summary>
+            Extension methods that will log to the default LoggingContext.
+            </summary>
+        </member>
+        <member name="T:RadiusCSharp.Core.MathTools.ComparisonsFunctions">
+            <summary>
+            Functions for doing comparisons.
+            </summary>
+        </member>
+        <member name="M:RadiusCSharp.Core.MathTools.ComparisonsFunctions.Between(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="startRange"></param>
+            <param name="endRange"></param>
+            <returns>true if value between startRange and endRange (inclusive)</returns>
+        </member>
+        <member name="T:RadiusCSharp.Core.MathTools.MathFunctions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:RadiusCSharp.Core.MathTools.MathFunctions.DivideByOrZero(System.Double,System.Double)">
+            <summary>
+            Devide top by bottom unless bottom is zero in which case simply return 0.
+            </summary>
+            <param name="top"></param>
+            <param name="bottom"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RadiusCSharp.Core.NetworkSystem.NetworkFunctions">
+            <summary>
+            Network related functions.
+            </summary>
+        </member>
+        <member name="M:RadiusCSharp.Core.NetworkSystem.NetworkFunctions.GetLocalIPAddress">
+            <summary>
+            Get the local computer's IP address.
+            </summary>
+            <returns>The first IP address found for AddressFamily.InterNetwork.</returns>
+        </member>
+        <member name="T:RadiusCSharp.Core.ProcessLogging.ProcessLoggingFunctions">
+            <summary>
+            Provides functionality for creating log files containing transaction processing information.
+            E.g. when processing a list of invoices this feature can be used to log messages to a file
+            which can then be email after the processing is complete.
+            </summary>
+        </member>
+        <member name="M:RadiusCSharp.Core.ProcessLogging.ProcessLoggingFunctions.NewProcessLoggingSession(System.String,System.String,System.String)">
+            <summary>
+            Start a new process logging instance.
+            </summary>
+            <param name="pathName">Path in which to create the log file.</param>
+            <param name="fileTag">Text value to prepend to the filename.</param>
+            <param name="title">Title that will be written to the process log file when the session is created.</param>
+            <returns></returns>
+        </member>
+        <member name="T:RadiusCSharp.Core.RunAsync.AsyncFunctions">
+            <summary>
+            Functions for adding individual functions in the Windows ThreadPool.
+            </summary>
+        </member>
+        <member name="M:RadiusCSharp.Core.RunAsync.AsyncFunctions.RunAsync(System.Action{System.Threading.CancellationToken},System.String)">
+            <summary>
+            Add a single function in the ThreadPool.
+            </summary>
+            <param name="asyncAction"></param>
+            <param name="tag"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.RunAsync.AsyncFunctions.RunLaterAsync(System.Action{System.Threading.CancellationToken},System.Int32,System.String)">
+            <summary>
+            Delay execution of asyncAction by delayMilliseconds.
+            </summary>
+            <param name="asyncAction"></param>
+            <param name="delayMilliseconds"></param>
+            <param name="tag"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.RunAsync.AsyncFunctions.RunAsync(System.Collections.Generic.IEnumerable{System.Action{System.Threading.CancellationToken}},System.String)">
+            <summary>
+            Add a list of functions in the ThreadPool (Each function is added separately).
+            </summary>
+            <param name="asyncActions"></param>
+            <param name="tag"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.RunAsync.AsyncFunctions.RunAsync(System.Collections.Generic.IEnumerable{System.Action{System.Threading.CancellationToken}},System.Action{System.Threading.Tasks.Task},System.String)">
+            <summary>
+            Add a list of functions in the ThreadPool (Each function is added separately).
+            </summary>
+            <param name="asyncActions"></param>
+            <param name="onComplete"></param>
+            <param name="tag"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.RunAsync.AsyncFunctions.WaitAll(System.String)">
+            <summary>
+            Wait for all threads for the specified tag to terminate.
+            </summary>
+            <param name="tag"></param>
+        </member>
+        <member name="M:RadiusCSharp.Core.RunAsync.AsyncFunctions.StopAsyncProcesses(System.Threading.CancellationToken)">
+            <summary>
+            Cancel all running threads.
+            </summary>
+            <param name="cancellationToken"></param>
+        </member>
+        <member name="M:RadiusCSharp.Core.Strings.StringFunctions.EmptyIfNull(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="textValue"></param>
+            <returns>string.Empty if textValue is null else textValue.</returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.Strings.StringFunctions.DefaultIfNull(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="textValue"></param>
+            <param name="defaultValue"></param>
+            <returns>defaultValue if textValue is null else textValue.</returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.Strings.StringFunctions.ToLowerNullOrEmpty(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="textValue"></param>
+            <returns>textValue in lower case or string.Empty is textValue is null.</returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.Strings.StringFunctions.PrependNewLineIfNotEmpty(System.String)">
+            <summary>
+            Prepend Environment.NewLine if value is not null or white space.
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.Strings.StringFunctions.PrependIfNotEmpty(System.String,System.String)">
+            <summary>
+            Prepend prependValue if value is not null or white space.
+            </summary>
+            <param name="value"></param>
+            <param name="prependValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.Strings.StringFunctions.IsNullOrWhiteSpace(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <returns>true if null or white space.</returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.Strings.StringFunctions.IsNotNullOrWhiteSpace(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <returns>true if NOT null or white space.</returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.Strings.StringFunctions.Filler(System.Int32,System.Char)">
+            <summary>
+            
+            </summary>
+            <param name="totalWidth"></param>
+            <param name="paddingChar"></param>
+            <returns>string padded to totalWidth using paddingChar</returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.Strings.StringFunctions.SplitChunk(System.String,System.Int32)">
+            <summary>
+            Split text into chunks of chunkSize.
+            </summary>
+            <param name="text">Text to split into chunks.</param>
+            <param name="chunkSize">Maximum size of a chunk.</param>
+            <returns>IEnumerable of string containg the text split into chunks.</returns>
+        </member>
+        <member name="T:RadiusCSharp.Core.Strings.TemplateEngineFunctions">
+            <summary>
+            Simple tempalte engine for relpacing place holders in a string with values.
+            </summary>
+        </member>
+        <member name="M:RadiusCSharp.Core.Strings.TemplateEngineFunctions.SetPlaceHolderValues(System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            Replate all occurences of a place holder with the accompanying value.
+            </summary>
+            <param name="template"></param>
+            <param name="placeHolderValues"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.Strings.TemplateEngineFunctions.SetPlaceHolderValuesFromFileTemplate(System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            Read the template from a file and set the place holder values.
+            </summary>
+            <param name="fileName"></param>
+            <param name="placeHolderValues"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RadiusCSharp.Core.Tools.ConcurrentQueueFunctions">
+            <summary>
+            ConcurrentQueue processing functions.
+            </summary>
+        </member>
+        <member name="M:RadiusCSharp.Core.Tools.ConcurrentQueueFunctions.FlushConcurrentQueue``1(System.Collections.Concurrent.ConcurrentQueue{``0},System.Action{``0})">
+            <summary>
+            Flush the queue.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="queue"></param>
+            <param name="processItem">Continuation to call for each item in the queue.</param>
+        </member>
+        <member name="T:RadiusCSharp.Core.Tools.MemoryCacheFunctions">
+            <summary>
+            Provides in-memory cache.
+            </summary>
+        </member>
+        <member name="M:RadiusCSharp.Core.Tools.MemoryCacheFunctions.GetFromCacheOr(System.String,System.Func{System.Object},System.Func{System.Object,System.Boolean},System.Int32)">
+            <summary>
+            Get from cache of from onNotInCache if not in cache.
+            </summary>
+            <param name="keyName"></param>
+            <param name="onNotInCache"></param>
+            <param name="fnMustAddToCache"></param>
+            <param name="slidingExpirationSeconds"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.Tools.MemoryCacheFunctions.GetFromCacheOr``1(System.String,System.Func{System.Object},System.Func{System.Object,System.Boolean},System.Int32)">
+            <summary>
+            Get from cache of from onNotInCache if not in cache.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="keyName"></param>
+            <param name="onNotInCache"></param>
+            <param name="fnMustAddToCache"></param>
+            <param name="slidingExpirationSeconds"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.Tools.MemoryCacheFunctions.RemoveFromCache(System.String)">
+            <summary>
+            Remove key from cache.
+            </summary>
+            <param name="keyName"></param>
+        </member>
+        <member name="M:RadiusCSharp.Core.Tools.MemoryCacheFunctions.ClearCache(System.String)">
+            <summary>
+            Remove all items from the Cache.
+            </summary>
+            <param name="keyName"></param>
+        </member>
+        <member name="T:RadiusCSharp.Core.Tools.TimeOutFunctions">
+            <summary>
+            Use these functions to delay program execution.
+            </summary>
+        </member>
+        <member name="M:RadiusCSharp.Core.Tools.TimeOutFunctions.StartTimeOut(System.TimeSpan)">
+            <summary>
+            Use this to keep track of a time out.
+            </summary>
+            <example><code source="..\..\RadiusCSharp\Tools\TimeOutFunctions.cs" region="StartTimeOut Example" removeRegionMarkers="true" language="c#" /></example>
+            <remarks>Use this in a loop to determine if the process has timed-out.</remarks>
+            <param name="timeOutDelay">Time out mangitude.</param>
+            <returns>Returns a Func that can be called to see if the time out has expired. The Func returns True once the time out has expited.</returns>
+        </member>
+        <member name="M:RadiusCSharp.Core.Tools.TimeOutFunctions.WaitForTimeOut(System.TimeSpan,System.Threading.CancellationToken)">
+            <summary>
+            Wait for either the time out or the Cancellation token to be signalled.
+            </summary>
+            <param name="timeoutDelay">Time out mangitude.</param>
+            <param name="cancellationToken">Async process Cancellation token to watch.</param>
+        </member>
+    </members>
+</doc>

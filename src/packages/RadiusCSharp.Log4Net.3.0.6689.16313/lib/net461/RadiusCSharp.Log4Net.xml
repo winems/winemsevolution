@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>RadiusCSharp.Log4Net</name>
+    </assembly>
+    <members>
+        <member name="P:RadiusCSharp.Log4Net.Logging.Log4NetDefaultConfig.LogFileRootPath">
+            <summary>
+            Path where log4net log files will be created.
+            </summary>
+        </member>
+        <member name="T:RadiusCSharp.Log4Net.Logging.Log4NetLoggingFactory">
+            <summary>
+            Log4Net logging factory.
+            </summary>
+        </member>
+        <member name="F:RadiusCSharp.Log4Net.Logging.Log4NetLoggingFactory.DefaultLevels">
+            <summary>
+            Default logging levels.
+            Info, Debug, Warn and Error.
+            </summary>
+        </member>
+        <member name="M:RadiusCSharp.Log4Net.Logging.Log4NetLoggingFactory.DefaultConfig(System.String,System.String,System.String)">
+            <summary>
+            Returns a default logger configuration.
+            Adds <seealso cref="F:RadiusCSharp.Log4Net.Logging.Log4NetLoggingFactory.DefaultLevels"/>, FileAppender and ConsoleAppender.
+            </summary>
+            <param name="logFileRootPath"></param>
+            <param name="logFileName"></param>
+            <param name="logName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RadiusCSharp.Log4Net.Logging.Log4NetLoggingFactory.BindLog4Net(RadiusCSharp.Log4Net.Logging.Log4NetDefaultConfig)">
+            <summary>
+            Configures the logging system to use Log4Net by using settings in log4NetDefaultConfig.
+            </summary>
+            <param name="log4NetDefaultConfig"></param>
+        </member>
+        <member name="M:RadiusCSharp.Log4Net.Logging.Log4NetLoggingFactory.NewLoggerContext(System.String,System.String,System.String)">
+            <summary>
+            Creates a new logger context.
+            </summary>
+            <param name="logFileRootPath"></param>
+            <param name="logFileName"></param>
+            <param name="logName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RadiusCSharp.Log4Net.Logging.Log4NetLoggingFactory.NewLoggerContext(RadiusCSharp.Log4Net.Logging.Log4NetDefaultConfig)">
+            <summary>
+            Creates a new logger context.
+            </summary>
+            <param name="log4NetDefaultConfig"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RadiusCSharp.Log4Net.Logging.Log4NetLoggingFactory.BindLog4Net(System.String)">
+            <summary>
+            Configures the logging system to use Log4Net by using a log4net.config file.
+            </summary>
+            <param name="configFileRootPath">Path to the log4net configuration file (log4net.config).</param>
+        </member>
+    </members>
+</doc>
