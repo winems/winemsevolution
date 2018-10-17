@@ -56,5 +56,11 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WineMS.Common\WineMS.Common.csproj">
+      <Project>{1B8AFB82-E565-4BED-877E-DAEA1A2CE938}</Project>
+      <Name>WineMS.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

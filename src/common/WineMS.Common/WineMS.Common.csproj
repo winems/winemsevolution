@@ -61,6 +61,7 @@
     <Compile Include="ApplicationInformationFunctions.cs" />
     <Compile Include="DataAccess\DatabaseConnectionStringFunctions.cs" />
     <Compile Include="DataAccess\DatabaseConstants.cs" />
+    <Compile Include="ICancelableBackgroundWorker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

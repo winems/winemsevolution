@@ -1,4 +1,6 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
+using RadiusCSharp.WinForms.Dialogs;
 using WineMsEvolutionGui.Extensions;
 using WineMS.BusinessLogic.GeneralLedger;
 using WineMS.Common;
@@ -7,11 +9,11 @@ namespace WineMsEvolutionGui {
 
   public partial class FrmMain : Form {
 
-    private BackgroundWorkerCancellationProvider _processGeneralLedgerCancel;
+    private BackgroundWorkerCancellationProvider _runningProcesCancelProvider;
 
     public FrmMain() { InitializeComponent(); }
 
-    private void FrmMain_Load(object sender, System.EventArgs e) { LoadStatusBarInformation(); }
+    private void FrmMain_Load(object sender, EventArgs e) { LoadStatusBarInformation(); }
 
     private void LoadStatusBarInformation()
     {
@@ -34,22 +36,65 @@ namespace WineMsEvolutionGui {
           );
     }
 
-    private void mniExit_Click(object sender, System.EventArgs e) { Close(); }
+    private void mniExit_Click(object sender, EventArgs e) { Close(); }
 
-    private void mniProcessGeneralLedger_Click(object sender, System.EventArgs e)
+    private void mniProcessGeneralLedger_Click(object sender, EventArgs e)
     {
-      if (_processGeneralLedgerCancel != null) {
-        _processGeneralLedgerCancel.Cancel();
-        return;
-      }
+      RunProcess(WineMsTransactionFunctions.ProcessGeneralLedgerTransactions);
+    }
 
-      _processGeneralLedgerCancel =
+    private void mniProcessStock_Click(object sender, EventArgs e)
+    {
+      RunProcess(WineMsTransactionFunctions.ProcessStockTransactions);
+    }
+
+    private void mniProcessPurchaseOrders_Click(object sender, EventArgs e)
+    {
+      RunProcess(WineMsTransactionFunctions.ProcessPurchaseOrderTransactions);
+    }
+
+    private void mniCancel_Click(object sender, EventArgs e)
+    {
+      if ("Cancel process".ShowAskYesNo("Are you sure?") == YesNoResponse.No) return;
+      _runningProcesCancelProvider?.Cancel();
+    }
+
+    private void RunProcess(Action<ICancelableBackgroundWorker> process)
+    {
+      if (_runningProcesCancelProvider != null)
+        return;
+
+      SetMenuState(ProcessRunningState.Start);
+
+      _runningProcesCancelProvider =
         BackgroundWorkerFunctions
           .Execute(
-            context => { WineMsTransactionFunctions.ProcessGeneralLedgerTransactions(); },
-            context => { _processGeneralLedgerCancel = null; },
+            context => { process(context.Sender); },
+            context =>
+            {
+              _runningProcesCancelProvider = null;
+              "Process completed.".ShowInformationMessage();
+              SetMenuState(ProcessRunningState.Stop);
+            },
             context => { });
     }
+
+    private void SetMenuState(ProcessRunningState state)
+    {
+      var stopped = state == ProcessRunningState.Stop;
+      mniFile.Enabled = stopped;
+      mniProcessGeneralLedger.Enabled = stopped;
+      mniProcessPurchaseOrders.Enabled = stopped;
+      mniProcessStock.Enabled = stopped;
+      mniCancel.Enabled = !stopped;
+    }
+
+  }
+
+  internal enum ProcessRunningState {
+
+    Start,
+    Stop
 
   }
 

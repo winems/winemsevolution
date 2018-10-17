@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using WineMS.Common;
 
 namespace WineMsEvolutionGui.Extensions {
 
@@ -10,27 +11,32 @@ namespace WineMsEvolutionGui.Extensions {
       Action<WorkCompletedContext> workComplete,
       Action<WorkProgressContext> reportProgress = null)
     {
-      var bw = new BackgroundWorker();
-      bw.DoWork += (sender, args) => { doWork(new DoWorkContext(sender, args)); };
+      var bw = new CancelableBackgroundWorker();
+      bw.DoWork += (sender, args) => { doWork(new DoWorkContext((ICancelableBackgroundWorker)sender, args)); };
 
       bw.RunWorkerCompleted += (sender, args) =>
       {
-        workComplete(new WorkCompletedContext(sender, args));
+        workComplete(new WorkCompletedContext((ICancelableBackgroundWorker)sender, args));
       };
 
       if (reportProgress != null) {
         bw.ProgressChanged += (sender, args) =>
         {
-          reportProgress(new WorkProgressContext(sender, args));
+          reportProgress(new WorkProgressContext((ICancelableBackgroundWorker)sender, args));
         };
         bw.WorkerReportsProgress = true;
       }
 
+      bw.WorkerSupportsCancellation = true;
       bw.RunWorkerAsync();
 
       return new BackgroundWorkerCancellationProvider {
         Cancel = () => bw.CancelAsync()
       };
+    }
+
+    private class CancelableBackgroundWorker : BackgroundWorker, ICancelableBackgroundWorker {
+
     }
 
   }
@@ -43,7 +49,7 @@ namespace WineMsEvolutionGui.Extensions {
 
   public struct DoWorkContext {
 
-    public object Sender { get; }
+    public ICancelableBackgroundWorker Sender { get; }
 
     public object Result {
       get => Args.Result;
@@ -52,7 +58,7 @@ namespace WineMsEvolutionGui.Extensions {
 
     public DoWorkEventArgs Args { get; }
 
-    public DoWorkContext(object sender, DoWorkEventArgs args)
+    public DoWorkContext(ICancelableBackgroundWorker sender, DoWorkEventArgs args)
     {
       Sender = sender;
       Args = args;
@@ -62,13 +68,15 @@ namespace WineMsEvolutionGui.Extensions {
 
   public struct WorkCompletedContext {
 
-    public object Sender { get; }
+    public ICancelableBackgroundWorker Sender { get; }
 
     public object Result => Args.Result;
 
     public RunWorkerCompletedEventArgs Args { get; }
 
-    public WorkCompletedContext(object sender, RunWorkerCompletedEventArgs args)
+    public WorkCompletedContext(
+      ICancelableBackgroundWorker sender,
+      RunWorkerCompletedEventArgs args)
     {
       Sender = sender;
       Args = args;
@@ -78,11 +86,11 @@ namespace WineMsEvolutionGui.Extensions {
 
   public struct WorkProgressContext {
 
-    public object Sender { get; }
+    public ICancelableBackgroundWorker Sender { get; }
 
     public ProgressChangedEventArgs Args { get; }
 
-    public WorkProgressContext(object sender, ProgressChangedEventArgs args)
+    public WorkProgressContext(ICancelableBackgroundWorker sender, ProgressChangedEventArgs args)
     {
       Args = args;
       Sender = sender;
