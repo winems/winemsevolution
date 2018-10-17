@@ -59,12 +59,14 @@ namespace WineMsEvolutionGui {
       _runningProcesCancelProvider?.Cancel();
     }
 
-    private void RunProcess(Action<ICancelableBackgroundWorker> process)
+    private void RunProcess(Action<IBackgroundWorker> process)
     {
       if (_runningProcesCancelProvider != null)
         return;
 
       SetMenuState(ProcessRunningState.Start);
+      tsProgressBar.Value = 0;
+      tsProgressBar.Visible = true;
 
       _runningProcesCancelProvider =
         BackgroundWorkerFunctions
@@ -75,8 +77,13 @@ namespace WineMsEvolutionGui {
               _runningProcesCancelProvider = null;
               "Process completed.".ShowInformationMessage();
               SetMenuState(ProcessRunningState.Stop);
+              tsProgressBar.Visible = false;
             },
-            context => { });
+            context =>
+            {
+              tsProgressBar.Value = context.Args.ProgressPercentage;
+              tsProgressBar.ProgressBar?.Update();
+            });
     }
 
     private void SetMenuState(ProcessRunningState state)

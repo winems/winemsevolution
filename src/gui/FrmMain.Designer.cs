@@ -42,6 +42,7 @@
       this.tsEvolutionDatabase = new System.Windows.Forms.ToolStripStatusLabel();
       this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
       this.mniCancel = new System.Windows.Forms.ToolStripMenuItem();
+      this.tsProgressBar = new System.Windows.Forms.ToolStripProgressBar();
       this.menuStrip1.SuspendLayout();
       this.statusStrip1.SuspendLayout();
       this.SuspendLayout();
@@ -111,7 +112,8 @@
       this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsVersion,
             this.tsWineMSDatabase,
-            this.tsEvolutionDatabase});
+            this.tsEvolutionDatabase,
+            this.tsProgressBar});
       this.statusStrip1.Location = new System.Drawing.Point(0, 428);
       this.statusStrip1.Name = "statusStrip1";
       this.statusStrip1.Size = new System.Drawing.Size(800, 22);
@@ -148,6 +150,13 @@
       this.mniCancel.Size = new System.Drawing.Size(180, 22);
       this.mniCancel.Text = "Cancel";
       this.mniCancel.Click += new System.EventHandler(this.mniCancel_Click);
+      // 
+      // tsProgressBar
+      // 
+      this.tsProgressBar.Name = "tsProgressBar";
+      this.tsProgressBar.Size = new System.Drawing.Size(100, 16);
+      this.tsProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+      this.tsProgressBar.Visible = false;
       // 
       // FrmMain
       // 
@@ -186,6 +195,7 @@
     private System.Windows.Forms.ToolStripMenuItem mniProcessPurchaseOrders;
     private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
     private System.Windows.Forms.ToolStripMenuItem mniCancel;
+    private System.Windows.Forms.ToolStripProgressBar tsProgressBar;
   }
 }
 
