@@ -10,11 +10,16 @@ namespace WineMS.WineMS.DataAccess {
     [Column("Account")]
     public string AccountCode { get; set; }
 
+    [Column("Company")]
+    public string CompanyId { get; set; }
+
     [Column("Completely Invoiced")]
     public byte CompletelyInvoiced { get; set; }
 
     [Column("Balancing Account")]
     public string ContraAccountCode { get; set; }
+
+    public string CurrencyCode { get; set; }
 
     [Column("Customer_Vendor")]
     public string CustomerSupplierAccountCode { get; set; }
@@ -44,8 +49,11 @@ namespace WineMS.WineMS.DataAccess {
     [Column("Item No_")]
     public string StockItemCode { get; set; }
 
+    [Column("VAT Indicator")]
+    public int TaxTypeId { get; set; }
+
     [Column("Amount")]
-    public decimal TransactionAmount { get; set; }
+    public decimal TransactionAmountExVat { get; set; }
 
     [Column("Document Date")]
     public DateTime TransactionDate { get; set; }

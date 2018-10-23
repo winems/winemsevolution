@@ -9,6 +9,27 @@ namespace WineMS.WineMS.DataAccess {
     
     public WineMsDbContext() : base(DatabaseConstants.WineMsConnectionStringName) { }
 
+    public WineMsTransaction[] ListNewPurchaseOrders()
+    {
+      var t = 1;
+
+      /*
+       *
+       */
+      return new WineMsTransaction[] { };
+    }
+
+    public WineMsTransaction[] ListNewPurchaseStockReceipts()
+    {
+      var t = 1;
+
+      /*
+       *
+       */
+
+      return new WineMsTransaction[] { };
+    }
+
   }
 
 }
