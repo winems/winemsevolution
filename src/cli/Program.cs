@@ -21,11 +21,15 @@ namespace WineMsEvolutionCli {
                             .UseFolderOrDefault(
                               @"C:\Neurasoft\logs\WineMS\Evolution"),
                 "winems-evolution-log.txt"));
+            CommonInitFunctions.Init();
           },
           () =>
           {
             ApplicationInformationFunctions.LogApplicationInformation(
               ApplicationInformationFunctions.GetApplicationInformation());
+
+            // TODO: add code to call transaction processing functions.
+
           },
           exception => { },
           () => { },

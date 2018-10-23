@@ -455,6 +455,21 @@
             </code>
             </remarks>
         </member>
+        <member name="F:RadiusCSharp.Core.DataAccess.KeyValueFunctions.GetKeyNameExistsProvider">
+            <summary>
+            Extension for providing a custom function for checking if the key exists. If not defined the default provider will be used.
+            
+            This can be used to fake out the KeyValue provider for unit tests.
+            </summary>
+        </member>
+        <member name="F:RadiusCSharp.Core.DataAccess.KeyValueFunctions.GetKeyNamesStartsWithProvider">
+            <summary>
+            Extension for providing a custom function for fetching all key names that start with a user defined string.
+            If not defined the default provider will be used.
+            
+            This can be used to fake out the KeyValue provider for unit tests.
+            </summary>
+        </member>
         <member name="F:RadiusCSharp.Core.DataAccess.KeyValueFunctions.GetKeyValueProvider">
             <summary>
             Extension for providing a custom function for retrieving the value for a key. If not defined the default provider will be used.
@@ -465,6 +480,14 @@
         <member name="F:RadiusCSharp.Core.DataAccess.KeyValueFunctions.KeyValuesTableName">
             <summary>
             Get/Set the database table name in which to store key/value pairs. The default name is KeyValues..
+            </summary>
+        </member>
+        <member name="F:RadiusCSharp.Core.DataAccess.KeyValueFunctions.SetKeyValueProvider">
+            <summary>
+            Extension for providing a custom function for setting a key's value.
+            If not defined the default provider will be used.
+            
+            This can be used to fake out the KeyValue provider for unit tests.
             </summary>
         </member>
         <member name="M:RadiusCSharp.Core.DataAccess.KeyValueFunctions.GetKeyValueAsString(System.String)">

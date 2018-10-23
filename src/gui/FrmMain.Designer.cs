@@ -34,14 +34,14 @@
       this.mniExit = new System.Windows.Forms.ToolStripMenuItem();
       this.mniProcess = new System.Windows.Forms.ToolStripMenuItem();
       this.mniProcessGeneralLedger = new System.Windows.Forms.ToolStripMenuItem();
-      this.mniProcessStock = new System.Windows.Forms.ToolStripMenuItem();
+      this.mniProcessSalesOrders = new System.Windows.Forms.ToolStripMenuItem();
       this.mniProcessPurchaseOrders = new System.Windows.Forms.ToolStripMenuItem();
+      this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+      this.mniCancel = new System.Windows.Forms.ToolStripMenuItem();
       this.statusStrip1 = new System.Windows.Forms.StatusStrip();
       this.tsVersion = new System.Windows.Forms.ToolStripStatusLabel();
       this.tsWineMSDatabase = new System.Windows.Forms.ToolStripStatusLabel();
       this.tsEvolutionDatabase = new System.Windows.Forms.ToolStripStatusLabel();
-      this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
-      this.mniCancel = new System.Windows.Forms.ToolStripMenuItem();
       this.tsProgressBar = new System.Windows.Forms.ToolStripProgressBar();
       this.menuStrip1.SuspendLayout();
       this.statusStrip1.SuspendLayout();
@@ -70,7 +70,7 @@
       // 
       this.mniExit.Name = "mniExit";
       this.mniExit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Q)));
-      this.mniExit.Size = new System.Drawing.Size(135, 22);
+      this.mniExit.Size = new System.Drawing.Size(180, 22);
       this.mniExit.Text = "Exit";
       this.mniExit.Click += new System.EventHandler(this.mniExit_Click);
       // 
@@ -78,7 +78,7 @@
       // 
       this.mniProcess.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mniProcessGeneralLedger,
-            this.mniProcessStock,
+            this.mniProcessSalesOrders,
             this.mniProcessPurchaseOrders,
             this.toolStripMenuItem1,
             this.mniCancel});
@@ -93,12 +93,12 @@
       this.mniProcessGeneralLedger.Text = "General Ledger";
       this.mniProcessGeneralLedger.Click += new System.EventHandler(this.mniProcessGeneralLedger_Click);
       // 
-      // mniProcessStock
+      // mniProcessSalesOrders
       // 
-      this.mniProcessStock.Name = "mniProcessStock";
-      this.mniProcessStock.Size = new System.Drawing.Size(180, 22);
-      this.mniProcessStock.Text = "Stock";
-      this.mniProcessStock.Click += new System.EventHandler(this.mniProcessStock_Click);
+      this.mniProcessSalesOrders.Name = "mniProcessSalesOrders";
+      this.mniProcessSalesOrders.Size = new System.Drawing.Size(180, 22);
+      this.mniProcessSalesOrders.Text = "Sales Orders";
+      this.mniProcessSalesOrders.Click += new System.EventHandler(this.mniProcessSalesOrders_Click);
       // 
       // mniProcessPurchaseOrders
       // 
@@ -106,6 +106,19 @@
       this.mniProcessPurchaseOrders.Size = new System.Drawing.Size(180, 22);
       this.mniProcessPurchaseOrders.Text = "Purchase Orders";
       this.mniProcessPurchaseOrders.Click += new System.EventHandler(this.mniProcessPurchaseOrders_Click);
+      // 
+      // toolStripMenuItem1
+      // 
+      this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+      this.toolStripMenuItem1.Size = new System.Drawing.Size(177, 6);
+      // 
+      // mniCancel
+      // 
+      this.mniCancel.Enabled = false;
+      this.mniCancel.Name = "mniCancel";
+      this.mniCancel.Size = new System.Drawing.Size(180, 22);
+      this.mniCancel.Text = "Cancel";
+      this.mniCancel.Click += new System.EventHandler(this.mniCancel_Click);
       // 
       // statusStrip1
       // 
@@ -137,19 +150,6 @@
       this.tsEvolutionDatabase.Name = "tsEvolutionDatabase";
       this.tsEvolutionDatabase.Size = new System.Drawing.Size(46, 17);
       this.tsEvolutionDatabase.Text = "Evo-DB";
-      // 
-      // toolStripMenuItem1
-      // 
-      this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-      this.toolStripMenuItem1.Size = new System.Drawing.Size(177, 6);
-      // 
-      // mniCancel
-      // 
-      this.mniCancel.Enabled = false;
-      this.mniCancel.Name = "mniCancel";
-      this.mniCancel.Size = new System.Drawing.Size(180, 22);
-      this.mniCancel.Text = "Cancel";
-      this.mniCancel.Click += new System.EventHandler(this.mniCancel_Click);
       // 
       // tsProgressBar
       // 
@@ -191,7 +191,7 @@
     private System.Windows.Forms.ToolStripStatusLabel tsEvolutionDatabase;
     private System.Windows.Forms.ToolStripMenuItem mniProcess;
     private System.Windows.Forms.ToolStripMenuItem mniProcessGeneralLedger;
-    private System.Windows.Forms.ToolStripMenuItem mniProcessStock;
+    private System.Windows.Forms.ToolStripMenuItem mniProcessSalesOrders;
     private System.Windows.Forms.ToolStripMenuItem mniProcessPurchaseOrders;
     private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
     private System.Windows.Forms.ToolStripMenuItem mniCancel;

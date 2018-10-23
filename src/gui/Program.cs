@@ -5,6 +5,7 @@ using RadiusCSharp.Core.Bootstrap;
 using RadiusCSharp.Core.FileSystem;
 using RadiusCSharp.Log4Net.Logging;
 using RadiusCSharp.WinForms.Dialogs;
+using WineMS.Common;
 
 namespace WineMsEvolutionGui {
 
@@ -24,6 +25,7 @@ namespace WineMsEvolutionGui {
                             .UseFolderOrDefault(
                               @"C:\Neurasoft\logs\WineMS\Evolution"),
                 "winems-evolution-log.txt"));
+            CommonInitFunctions.Init();
           },
           () =>
           {

@@ -37,8 +37,8 @@
     <Reference Include="Microsoft.IdentityModel.Logging, Version=5.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.IdentityModel.Logging.5.3.0\lib\net461\Microsoft.IdentityModel.Logging.dll</HintPath>
     </Reference>
-    <Reference Include="RadiusCSharp.Core, Version=3.0.6796.25973, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\RadiusCSharp.Core.3.0.6796.25973\lib\net461\RadiusCSharp.Core.dll</HintPath>
+    <Reference Include="RadiusCSharp.Core, Version=3.0.6870.30880, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\RadiusCSharp.Core.3.0.6870.30880\lib\net461\RadiusCSharp.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -59,9 +59,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationInformationFunctions.cs" />
+    <Compile Include="Configuration\EvolutionConnectionStrings.cs" />
+    <Compile Include="Configuration\SystemConfiguration.cs" />
+    <Compile Include="Constants\WineMsTransactionTypes.cs" />
     <Compile Include="DataAccess\DatabaseConnectionStringFunctions.cs" />
     <Compile Include="DataAccess\DatabaseConstants.cs" />
     <Compile Include="IBackgroundWorker.cs" />
+    <Compile Include="CommonInitFunctions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

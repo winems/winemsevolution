@@ -7,4 +7,11 @@
 
   }
 
+  public class NullBackgroundWorker : IBackgroundWorker {
+
+    public bool CancellationPending => false;
+    public void ReportProgress(int percentProgress) { }
+
+  }
+
 }

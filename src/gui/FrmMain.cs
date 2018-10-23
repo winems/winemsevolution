@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Windows.Forms;
+using RadiusCSharp.Core.Logging;
 using RadiusCSharp.WinForms.Dialogs;
 using WineMsEvolutionGui.Extensions;
-using WineMS.BusinessLogic.GeneralLedger;
+using WineMS.BusinessLogic;
+using WineMS.BusinessLogic.Extensions;
 using WineMS.Common;
 
 namespace WineMsEvolutionGui {
@@ -43,9 +45,9 @@ namespace WineMsEvolutionGui {
       RunProcess(WineMsTransactionFunctions.ProcessGeneralLedgerTransactions);
     }
 
-    private void mniProcessStock_Click(object sender, EventArgs e)
+    private void mniProcessSalesOrders_Click(object sender, EventArgs e)
     {
-      RunProcess(WineMsTransactionFunctions.ProcessStockTransactions);
+      RunProcess(WineMsTransactionFunctions.ProcessSalesOrderTransactions);
     }
 
     private void mniProcessPurchaseOrders_Click(object sender, EventArgs e)
@@ -71,7 +73,15 @@ namespace WineMsEvolutionGui {
       _runningProcesCancelProvider =
         BackgroundWorkerFunctions
           .Execute(
-            context => { process(context.Sender); },
+            context =>
+            {
+              try {
+                process(context.Sender);
+              }
+              catch (Exception e) {
+                e.LogAndShowExceptionDialog();
+              }
+            },
             context =>
             {
               _runningProcesCancelProvider = null;
@@ -92,7 +102,7 @@ namespace WineMsEvolutionGui {
       mniFile.Enabled = stopped;
       mniProcessGeneralLedger.Enabled = stopped;
       mniProcessPurchaseOrders.Enabled = stopped;
-      mniProcessStock.Enabled = stopped;
+      mniProcessSalesOrders.Enabled = stopped;
       mniCancel.Enabled = !stopped;
     }
 
