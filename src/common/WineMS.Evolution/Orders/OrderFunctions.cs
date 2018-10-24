@@ -11,37 +11,34 @@ namespace WineMS.Evolution.Orders {
 
     public static Result<OrderBase> AddOrderLines(
       this OrderBase salesOrder,
-      WineMsTransactionDocument transactionDocument)
-    {
-      return
-        transactionDocument
-          .ForEachTransactionDocumentLine(
-            transactionLine =>
-              ExceptionWrapper
-                .Wrap(
-                  () =>
-                  {
-                    var orderLine = new OrderDetail();
-                    salesOrder.Detail.Add(orderLine);
+      WineMsTransactionDocument transactionDocument) =>
+      transactionDocument
+        .ForEachTransactionDocumentLine(
+          transactionLine =>
+            ExceptionWrapper
+              .Wrap(
+                () =>
+                {
+                  var orderLine = new OrderDetail();
+                  salesOrder.Detail.Add(orderLine);
 
-                    orderLine.TaxMode = TaxMode.Exclusive;
-                    orderLine.GLAccount = new GLAccount(transactionLine.AccountCode);
-                    orderLine.Quantity = (double) transactionLine.Quantity;
-                    orderLine.ToProcess = orderLine.Quantity;
+                  orderLine.TaxMode = TaxMode.Exclusive;
+                  orderLine.GLAccount = new GLAccount(transactionLine.AccountCode);
+                  orderLine.Quantity = (double) transactionLine.Quantity;
+                  orderLine.ToProcess = orderLine.Quantity;
 
-                    if (transactionLine.CurrencyCode.IsNullOrWhiteSpace())
-                      orderLine.UnitSellingPrice = (double) transactionLine.TransactionAmountExVat;
-                    else
-                      orderLine.UnitSellingPriceForeign =
-                        (double) transactionLine.TransactionAmountExVat;
+                  if (transactionLine.CurrencyCode.IsNullOrWhiteSpace())
+                    orderLine.UnitSellingPrice = (double) transactionLine.TransactionAmountExVat;
+                  else
+                    orderLine.UnitSellingPriceForeign =
+                      (double) transactionLine.TransactionAmountExVat;
 
-                    orderLine.TaxType = new TaxRate(transactionLine.TaxTypeId);
-                    orderLine.Description = transactionLine.Description1;
+                  orderLine.TaxType = new TaxRate(transactionLine.TaxTypeId);
+                  orderLine.Description = transactionLine.Description1;
 
-                    return Result.Ok();
-                  }))
-          .OnSuccess(() => salesOrder);
-    }
+                  return Result.Ok();
+                }))
+        .OnSuccess(() => salesOrder);
 
   }
 

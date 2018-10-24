@@ -1,13 +1,14 @@
 ﻿using System;
 using CSharpFunctionalExtensions;
 using Pastel.Evolution;
+using RadiusCSharp.Core.Logging;
 using WineMS.Common.Configuration;
 
 namespace WineMS.Evolution {
 
   public static class EvolutionSdkFunctions {
 
-    public static void WrapInEvolutionSdk(
+    public static Result WrapInEvolutionSdk(
       this EvolutionConnectionStrings connectionStrings,
       int branchId,
       Func<Result> func)
@@ -20,14 +21,13 @@ namespace WineMS.Evolution {
         if (branchId > 0)
           DatabaseContext.SetBranchContext(branchId);
 
-        func()
+        return func()
           .OnSuccess(() => { DatabaseContext.CommitTran(); })
           .OnFailure(() => { DatabaseContext.RollbackTran(); });
-
       }
-      catch {
+      catch (Exception ex) {
         DatabaseContext.RollbackTran();
-        throw;
+        return Result.Fail(ex.GetExceptionMessages());
       }
     }
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using CSharpFunctionalExtensions;
 using RadiusCSharp.Core.Logging;
 using RadiusCSharp.WinForms.Dialogs;
 using WineMsEvolutionGui.Extensions;
@@ -58,7 +59,7 @@ namespace WineMsEvolutionGui {
       _runningProcesCancelProvider?.Cancel();
     }
 
-    private void RunProcess(Action<IBackgroundWorker> process)
+    private void RunProcess(Func<IBackgroundWorker, Result> process)
     {
       if (_runningProcesCancelProvider != null)
         return;
@@ -73,7 +74,9 @@ namespace WineMsEvolutionGui {
             context =>
             {
               try {
-                process(context.Sender);
+                process(context.Sender)
+                  .OnFailure(
+                    error => { error.ShowExceptionDialog(); });
               }
               catch (Exception e) {
                 e.LogAndShowExceptionDialog();

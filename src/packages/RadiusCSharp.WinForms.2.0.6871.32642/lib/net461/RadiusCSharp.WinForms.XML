@@ -67,6 +67,12 @@
             <param name="ex"></param>
             <returns></returns>
         </member>
+        <member name="M:RadiusCSharp.WinForms.Dialogs.MessageBoxFunctions.ShowExceptionDialog(System.String)">
+            <summary>
+            Show error message in dialog.
+            </summary>
+            <param name="errorMessage"></param>
+        </member>
         <member name="M:RadiusCSharp.WinForms.Dialogs.MessageBoxFunctions.LogAndShowExceptionDialog(System.Exception)">
             <summary>
             Log the exception and show the exception dialog.

@@ -1,4 +1,6 @@
-﻿using WineMS.BusinessLogic.GeneralLedger;
+﻿using CSharpFunctionalExtensions;
+using RadiusCSharp.Core.Logging;
+using WineMS.BusinessLogic.GeneralLedger;
 using WineMS.BusinessLogic.PurchaseOrders;
 using WineMS.BusinessLogic.SalesOrders;
 using WineMS.Common;
@@ -6,25 +8,21 @@ using WineMS.Common;
 namespace WineMS.BusinessLogic.Extensions {
 
   public static class WineMsTransactionFunctions {
-    
-    public static void ProcessGeneralLedgerTransactions(IBackgroundWorker backgroundWorker)
-    {
-      // Priority 3
-      WineMsGeneralLedgerTransactionFunctions.Execute(backgroundWorker);
-    }
 
-    public static void ProcessSalesOrderTransactions(IBackgroundWorker backgroundWorker)
-    {
-      WineMsSalesOrdersTransactionFunctions.Execute(backgroundWorker);
-    }
+    public static Result ProcessGeneralLedgerTransactions(IBackgroundWorker backgroundWorker) =>
+      WineMsGeneralLedgerTransactionFunctions
+        .Execute(backgroundWorker)
+        .OnFailure(error => error.LogException());
 
-    public static void ProcessStockTransactions(IBackgroundWorker backgroundWorker) { }
+    public static Result ProcessSalesOrderTransactions(IBackgroundWorker backgroundWorker) =>
+      WineMsSalesOrdersTransactionFunctions
+        .Execute(backgroundWorker)
+        .OnFailure(error => error.LogException());
 
-    public static void ProcessPurchaseOrderTransactions(IBackgroundWorker backgroundWorker)
-    {
-      // Priority 2
-      WineMsPurchaseOrdersTransactionFunctions.Execute(backgroundWorker);
-    }
+    public static Result ProcessPurchaseOrderTransactions(IBackgroundWorker backgroundWorker) =>
+      WineMsPurchaseOrdersTransactionFunctions
+        .Execute(backgroundWorker)
+        .OnFailure(error => error.LogException());
 
   }
 

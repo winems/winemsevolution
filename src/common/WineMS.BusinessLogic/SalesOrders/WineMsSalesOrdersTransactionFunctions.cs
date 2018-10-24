@@ -9,32 +9,18 @@ namespace WineMS.BusinessLogic.SalesOrders {
 
   public static class WineMsSalesOrdersTransactionFunctions {
 
-    public static void Execute(IBackgroundWorker backgroundWorker)
+    public static Result Execute(IBackgroundWorker backgroundWorker)
     {
       var transactionTypes = new[] {WineMsTransactionTypes.SalesOrders};
 
-      transactionTypes
+      return transactionTypes
         .ForEachNewTransactionEvolutionContext(
           backgroundWorker,
           wineMsTransactionDocument =>
-          {
-            return 
-              EvolutionSalesOrderTransactionFunctions
-                .ProcessTransaction(wineMsTransactionDocument)
-                .OnSuccess(
-                  document =>
-                  {
-                    WineMsDbContextFunctions
-                      .WrapInDbContext(
-                        context =>
-                        {
-                          context.SetAsPosted(document);
-                          context.AddIntegrationMappings(document, IntegrationDocumentTypes.SalesOrder);
-                          context.SaveChanges();
-                        });
-                  });
-            
-          });
+            EvolutionSalesOrderTransactionFunctions
+              .ProcessTransaction(wineMsTransactionDocument)
+              .OnSuccess(
+                document => { document.CompletePosting(IntegrationDocumentTypes.SalesOrder); }));
     }
 
   }

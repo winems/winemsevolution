@@ -1,5 +1,6 @@
 ﻿using System;
 using CSharpFunctionalExtensions;
+using WineMS.Common.Constants;
 using WineMS.WineMS.DataAccess;
 
 namespace WineMS.WineMS.Extensions {
@@ -15,9 +16,22 @@ namespace WineMS.WineMS.Extensions {
         result = func(transactionLine);
         if (result.IsFailure) return result;
       }
+
       return result;
     }
-    
+
+    public static void CompletePosting(this WineMsTransactionDocument document, string integrationDocumentType)
+    {
+      WineMsDbContextFunctions
+        .WrapInDbContext(
+          context =>
+          {
+            context.SetAsPosted(document);
+            context.AddIntegrationMappings(document, integrationDocumentType);
+            context.SaveChanges();
+          });
+    }
+
   }
 
 }

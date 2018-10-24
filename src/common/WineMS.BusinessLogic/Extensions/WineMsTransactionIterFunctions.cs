@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using CSharpFunctionalExtensions;
 using WineMS.Common;
 using WineMS.Common.Configuration;
@@ -10,45 +11,47 @@ namespace WineMS.BusinessLogic.Extensions {
 
   public static class WineMsTransactionIterFunctions {
 
-    public static void ForEachNewTransactionEvolutionContext(
+    public static Result ForEachNewTransactionEvolutionContext(
       this string[] transactionTypes,
       IBackgroundWorker backgroundWorker,
       Func<WineMsTransactionDocument, Result> func)
     {
-      transactionTypes
+      return transactionTypes
         .ForEachNewTransaction(
           backgroundWorker,
           transaction =>
-          {
             transaction
               .CompanyId
               .GetEvolutionConnectionStrings()
-              .WrapInEvolutionSdk(transaction.BranchId, () => func(transaction));
-          });
+              .WrapInEvolutionSdk(transaction.BranchId, () => func(transaction)));
     }
 
-    private static void ForEachNewTransaction(
+    private static Result ForEachNewTransaction(
       this string[] transactionTypes,
       IBackgroundWorker backgroundWorker,
-      Action<WineMsTransactionDocument> action)
+      Func<WineMsTransactionDocument, Result> func)
     {
-      WineMsDbContextFunctions
-        .WrapInDbContext(context => context.ListNewWineMsTransactions(transactionTypes))
-        .ForEachNewTransaction(backgroundWorker, action);
+      return WineMsDbContextFunctions
+             .WrapInDbContext(context => context.ListNewWineMsTransactions(transactionTypes))
+             .ForEachNewTransaction(backgroundWorker, func);
     }
 
-    private static void ForEachNewTransaction(
+    private static Result ForEachNewTransaction(
       this WineMsTransactionDocument[] transactions,
       IBackgroundWorker backgroundWorker,
-      Action<WineMsTransactionDocument> action)
+      Func<WineMsTransactionDocument, Result> func)
     {
+      var errors = new StringBuilder();
       var count = 0;
       var maxCount = transactions.Length;
       foreach (var transaction in transactions) {
-        action(transaction);
+        func(transaction)
+          .OnFailure(err => errors.AppendLine(err));
         var percentProgress = ProgressReportFunctions.CalcPercentProgress(++count, maxCount);
         backgroundWorker.ReportProgress(percentProgress);
       }
+
+      return errors.Length == 0 ? Result.Ok() : Result.Fail(errors.ToString());
     }
 
   }

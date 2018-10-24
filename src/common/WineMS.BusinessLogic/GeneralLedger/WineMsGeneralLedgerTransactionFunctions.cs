@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Threading;
+using CSharpFunctionalExtensions;
 using WineMS.Common;
 
 namespace WineMS.BusinessLogic.GeneralLedger {
 
   public static class WineMsGeneralLedgerTransactionFunctions {
 
-    public static void Execute(IBackgroundWorker backgroundWorker)
+    public static Result Execute(IBackgroundWorker backgroundWorker)
     {
       var start = DateTime.Now;
       while (true) {
@@ -17,6 +18,8 @@ namespace WineMS.BusinessLogic.GeneralLedger {
         var percentProgress = (int) ((seconds / 30) * 100);
         backgroundWorker.ReportProgress(percentProgress);
       }
+
+      return Result.Ok();
     }
 
   }
