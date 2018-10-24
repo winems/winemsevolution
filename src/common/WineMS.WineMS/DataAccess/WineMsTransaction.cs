@@ -50,7 +50,7 @@ namespace WineMS.WineMS.DataAccess {
     public string StockItemCode { get; set; }
 
     [Column("VAT Indicator")]
-    public int TaxTypeId { get; set; }
+    public byte TaxTypeId { get; set; }
 
     [Column("Amount")]
     public decimal TransactionAmountExVat { get; set; }

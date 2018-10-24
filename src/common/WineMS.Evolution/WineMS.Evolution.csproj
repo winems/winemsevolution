@@ -37,8 +37,9 @@
     <Reference Include="Microsoft.IdentityModel.Logging, Version=5.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.IdentityModel.Logging.5.3.0\lib\net461\Microsoft.IdentityModel.Logging.dll</HintPath>
     </Reference>
-    <Reference Include="Pastel.Evolution">
-      <HintPath>..\..\..\EvolutionSdk\700\Pastel.Evolution.dll</HintPath>
+    <Reference Include="Pastel.Evolution, Version=7.0.0.92, Culture=neutral, PublicKeyToken=9738fb8ae50f5233, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\EvolutionSdk\720\Pastel.Evolution.dll</HintPath>
     </Reference>
     <Reference Include="RadiusCSharp.Core, Version=3.0.6870.30880, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\RadiusCSharp.Core.3.0.6870.30880\lib\net461\RadiusCSharp.Core.dll</HintPath>
@@ -63,6 +64,8 @@
   <ItemGroup>
     <Compile Include="EvolutionSdkFunctions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SalesOrders\EvolutionSalesOrderTransactionFunctions.cs" />
+    <Compile Include="Orders\OrderFunctions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -73,9 +76,16 @@
       <Project>{1B8AFB82-E565-4BED-877E-DAEA1A2CE938}</Project>
       <Name>WineMS.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WineMS.WineMS\WineMS.WineMS.csproj">
+      <Project>{58660A54-9701-4AD7-BBD5-A00CF12D566D}</Project>
+      <Name>WineMS.WineMS</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Readme-RadiusCSharp.Core.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="PurchaseOrders\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

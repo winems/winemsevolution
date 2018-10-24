@@ -15,7 +15,6 @@ namespace WineMS.BusinessLogic.Extensions {
 
     public static void ProcessSalesOrderTransactions(IBackgroundWorker backgroundWorker)
     {
-      // Priority 1
       WineMsSalesOrdersTransactionFunctions.Execute(backgroundWorker);
     }
 

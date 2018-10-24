@@ -6,22 +6,18 @@ namespace WineMS.Common {
 
   public static class ApplicationInformationFunctions {
 
-    public static (string Version, string WineMsDatabase, string EvolutionDatabase)
+    public static (string Version, string WineMsDatabase)
       GetApplicationInformation() =>
       (
         Version: AssemblyVersionFunctions.MajorMinor(),
         WineMsDatabase:
-        $"| WineMS:{DatabaseConnectionStringFunctions.GetWineMsConnectionString().GetDatabaseDescriptor()}",
-        EvolutionDatabase:
-        $"| Evolution:{DatabaseConnectionStringFunctions.GetEvolutionCompanyConnectionString().GetDatabaseDescriptor()} " +
-        $"| EvolutionCommon:{DatabaseConnectionStringFunctions.GetEvolutionCommonConnectionString().GetDatabaseDescriptor()}");
+        $"| WineMS:{DatabaseConnectionStringFunctions.GetWineMsConnectionString().GetDatabaseDescriptor()}");
 
     public static void LogApplicationInformation(
-      (string version, string wineMsDatabase, string evolutionDatabase) information)
+      (string version, string wineMsDatabase) information)
     {
       $"GUI started: {information.version}".LogInfo();
       $"WineMS DB: {information.wineMsDatabase}".LogInfo();
-      $"Evolution DB: {information.evolutionDatabase}".LogInfo();
     }
 
   }

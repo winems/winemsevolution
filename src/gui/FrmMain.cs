@@ -27,13 +27,10 @@ namespace WineMsEvolutionGui {
             },
             context =>
             {
-              var (version, wineMsDatabase, evolutionDatabase) =
-                ((string, string, string)) context.Result;
+              var (version, wineMsDatabase) =
+                ((string, string)) context.Result;
               tsVersion.Text = version;
               tsWineMSDatabase.Text = wineMsDatabase;
-              tsEvolutionDatabase.Text = evolutionDatabase;
-              ApplicationInformationFunctions
-                .LogApplicationInformation(((string, string, string)) context.Result);
             }
           );
     }

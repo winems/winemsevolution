@@ -41,7 +41,6 @@
       this.statusStrip1 = new System.Windows.Forms.StatusStrip();
       this.tsVersion = new System.Windows.Forms.ToolStripStatusLabel();
       this.tsWineMSDatabase = new System.Windows.Forms.ToolStripStatusLabel();
-      this.tsEvolutionDatabase = new System.Windows.Forms.ToolStripStatusLabel();
       this.tsProgressBar = new System.Windows.Forms.ToolStripProgressBar();
       this.menuStrip1.SuspendLayout();
       this.statusStrip1.SuspendLayout();
@@ -70,7 +69,7 @@
       // 
       this.mniExit.Name = "mniExit";
       this.mniExit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Q)));
-      this.mniExit.Size = new System.Drawing.Size(180, 22);
+      this.mniExit.Size = new System.Drawing.Size(135, 22);
       this.mniExit.Text = "Exit";
       this.mniExit.Click += new System.EventHandler(this.mniExit_Click);
       // 
@@ -89,34 +88,34 @@
       // mniProcessGeneralLedger
       // 
       this.mniProcessGeneralLedger.Name = "mniProcessGeneralLedger";
-      this.mniProcessGeneralLedger.Size = new System.Drawing.Size(180, 22);
+      this.mniProcessGeneralLedger.Size = new System.Drawing.Size(160, 22);
       this.mniProcessGeneralLedger.Text = "General Ledger";
       this.mniProcessGeneralLedger.Click += new System.EventHandler(this.mniProcessGeneralLedger_Click);
       // 
       // mniProcessSalesOrders
       // 
       this.mniProcessSalesOrders.Name = "mniProcessSalesOrders";
-      this.mniProcessSalesOrders.Size = new System.Drawing.Size(180, 22);
+      this.mniProcessSalesOrders.Size = new System.Drawing.Size(160, 22);
       this.mniProcessSalesOrders.Text = "Sales Orders";
       this.mniProcessSalesOrders.Click += new System.EventHandler(this.mniProcessSalesOrders_Click);
       // 
       // mniProcessPurchaseOrders
       // 
       this.mniProcessPurchaseOrders.Name = "mniProcessPurchaseOrders";
-      this.mniProcessPurchaseOrders.Size = new System.Drawing.Size(180, 22);
+      this.mniProcessPurchaseOrders.Size = new System.Drawing.Size(160, 22);
       this.mniProcessPurchaseOrders.Text = "Purchase Orders";
       this.mniProcessPurchaseOrders.Click += new System.EventHandler(this.mniProcessPurchaseOrders_Click);
       // 
       // toolStripMenuItem1
       // 
       this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-      this.toolStripMenuItem1.Size = new System.Drawing.Size(177, 6);
+      this.toolStripMenuItem1.Size = new System.Drawing.Size(157, 6);
       // 
       // mniCancel
       // 
       this.mniCancel.Enabled = false;
       this.mniCancel.Name = "mniCancel";
-      this.mniCancel.Size = new System.Drawing.Size(180, 22);
+      this.mniCancel.Size = new System.Drawing.Size(160, 22);
       this.mniCancel.Text = "Cancel";
       this.mniCancel.Click += new System.EventHandler(this.mniCancel_Click);
       // 
@@ -125,7 +124,6 @@
       this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsVersion,
             this.tsWineMSDatabase,
-            this.tsEvolutionDatabase,
             this.tsProgressBar});
       this.statusStrip1.Location = new System.Drawing.Point(0, 428);
       this.statusStrip1.Name = "statusStrip1";
@@ -144,12 +142,6 @@
       this.tsWineMSDatabase.Name = "tsWineMSDatabase";
       this.tsWineMSDatabase.Size = new System.Drawing.Size(71, 17);
       this.tsWineMSDatabase.Text = "WineMS-DB";
-      // 
-      // tsEvolutionDatabase
-      // 
-      this.tsEvolutionDatabase.Name = "tsEvolutionDatabase";
-      this.tsEvolutionDatabase.Size = new System.Drawing.Size(46, 17);
-      this.tsEvolutionDatabase.Text = "Evo-DB";
       // 
       // tsProgressBar
       // 
@@ -188,7 +180,6 @@
     private System.Windows.Forms.StatusStrip statusStrip1;
     private System.Windows.Forms.ToolStripStatusLabel tsVersion;
     private System.Windows.Forms.ToolStripStatusLabel tsWineMSDatabase;
-    private System.Windows.Forms.ToolStripStatusLabel tsEvolutionDatabase;
     private System.Windows.Forms.ToolStripMenuItem mniProcess;
     private System.Windows.Forms.ToolStripMenuItem mniProcessGeneralLedger;
     private System.Windows.Forms.ToolStripMenuItem mniProcessSalesOrders;

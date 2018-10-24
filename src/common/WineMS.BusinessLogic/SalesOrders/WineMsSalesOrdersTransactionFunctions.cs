@@ -2,7 +2,8 @@
 using WineMS.BusinessLogic.Extensions;
 using WineMS.Common;
 using WineMS.Common.Constants;
-using WineMS.WineMS.DataAccess;
+using WineMS.Evolution.SalesOrders;
+using WineMS.WineMS.Extensions;
 
 namespace WineMS.BusinessLogic.SalesOrders {
 
@@ -10,24 +11,30 @@ namespace WineMS.BusinessLogic.SalesOrders {
 
     public static void Execute(IBackgroundWorker backgroundWorker)
     {
-      var transactionTypes = new[] { WineMsTransactionTypes.SalesOrders };
-      transactionTypes
-        .ForEachNewTransactionEvolutionContext(backgroundWorker, ProcessTransaction);
-    }
+      var transactionTypes = new[] {WineMsTransactionTypes.SalesOrders};
 
-    private static Result ProcessTransaction(WineMsTransactionDocument transaction)
-    {
-      // TODO: create sales order.
-      // TODO: populate sales order.
-      // TODO: complete sales order.
-      /*
-       * Same process as PO.
-       * - Transaction types: INTERNALSALES
-       * - Need to process in multi-currency.
-       * - Empty currency is Home currency.
-       *
-       */
-      return Result.Ok();
+      transactionTypes
+        .ForEachNewTransactionEvolutionContext(
+          backgroundWorker,
+          wineMsTransactionDocument =>
+          {
+            return 
+              EvolutionSalesOrderTransactionFunctions
+                .ProcessTransaction(wineMsTransactionDocument)
+                .OnSuccess(
+                  document =>
+                  {
+                    WineMsDbContextFunctions
+                      .WrapInDbContext(
+                        context =>
+                        {
+                          context.SetAsPosted(document);
+                          context.AddIntegrationMappings(document, IntegrationDocumentTypes.SalesOrder);
+                          context.SaveChanges();
+                        });
+                  });
+            
+          });
     }
 
   }

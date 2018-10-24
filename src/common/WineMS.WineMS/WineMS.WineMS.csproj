@@ -65,9 +65,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataAccess\IntegrationMapping.cs" />
     <Compile Include="DataAccess\WineMsDbContext.cs" />
     <Compile Include="DataAccess\WineMsTransaction.cs" />
+    <Compile Include="DataAccess\WineMsTransactionDocument.cs" />
     <Compile Include="Extensions\WineMsDbContextFunctions.cs" />
+    <Compile Include="Extensions\WineMsTransactionDocumentFunctions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
