@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WineMS.WineMS.DataAccess {
 
-  [Table("IntegrationMapping")]
+  [Table("IntegrationMappings")]
   public class IntegrationMapping {
 
     [Key]

@@ -34,11 +34,17 @@ namespace WineMS.WineMS.DataAccess {
 
     public void SetAsPosted(WineMsTransactionDocument transactionDocument)
     {
-      foreach (var transactionLine in transactionDocument.TransactionLines)
-        transactionLine.PostedToAccountingSystem = 1;
+      foreach (var transactionLine in transactionDocument.TransactionLines) {
+        var wineMsTransaction =
+          WineMsTransactions.FirstOrDefault(a => a.Guid == transactionLine.Guid);
+        if (wineMsTransaction == null) continue;
+        wineMsTransaction.PostedToAccountingSystem = 1;
+      }
     }
 
-    public void AddIntegrationMappings(WineMsTransactionDocument transactionDocument, string integrationDocumentType)
+    public void AddIntegrationMappings(
+      WineMsTransactionDocument transactionDocument,
+      string integrationDocumentType)
     {
       foreach (var transactionLine in transactionDocument.TransactionLines) {
         transactionLine.PostedToAccountingSystem = 1;
