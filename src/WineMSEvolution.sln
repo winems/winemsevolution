@@ -23,6 +23,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTests", "UnitTests", "{
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WineMS.UnitTests", "tests\UnitTests\WineMS.UnitTests\WineMS.UnitTests.csproj", "{1B2E2D2D-D1DA-4991-8667-E8F148CA6DEC}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Setup", "Setup", "{FCB1512F-9169-49C8-BA2D-354562412D39}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "WineMsSetup", "WineMsSetup\WineMsSetup.vdproj", "{9BA6654C-86AA-4FF1-9B51-0A5F0AE4BBC1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +61,8 @@ Global
 		{1B2E2D2D-D1DA-4991-8667-E8F148CA6DEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1B2E2D2D-D1DA-4991-8667-E8F148CA6DEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1B2E2D2D-D1DA-4991-8667-E8F148CA6DEC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9BA6654C-86AA-4FF1-9B51-0A5F0AE4BBC1}.Debug|Any CPU.ActiveCfg = Debug
+		{9BA6654C-86AA-4FF1-9B51-0A5F0AE4BBC1}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -69,6 +75,7 @@ Global
 		{1B8AFB82-E565-4BED-877E-DAEA1A2CE938} = {A6FBE20E-1F22-44A8-85F5-BC86A3AA39ED}
 		{6F707B45-AD77-4BCF-B285-2B2AF0199999} = {A6FBE20E-1F22-44A8-85F5-BC86A3AA39ED}
 		{1B2E2D2D-D1DA-4991-8667-E8F148CA6DEC} = {F32799FC-F93B-42BE-92AC-AF7F18D73FC6}
+		{9BA6654C-86AA-4FF1-9B51-0A5F0AE4BBC1} = {FCB1512F-9169-49C8-BA2D-354562412D39}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {368189C1-9EBE-44B0-9A58-CDDE98975A8A}

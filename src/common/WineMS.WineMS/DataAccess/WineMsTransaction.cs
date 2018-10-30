@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WineMS.WineMS.DataAccess {
 
-  [Table("_WineMS Buffer Entry")]
+  [Table("WineMS Buffer Entry")]
   public class WineMsTransaction {
 
     [Column("Account")]
