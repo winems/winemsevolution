@@ -1,4 +1,5 @@
-﻿using CSharpFunctionalExtensions;
+﻿using System;
+using CSharpFunctionalExtensions;
 using Pastel.Evolution;
 using RadiusCSharp.Core.Strings;
 using WineMS.Common.Extensions;
@@ -27,8 +28,11 @@ namespace WineMS.Evolution.Orders {
                   orderLine.Quantity = (double) transactionLine.Quantity;
                   orderLine.ToProcess = orderLine.Quantity;
 
-                  var unitSellingPrice = (double) transactionLine.TransactionAmountExVat /
-                                         (double) transactionLine.Quantity;
+                  var unitSellingPrice =
+                    (double) transactionLine.TransactionAmountExVat /
+                    (Math.Abs((double) transactionLine.Quantity) > 0.00
+                      ? (double) transactionLine.Quantity
+                      : 1);
 
                   if (transactionLine.CurrencyCode.IsNullOrWhiteSpace())
                     orderLine.UnitSellingPrice = unitSellingPrice;
