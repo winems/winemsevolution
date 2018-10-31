@@ -27,11 +27,13 @@ namespace WineMS.Evolution.Orders {
                   orderLine.Quantity = (double) transactionLine.Quantity;
                   orderLine.ToProcess = orderLine.Quantity;
 
+                  var unitSellingPrice = (double) transactionLine.TransactionAmountExVat /
+                                         (double) transactionLine.Quantity;
+
                   if (transactionLine.CurrencyCode.IsNullOrWhiteSpace())
-                    orderLine.UnitSellingPrice = (double) transactionLine.TransactionAmountExVat;
+                    orderLine.UnitSellingPrice = unitSellingPrice;
                   else
-                    orderLine.UnitSellingPriceForeign =
-                      (double) transactionLine.TransactionAmountExVat;
+                    orderLine.UnitSellingPriceForeign = unitSellingPrice;
 
                   orderLine.TaxType = new TaxRate(transactionLine.TaxTypeId);
                   orderLine.Description = transactionLine.Description1;
