@@ -803,7 +803,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:WineMS.Evolution, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:WineMS.Evolution, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_CEB75A54D1AB1A1A6D2AFBE1E87C46D3"
@@ -1010,15 +1010,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:WineMS to Sage 100/200 Integration"
-        "ProductCode" = "8:{CBCA8BDF-E86E-4483-83A5-F1F4038B4198}"
-        "PackageCode" = "8:{44F69147-0B49-4C52-8F0E-F7F7EA8C2581}"
+        "ProductCode" = "8:{2D4A943B-6DA3-403E-A01D-048887896A2D}"
+        "PackageCode" = "8:{951FDC42-A8E4-438F-94BD-F8A1B16E92C2}"
         "UpgradeCode" = "8:{09D63A6B-07D2-4221-A443-A4C4058F0E88}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.1.0"
+        "ProductVersion" = "8:1.1.1"
         "Manufacturer" = "8:WineMS"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
