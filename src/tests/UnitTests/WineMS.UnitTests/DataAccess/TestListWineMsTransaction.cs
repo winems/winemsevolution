@@ -15,7 +15,7 @@ namespace WineMS.UnitTests.DataAccess {
           .WrapInDbContext(
             context =>
               context
-                .WineMsTransactions
+                .WineMsSalesOrderTransactions
                 .FirstOrDefault(
                   a => a.Guid == new Guid("7a18f261-0673-43aa-b17a-50ecda5f2717")));
 

@@ -8,52 +8,77 @@ namespace WineMS.WineMS.DataAccess {
   public class WineMsDbContext : DbContext {
 
     public DbSet<IntegrationMapping> IntegrationMappings { get; set; }
-    public DbSet<WineMsTransaction> WineMsTransactions { get; set; }
+    public DbSet<WineMsBufferEntry> WineMsBufferEntries { get; set; }
+    public DbSet<WineMsPurchaseOrderTransaction> WineMsPurchaseOrderTransactions { get; set; }
+    public DbSet<WineMsSalesOrderTransaction> WineMsSalesOrderTransactions { get; set; }
 
     public WineMsDbContext() : base(DatabaseConstants.WineMsConnectionStringName) { }
 
-    public WineMsTransactionDocument[] ListNewWineMsTransactions(string[] transactionTypes) =>
-      WineMsTransactions
+    public WineMsOrderTransactionDocument[] ListNewWineMsSalesOrderTransactions() =>
+      WineMsSalesOrderTransactions
         .Where(
-          a => a.PostedToAccountingSystem == 0 && transactionTypes.Contains(a.TransactionType))
+          a => a.PostedToAccountingSystem == 0)
         .ToArray()
         .GroupBy(a => new {a.CompanyId, a.TransactionType, a.DocumentNumber})
         .Select(
-          a => new WineMsTransactionDocument {
-            CustomerSupplierAccountCode = a.FirstOrDefault()?.CustomerSupplierAccountCode ?? "",
+          a => (WineMsOrderTransactionDocument) new WineMsSalesOrderTransactionDocument {
+            CustomerAccountCode = a.FirstOrDefault()?.CustomerAccountCode ?? "",
             CompanyId = a.Key.CompanyId,
             DocumentNumber = a.Key.DocumentNumber,
             TransactionDate = a.FirstOrDefault()?.TransactionDate ?? DateTime.MinValue,
             TransactionType = a.Key.TransactionType,
-            TransactionLines = a.ToArray()
+            TransactionLines = a.Cast<IWineMsTransactionLine>().ToArray()
           })
         .OrderBy(a => a.CompanyId)
         .ThenBy(a => a.TransactionType)
         .ThenBy(a => a.DocumentNumber)
         .ToArray();
 
-    public void SetAsPosted(WineMsTransactionDocument transactionDocument)
+    public WineMsOrderTransactionDocument[] ListNewWineMsPurchaseOrderTransactions() =>
+      WineMsPurchaseOrderTransactions
+        .Where(
+          a => a.PostedToAccountingSystem == 0)
+        .ToArray()
+        .GroupBy(a => new {a.CompanyId, a.TransactionType, a.DocumentNumber})
+        .Select(
+          a => (WineMsOrderTransactionDocument) new WineMsPurchaseOrderTransactionDocument {
+            SupplierAccountCode = a.FirstOrDefault()?.SupplierAccountCode ?? "",
+            CompanyId = a.Key.CompanyId,
+            DocumentNumber = a.Key.DocumentNumber,
+            TransactionDate = a.FirstOrDefault()?.TransactionDate ?? DateTime.MinValue,
+            TransactionType = a.Key.TransactionType,
+            TransactionLines = a.Cast<IWineMsTransactionLine>().ToArray()
+          })
+        .OrderBy(a => a.CompanyId)
+        .ThenBy(a => a.TransactionType)
+        .ThenBy(a => a.DocumentNumber)
+        .ToArray();
+
+    public void SetAsPosted(IWineMsTransactionLine[] wineMsBufferEntries)
     {
-      foreach (var transactionLine in transactionDocument.TransactionLines) {
-        var wineMsTransaction =
-          WineMsTransactions.FirstOrDefault(a => a.Guid == transactionLine.Guid);
-        if (wineMsTransaction == null) continue;
-        wineMsTransaction.PostedToAccountingSystem = 1;
-      }
+      foreach (var transactionLine in wineMsBufferEntries)
+        SetAsPosted(transactionLine);
     }
 
-    public void AddIntegrationMappings(
-      WineMsTransactionDocument transactionDocument,
-      string integrationDocumentType)
+    private void SetAsPosted(IWineMsBufferEntry wineMsBufferEntry)
     {
-      foreach (var transactionLine in transactionDocument.TransactionLines) {
+      var wineMsTransaction =
+        WineMsBufferEntries
+          .FirstOrDefault(a => a.Guid == wineMsBufferEntry.Guid);
+      if (wineMsTransaction != null)
+        wineMsTransaction.PostedToAccountingSystem = 1;
+    }
+
+    public void AddIntegrationMappings(IntegrationMappingDescriptor integrationMappingDescriptor)
+    {
+      foreach (var transactionLine in integrationMappingDescriptor.TransactionLines) {
         transactionLine.PostedToAccountingSystem = 1;
         IntegrationMappings.Add(
           new IntegrationMapping {
             CompanyId = transactionLine.CompanyId,
             Guid = transactionLine.Guid,
-            IntegrationDocumentNumber = transactionDocument.IntegrationDocumentNumber,
-            IntegrationDocumentType = integrationDocumentType
+            IntegrationDocumentNumber = integrationMappingDescriptor.IntegrationDocumentNumber,
+            IntegrationDocumentType = integrationMappingDescriptor.IntegrationDocumentType
           });
       }
     }

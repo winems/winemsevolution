@@ -11,9 +11,9 @@ namespace WineMS.Evolution.Orders {
   public static class OrderFunctions {
 
     public static Result<OrderBase> AddOrderLines(
-      this OrderBase salesOrder,
-      WineMsTransactionDocument transactionDocument) =>
-      transactionDocument
+      this OrderBase order,
+      WineMsOrderTransactionDocument salesOrderTransactionDocument) =>
+      WineMsTransactionDocumentFunctions
         .ForEachTransactionDocumentLine(
           transactionLine =>
             ExceptionWrapper
@@ -21,10 +21,10 @@ namespace WineMS.Evolution.Orders {
                 () =>
                 {
                   var orderLine = new OrderDetail();
-                  salesOrder.Detail.Add(orderLine);
+                  order.Detail.Add(orderLine);
 
                   orderLine.TaxMode = TaxMode.Exclusive;
-                  orderLine.GLAccount = new GLAccount(transactionLine.AccountCode);
+                  orderLine.GLAccount = new GLAccount(transactionLine.GeneralLedgerAccountCode);
                   orderLine.Quantity = (double) transactionLine.Quantity;
                   orderLine.ToProcess = orderLine.Quantity;
 
@@ -43,8 +43,9 @@ namespace WineMS.Evolution.Orders {
                   orderLine.Description = transactionLine.Description1;
 
                   return Result.Ok();
-                }))
-        .OnSuccess(() => salesOrder);
+                }),
+          salesOrderTransactionDocument.TransactionLines)
+        .OnSuccess(() => order);
 
   }
 

@@ -8,32 +8,32 @@ namespace WineMS.Evolution.SalesOrders {
 
   public static class EvolutionSalesOrderTransactionFunctions {
 
-    public static Result<WineMsTransactionDocument> ProcessTransaction(
-      WineMsTransactionDocument wineMsTransactionDocument) =>
-      CreateSalesOrder(wineMsTransactionDocument)
+    public static Result<WineMsSalesOrderTransactionDocument> ProcessTransaction(
+      WineMsSalesOrderTransactionDocument wineMsSalesOrderTransactionDocument) =>
+      CreateSalesOrder(wineMsSalesOrderTransactionDocument)
         .OnSuccess(
-          order => order.AddOrderLines(wineMsTransactionDocument))
+          order => order.AddOrderLines(wineMsSalesOrderTransactionDocument))
         .OnSuccess(
           order => ExceptionWrapper
             .Wrap(
               () =>
               {
                 order.Save();
-                wineMsTransactionDocument.IntegrationDocumentNumber = order.OrderNo;
-                return Result.Ok(wineMsTransactionDocument);
+                wineMsSalesOrderTransactionDocument.IntegrationDocumentNumber = order.OrderNo;
+                return Result.Ok(wineMsSalesOrderTransactionDocument);
               }));
 
     private static Result<SalesOrder> CreateSalesOrder(
-      WineMsTransactionDocument transactionDocument) =>
+      WineMsSalesOrderTransactionDocument salesOrderTransactionDocument) =>
       ExceptionWrapper
         .Wrap(
           () => Result.Ok(
             new SalesOrder {
-              Customer = new Customer(transactionDocument.CustomerSupplierAccountCode),
-              DeliveryDate = transactionDocument.TransactionDate,
-              DueDate = transactionDocument.TransactionDate,
-              OrderDate = transactionDocument.TransactionDate,
-              OrderNo = transactionDocument.DocumentNumber,
+              Customer = new Customer(salesOrderTransactionDocument.CustomerAccountCode),
+              DeliveryDate = salesOrderTransactionDocument.TransactionDate,
+              DueDate = salesOrderTransactionDocument.TransactionDate,
+              OrderDate = salesOrderTransactionDocument.TransactionDate,
+              OrderNo = salesOrderTransactionDocument.DocumentNumber,
               TaxMode = TaxMode.Exclusive
             }));
 

@@ -3,29 +3,23 @@ using WineMS.BusinessLogic.Extensions;
 using WineMS.Common;
 using WineMS.Common.Constants;
 using WineMS.Evolution.PurchaseOrders;
+using WineMS.WineMS.DataAccess;
 using WineMS.WineMS.Extensions;
 
 namespace WineMS.BusinessLogic.PurchaseOrders {
 
   public static class WineMsPurchaseOrdersTransactionFunctions {
 
-    public static Result Execute(IBackgroundWorker backgroundWorker)
-    {
-      var transactionTypes = new[] {
-        WineMsTransactionTypes.GoodsReceived,
-        WineMsTransactionTypes.GrapeReceival,
-        WineMsTransactionTypes.WineReceival
-      };
-
-      return transactionTypes
+    public static Result Execute(IBackgroundWorker backgroundWorker) =>
+      backgroundWorker
         .ForEachNewTransactionEvolutionContext(
-          backgroundWorker,
+          context => context.ListNewWineMsPurchaseOrderTransactions(),
           wineMsTransactionDocument =>
             EvolutionPurchaseOrderTransactionFunctions
-              .ProcessTransaction(wineMsTransactionDocument)
+              .ProcessTransaction(
+                (WineMsPurchaseOrderTransactionDocument) wineMsTransactionDocument)
               .OnSuccess(
                 document => { document.CompletePosting(IntegrationDocumentTypes.PurchaseOrder); }));
-    }
 
   }
 
