@@ -1,6 +1,7 @@
 ﻿using System;
 using CSharpFunctionalExtensions;
 using Pastel.Evolution;
+using RadiusCSharp.Core.Logging;
 using RadiusCSharp.Core.Strings;
 using WineMS.Common.Extensions;
 using WineMS.WineMS.DataAccess;
@@ -39,13 +40,29 @@ namespace WineMS.Evolution.Orders {
                   else
                     orderLine.UnitSellingPriceForeign = unitSellingPrice;
 
-                  orderLine.TaxType = new TaxRate(transactionLine.TaxTypeId);
+                  if (transactionLine.TaxTypeId > 0) {
+                    var result = GetOrderLineTaxType(transactionLine);
+                    if (result.IsFailure)
+                      return Result.Fail(result.Error);
+                    orderLine.TaxType = result.Value;
+                  }
+
                   orderLine.Description = transactionLine.Description1;
 
                   return Result.Ok();
                 }),
           salesOrderTransactionDocument.TransactionLines)
         .OnSuccess(() => order);
+
+    private static Result<TaxRate> GetOrderLineTaxType(IWineMsTransactionLine transactionLine)
+    {
+      try {
+        return Result.Ok(new TaxRate(transactionLine.TaxTypeId));
+      }
+      catch (Exception e) {
+        return Result.Fail<TaxRate>(e.GetExceptionMessages());
+      }
+    }
 
   }
 
