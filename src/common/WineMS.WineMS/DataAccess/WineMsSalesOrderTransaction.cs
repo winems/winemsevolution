@@ -13,9 +13,6 @@ namespace WineMS.WineMS.DataAccess {
     [Column("Completely Invoiced")]
     public byte CompletelyInvoiced { get; set; }
 
-    [Column("Balancing Account")]
-    public string ContraAccountCode { get; set; }
-
     public string CurrencyCode { get; set; }
 
     [Column("CustomerAccountCode")]
