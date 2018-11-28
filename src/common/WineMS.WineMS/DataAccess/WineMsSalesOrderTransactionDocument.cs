@@ -3,7 +3,7 @@
   public class WineMsSalesOrderTransactionDocument : WineMsOrderTransactionDocument {
 
     public string CustomerAccountCode { get; set; }
-
+    public decimal DocumentDiscountPercentage { get; set; }
   }
 
 }

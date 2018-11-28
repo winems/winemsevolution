@@ -20,16 +20,21 @@ namespace WineMS.WineMS.DataAccess {
 
     [Column("Description 1")]
     public string Description1 { get; set; }
+    public decimal DocumentDiscountPercentage { get; set; }
 
     [Column("Document No_")]
     public string DocumentNumber { get; set; }
 
-    [Column("GeneralLedgerAccountCode")]
-    public string GeneralLedgerAccountCode { get; set; }
+    [Column("GeneralLedgerItemCode")]
+    public string GeneralLedgerItemCode { get; set; }
 
     [Key]
     [Column("GUID")]
     public Guid Guid { get; set; }
+
+    public decimal LineDiscountPercentage { get; set; }
+
+    public string LineType { get; set; }
 
     [Column("OriginalGUID")]
     public Guid OriginalGuid { get; set; }
@@ -57,6 +62,9 @@ namespace WineMS.WineMS.DataAccess {
 
     [Column("Transaction Type")]
     public string TransactionType { get; set; }
+
+    [Column("Location Code")]
+    public string WarehouseCode { get; set; }
 
   }
 

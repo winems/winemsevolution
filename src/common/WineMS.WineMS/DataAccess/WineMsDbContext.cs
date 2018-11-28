@@ -24,6 +24,7 @@ namespace WineMS.WineMS.DataAccess {
           a => (WineMsOrderTransactionDocument) new WineMsSalesOrderTransactionDocument {
             CustomerAccountCode = a.FirstOrDefault()?.CustomerAccountCode ?? "",
             CompanyId = a.Key.CompanyId,
+            DocumentDiscountPercentage = a.FirstOrDefault()?.DocumentDiscountPercentage ?? 0,
             DocumentNumber = a.Key.DocumentNumber,
             TransactionDate = a.FirstOrDefault()?.TransactionDate ?? DateTime.MinValue,
             TransactionType = a.Key.TransactionType,

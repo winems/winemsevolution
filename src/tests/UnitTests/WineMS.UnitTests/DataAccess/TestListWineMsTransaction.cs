@@ -8,7 +8,7 @@ namespace WineMS.UnitTests.DataAccess {
   public class TestListWineMsTransaction {
 
     [Fact]
-    public void CanConnectToDatabase()
+    public void CanLoadSalesOrderTransactions()
     {
       var result =
         WineMsDbContextFunctions
@@ -16,11 +16,27 @@ namespace WineMS.UnitTests.DataAccess {
             context =>
               context
                 .WineMsSalesOrderTransactions
-                .FirstOrDefault(
-                  a => a.Guid == new Guid("7a18f261-0673-43aa-b17a-50ecda5f2717")));
+                .ToArray());
 
       Assert.NotNull(result);
-      Assert.Equal(result.Guid, new Guid("7a18f261-0673-43aa-b17a-50ecda5f2717"));
+      Assert.NotEmpty(result);
+
+    }
+
+    [Fact]
+    public void CanLoadPurchaseOrderTransactions()
+    {
+      var result =
+        WineMsDbContextFunctions
+          .WrapInDbContext(
+            context =>
+              context
+                .WineMsPurchaseOrderTransactions
+                .ToArray());
+
+      Assert.NotNull(result);
+      Assert.NotEmpty(result);
+
     }
 
   }

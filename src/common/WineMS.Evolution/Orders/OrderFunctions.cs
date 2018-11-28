@@ -21,11 +21,21 @@ namespace WineMS.Evolution.Orders {
               .Wrap(
                 () =>
                 {
+                  var isGeneralLedgerLine = IsGeneralLedgerLine(transactionLine);
+
                   var orderLine = new OrderDetail();
                   order.Detail.Add(orderLine);
 
                   orderLine.TaxMode = TaxMode.Exclusive;
-                  orderLine.GLAccount = new GLAccount(transactionLine.GeneralLedgerAccountCode);
+
+                  if (isGeneralLedgerLine)
+                    orderLine.GLAccount = new GLAccount(transactionLine.GeneralLedgerItemCode);
+                  else {
+                    orderLine.InventoryItem = new InventoryItem(transactionLine.GeneralLedgerItemCode);
+                    if (!transactionLine.WarehouseCode.IsNullOrWhiteSpace())
+                      orderLine.Warehouse = new Warehouse(transactionLine.WarehouseCode);
+                  }
+
                   orderLine.Quantity = (double) transactionLine.Quantity;
                   orderLine.ToProcess = orderLine.Quantity;
 
@@ -47,12 +57,16 @@ namespace WineMS.Evolution.Orders {
                     orderLine.TaxType = result.Value;
                   }
 
+                  orderLine.DiscountPercent = (double) transactionLine.LineDiscountPercentage;
                   orderLine.Description = transactionLine.Description1;
 
                   return Result.Ok();
                 }),
           salesOrderTransactionDocument.TransactionLines)
         .OnSuccess(() => order);
+
+    private static bool IsGeneralLedgerLine(IWineMsTransactionLine transactionLine) => 
+      transactionLine.LineType.ToUpper() == "GL";
 
     private static Result<TaxRate> GetOrderLineTaxType(IWineMsTransactionLine transactionLine)
     {
