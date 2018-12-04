@@ -31,6 +31,7 @@ namespace WineMS.Evolution.SalesOrders {
             new SalesOrder {
               Customer = new Customer(salesOrderTransactionDocument.CustomerAccountCode),
               DeliveryDate = salesOrderTransactionDocument.TransactionDate,
+              Description = "Tax Invoice",
               DiscountPercent = (double) salesOrderTransactionDocument.DocumentDiscountPercentage,
               DueDate = salesOrderTransactionDocument.TransactionDate,
               OrderDate = salesOrderTransactionDocument.TransactionDate,
