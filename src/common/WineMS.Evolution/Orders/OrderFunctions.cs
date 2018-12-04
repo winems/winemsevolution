@@ -66,7 +66,7 @@ namespace WineMS.Evolution.Orders {
         .OnSuccess(() => order);
 
     private static bool IsGeneralLedgerLine(IWineMsTransactionLine transactionLine) => 
-      transactionLine.LineType.ToUpper() == "GL";
+      transactionLine.LineType?.ToUpper() == "GL";
 
     private static Result<TaxRate> GetOrderLineTaxType(IWineMsTransactionLine transactionLine)
     {
