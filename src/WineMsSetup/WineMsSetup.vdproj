@@ -442,7 +442,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:WineMS.Common, Version=1.2.6912.15003, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:WineMS.Common, Version=1.2.6912.15559, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_044A4E5F85764E918F7B69482BEBCDB2"
@@ -473,7 +473,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:WineMS.BusinessLogic, Version=1.2.6912.15003, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:WineMS.BusinessLogic, Version=1.2.6912.15559, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_0AA295ADCE0CDFB9D1A4F052073DAA87"
@@ -741,7 +741,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:WineMS.WineMS, Version=1.2.6912.15003, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:WineMS.WineMS, Version=1.2.6912.15559, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_A8FD6B56FD961BA665A14A6EC8607E29"
@@ -803,7 +803,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:WineMS.Evolution, Version=1.1.6912.15003, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:WineMS.Evolution, Version=1.1.6912.15559, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_CEB75A54D1AB1A1A6D2AFBE1E87C46D3"
@@ -1010,15 +1010,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:WineMS to Sage 100/200 Integration"
-        "ProductCode" = "8:{E33C30F2-06FC-4394-BDDD-810928999ED3}"
-        "PackageCode" = "8:{AC376671-0A02-41D9-BDE3-4145657983DB}"
+        "ProductCode" = "8:{E9E5E08F-1FDA-44AF-840C-3ED6913DAFA2}"
+        "PackageCode" = "8:{EA3D4125-5DE6-4A23-858E-3C962F010E66}"
         "UpgradeCode" = "8:{09D63A6B-07D2-4221-A443-A4C4058F0E88}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.5.0"
+        "ProductVersion" = "8:1.6.0"
         "Manufacturer" = "8:WineMS"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
