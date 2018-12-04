@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationInformationFunctions.cs" />
+    <Compile Include="ApplicationState.cs" />
     <Compile Include="Configuration\EvolutionConnectionStrings.cs" />
     <Compile Include="Configuration\SystemConfiguration.cs" />
     <Compile Include="Constants\IntegrationDocumentTypes.cs" />
