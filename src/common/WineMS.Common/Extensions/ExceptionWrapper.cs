@@ -12,6 +12,7 @@ namespace WineMS.Common.Extensions {
         return func();
       }
       catch (Exception e) {
+        e.LogException();
         return Result.Fail(e.GetExceptionMessages());
       }
     }
@@ -22,6 +23,7 @@ namespace WineMS.Common.Extensions {
         return func();
       }
       catch (Exception e) {
+        e.LogException();
         return Result.Fail<T>(e.GetExceptionMessages());
       }
     }

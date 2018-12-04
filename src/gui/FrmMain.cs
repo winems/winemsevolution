@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Windows.Forms;
 using CSharpFunctionalExtensions;
 using RadiusCSharp.Core.Logging;
@@ -106,6 +107,7 @@ namespace WineMsEvolutionGui {
       mniCancel.Enabled = !stopped;
     }
 
+    private void mniOpenLogFolder_Click(object sender, EventArgs e) { Process.Start(ApplicationState.LogFolder); }
   }
 
   internal enum ProcessRunningState {

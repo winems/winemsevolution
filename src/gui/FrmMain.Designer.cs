@@ -42,6 +42,8 @@
       this.tsVersion = new System.Windows.Forms.ToolStripStatusLabel();
       this.tsWineMSDatabase = new System.Windows.Forms.ToolStripStatusLabel();
       this.tsProgressBar = new System.Windows.Forms.ToolStripProgressBar();
+      this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
+      this.mniOpenLogFolder = new System.Windows.Forms.ToolStripMenuItem();
       this.menuStrip1.SuspendLayout();
       this.statusStrip1.SuspendLayout();
       this.SuspendLayout();
@@ -60,6 +62,8 @@
       // mniFile
       // 
       this.mniFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mniOpenLogFolder,
+            this.toolStripMenuItem2,
             this.mniExit});
       this.mniFile.Name = "mniFile";
       this.mniFile.Size = new System.Drawing.Size(37, 20);
@@ -69,7 +73,7 @@
       // 
       this.mniExit.Name = "mniExit";
       this.mniExit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Q)));
-      this.mniExit.Size = new System.Drawing.Size(135, 22);
+      this.mniExit.Size = new System.Drawing.Size(180, 22);
       this.mniExit.Text = "Exit";
       this.mniExit.Click += new System.EventHandler(this.mniExit_Click);
       // 
@@ -150,6 +154,18 @@
       this.tsProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
       this.tsProgressBar.Visible = false;
       // 
+      // toolStripMenuItem2
+      // 
+      this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+      this.toolStripMenuItem2.Size = new System.Drawing.Size(177, 6);
+      // 
+      // mniOpenLogFolder
+      // 
+      this.mniOpenLogFolder.Name = "mniOpenLogFolder";
+      this.mniOpenLogFolder.Size = new System.Drawing.Size(180, 22);
+      this.mniOpenLogFolder.Text = "Open log folder";
+      this.mniOpenLogFolder.Click += new System.EventHandler(this.mniOpenLogFolder_Click);
+      // 
       // FrmMain
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -187,6 +203,8 @@
     private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
     private System.Windows.Forms.ToolStripMenuItem mniCancel;
     private System.Windows.Forms.ToolStripProgressBar tsProgressBar;
+    private System.Windows.Forms.ToolStripMenuItem mniOpenLogFolder;
+    private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
   }
 }
 

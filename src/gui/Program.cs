@@ -19,11 +19,15 @@ namespace WineMsEvolutionGui {
           "winems-evolution-processing",
           () =>
           {
+            ApplicationState.LogFolder =
+              "log-folder"
+                .AppSetting()
+                .UseFolderOrDefault(
+                  @"C:\Neurasoft\logs\WineMS\Evolution");
+
             Log4NetLoggingFactory.BindLog4Net(
               Log4NetLoggingFactory.DefaultConfig(
-                "log-folder".AppSetting()
-                            .UseFolderOrDefault(
-                              @"C:\Neurasoft\logs\WineMS\Evolution"),
+                ApplicationState.LogFolder,
                 "winems-evolution-log.txt"));
             CommonInitFunctions.Init();
           },

@@ -26,6 +26,7 @@ namespace WineMS.Evolution {
           .OnFailure(() => { DatabaseContext.RollbackTran(); });
       }
       catch (Exception ex) {
+        ex.LogException();
         DatabaseContext.RollbackTran();
         return Result.Fail(ex.GetExceptionMessages());
       }

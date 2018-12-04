@@ -74,6 +74,7 @@ namespace WineMS.Evolution.Orders {
         return Result.Ok(new TaxRate(transactionLine.TaxTypeId));
       }
       catch (Exception e) {
+        e.LogException();
         return Result.Fail<TaxRate>(e.GetExceptionMessages());
       }
     }
