@@ -33,36 +33,16 @@ namespace WineMS.Evolution.Orders {
                 () =>
                 {
                   var isGeneralLedgerLine = IsGeneralLedgerLine(transactionLine);
-
-                  var orderLine = new OrderDetail();
-                  order.Detail.Add(orderLine);
-
-                  orderLine.TaxMode = order.TaxMode;
+                  var orderLine = NewOrderDetail(order);
 
                   if (isGeneralLedgerLine)
-                    orderLine.GLAccount = new GLAccount(transactionLine.GeneralLedgerItemCode);
-                  else {
-                    orderLine.InventoryItem = new InventoryItem(transactionLine.GeneralLedgerItemCode);
-                    if (!transactionLine.WarehouseCode.IsNullOrWhiteSpace())
-                      orderLine.Warehouse = new Warehouse(transactionLine.WarehouseCode);
-                  }
+                    SetGeneralLedgerAccount(orderLine, transactionLine);
+                  else
+                    SetInventoryItem(orderLine, transactionLine);
 
                   orderLine.Quantity = (double) transactionLine.Quantity;
                   orderLine.ToProcess = orderLine.Quantity;
-
-                  var transactionAmount =
-                    (double) (orderLine.TaxMode == TaxMode.Exclusive ? transactionLine.TransactionAmountExVat : transactionLine.TransactionAmountInVat);
-
-                  var unitSellingPrice =
-                    transactionAmount /
-                    (Math.Abs((double) transactionLine.Quantity) > 0.00
-                      ? (double) transactionLine.Quantity
-                      : 1);
-
-                  if (transactionLine.CurrencyCode.IsNullOrWhiteSpace())
-                    orderLine.UnitSellingPrice = unitSellingPrice;
-                  else
-                    orderLine.UnitSellingPriceForeign = unitSellingPrice;
+                  SetUnitSellingPrice(orderLine, transactionLine);
 
                   if (transactionLine.TaxTypeId > 0) {
                     var result = GetOrderLineTaxType(transactionLine);
@@ -81,8 +61,47 @@ namespace WineMS.Evolution.Orders {
           salesOrderTransactionDocument.TransactionLines)
         .OnSuccess(() => order);
 
+    private static OrderDetail NewOrderDetail(OrderBase order)
+    {
+      var orderLine = new OrderDetail();
+      order.Detail.Add(orderLine);
+      orderLine.TaxMode = order.TaxMode;
+      return orderLine;
+    }
+
     private static bool IsGeneralLedgerLine(IWineMsTransactionLine transactionLine) =>
       transactionLine.LineType.IsNullOrWhiteSpace() || transactionLine.LineType.ToUpper() == "GL";
+
+    private static void SetGeneralLedgerAccount(OrderDetail orderLine, IWineMsTransactionLine transactionLine)
+    {
+      orderLine.GLAccount = new GLAccount(transactionLine.GeneralLedgerItemCode);
+    }
+
+    private static void SetInventoryItem(OrderDetail orderLine, IWineMsTransactionLine transactionLine)
+    {
+      orderLine.InventoryItem = new InventoryItem(transactionLine.GeneralLedgerItemCode);
+      if (!transactionLine.WarehouseCode.IsNullOrWhiteSpace())
+        orderLine.Warehouse = new Warehouse(transactionLine.WarehouseCode);
+    }
+
+    private static void SetUnitSellingPrice(OrderDetail orderLine, IWineMsTransactionLine transactionLine)
+    {
+      var transactionAmount = GetTransactionAmount(orderLine, transactionLine);
+
+      var unitSellingPrice =
+        transactionAmount /
+        (Math.Abs((double) transactionLine.Quantity) > 0.00
+          ? (double) transactionLine.Quantity
+          : 1);
+
+      if (transactionLine.CurrencyCode.IsNullOrWhiteSpace())
+        orderLine.UnitSellingPrice = unitSellingPrice;
+      else
+        orderLine.UnitSellingPriceForeign = unitSellingPrice;
+    }
+
+    private static double GetTransactionAmount(OrderDetail orderLine, IWineMsTransactionLine transactionLine) =>
+      (double) (orderLine.TaxMode == TaxMode.Exclusive ? transactionLine.TransactionAmountExVat : transactionLine.TransactionAmountInVat);
 
     private static Result<TaxRate> GetOrderLineTaxType(IWineMsTransactionLine transactionLine)
     {
