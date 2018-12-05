@@ -11,9 +11,20 @@ namespace WineMS.Evolution.Orders {
 
   public static class OrderFunctions {
 
-    public static Result<OrderBase> AddOrderLines(
+    public static Result<OrderBase> AddSalesOrderLines(
       this OrderBase order,
       WineMsOrderTransactionDocument salesOrderTransactionDocument) =>
+      order.AddOrderLines(salesOrderTransactionDocument, OrderTransactionType.SalesOrder);
+
+    public static Result<OrderBase> AddPurchaseOrderLines(
+      this OrderBase order,
+      WineMsOrderTransactionDocument salesOrderTransactionDocument) =>
+      order.AddOrderLines(salesOrderTransactionDocument, OrderTransactionType.PurchaseOrder);
+
+    private static Result<OrderBase> AddOrderLines(
+      this OrderBase order,
+      WineMsOrderTransactionDocument salesOrderTransactionDocument,
+      OrderTransactionType orderTransactionType) =>
       WineMsTransactionDocumentFunctions
         .ForEachTransactionDocumentLine(
           transactionLine =>
@@ -63,6 +74,8 @@ namespace WineMS.Evolution.Orders {
                   orderLine.DiscountPercent = (double) transactionLine.LineDiscountPercentage;
                   orderLine.Description = transactionLine.Description1;
 
+                  SetUserDefinedFields(orderTransactionType, orderLine, transactionLine);
+
                   return Result.Ok();
                 }),
           salesOrderTransactionDocument.TransactionLines)
@@ -81,6 +94,27 @@ namespace WineMS.Evolution.Orders {
         return Result.Fail<TaxRate>(e.GetExceptionMessages());
       }
     }
+
+    private static void SetUserDefinedFields(OrderTransactionType orderTransactionType, OrderDetail orderLine, IWineMsTransactionLine transactionLine)
+    {
+      switch (orderTransactionType) {
+        case OrderTransactionType.SalesOrder:
+          orderLine.SetUserField("ucIDSOrdTxCMwineMSGuid", $"{transactionLine.Guid}");
+          break;
+        case OrderTransactionType.PurchaseOrder:
+          orderLine.SetUserField("ucIDPOrdTxCMwineMSGuid", $"{transactionLine.Guid}");
+          break;
+        default:
+          throw new ArgumentOutOfRangeException(nameof(orderTransactionType), orderTransactionType, null);
+      }
+    }
+
+  }
+
+  public enum OrderTransactionType {
+
+    SalesOrder,
+    PurchaseOrder
 
   }
 

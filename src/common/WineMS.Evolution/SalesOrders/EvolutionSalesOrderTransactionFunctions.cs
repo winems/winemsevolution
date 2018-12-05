@@ -12,7 +12,7 @@ namespace WineMS.Evolution.SalesOrders {
       WineMsSalesOrderTransactionDocument wineMsSalesOrderTransactionDocument) =>
       CreateSalesOrder(wineMsSalesOrderTransactionDocument)
         .OnSuccess(
-          order => order.AddOrderLines(wineMsSalesOrderTransactionDocument))
+          order => order.AddSalesOrderLines(wineMsSalesOrderTransactionDocument))
         .OnSuccess(
           order => ExceptionWrapper
             .Wrap(

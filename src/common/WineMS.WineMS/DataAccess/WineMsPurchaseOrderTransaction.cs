@@ -58,6 +58,9 @@ namespace WineMS.WineMS.DataAccess {
     [Column("LineTotalAmountExVat")]
     public decimal TransactionAmountExVat { get; set; }
 
+    [Column("LineTotalAmountInVat")]
+    public decimal TransactionAmountInVat { get; set; }
+
     [Column("Document Date")]
     public DateTime TransactionDate { get; set; }
 
