@@ -26,7 +26,7 @@ namespace WineMS.Evolution.Orders {
                   var orderLine = new OrderDetail();
                   order.Detail.Add(orderLine);
 
-                  orderLine.TaxMode = TaxMode.Exclusive;
+                  orderLine.TaxMode = order.TaxMode;
 
                   if (isGeneralLedgerLine)
                     orderLine.GLAccount = new GLAccount(transactionLine.GeneralLedgerItemCode);
@@ -39,8 +39,11 @@ namespace WineMS.Evolution.Orders {
                   orderLine.Quantity = (double) transactionLine.Quantity;
                   orderLine.ToProcess = orderLine.Quantity;
 
+                  var transactionAmount =
+                    (double) (orderLine.TaxMode == TaxMode.Exclusive ? transactionLine.TransactionAmountExVat : transactionLine.TransactionAmountInVat);
+
                   var unitSellingPrice =
-                    (double) transactionLine.TransactionAmountExVat /
+                    transactionAmount /
                     (Math.Abs((double) transactionLine.Quantity) > 0.00
                       ? (double) transactionLine.Quantity
                       : 1);

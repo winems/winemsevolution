@@ -9,8 +9,9 @@
     string LineType { get; set; }
     decimal Quantity { get; set; }
     byte TaxTypeId { get; set; }
-    decimal TransactionAmountExVat { get; set; }
     string WarehouseCode { get; set; }
+    decimal TransactionAmountExVat { get; set; }
+    decimal TransactionAmountInVat { get; set; }
 
   }
 
