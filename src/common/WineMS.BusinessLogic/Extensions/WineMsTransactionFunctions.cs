@@ -10,7 +10,7 @@ namespace WineMS.BusinessLogic.Extensions {
   public static class WineMsTransactionFunctions {
 
     public static Result ProcessGeneralLedgerTransactions(IBackgroundWorker backgroundWorker) =>
-      WineMsGeneralLedgerTransactionFunctions
+      WineMsJournalTransactionFunctions
         .Execute(backgroundWorker)
         .OnFailure(error => error.LogException());
 

@@ -4,7 +4,7 @@
 
     public string IntegrationDocumentNumber;
     public string IntegrationDocumentType;
-    public IWineMsTransactionLine[] TransactionLines;
+    public IWineMsBufferEntry[] TransactionLines;
 
   }
 

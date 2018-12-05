@@ -9,12 +9,12 @@ using WineMS.WineMS.Extensions;
 
 namespace WineMS.BusinessLogic.Extensions {
 
-  public static class WineMsTransactionIterFunctions {
+  public static class WineMsGeneralLedgerTransactionIterFunctions {
 
     public static Result ForEachNewTransactionEvolutionContext(
       this IBackgroundWorker backgroundWorker,
-      Func<WineMsDbContext, WineMsOrderTransactionDocument[]> loadData,
-      Func<WineMsOrderTransactionDocument, Result> func)
+      Func<WineMsDbContext, WineMsJournalTransactionBatch[]> loadData,
+      Func<WineMsJournalTransactionBatch, Result> func)
     {
       return backgroundWorker
         .ForEachNewTransaction(loadData,
@@ -24,24 +24,24 @@ namespace WineMS.BusinessLogic.Extensions {
               .GetEvolutionConnectionStrings()
               .WrapInEvolutionSdk(transaction.BranchId, () => func(transaction)));
     }
-
     private static Result ForEachNewTransaction(
       this IBackgroundWorker backgroundWorker,
-      Func<WineMsDbContext, WineMsOrderTransactionDocument[]> loadData,
-      Func<WineMsOrderTransactionDocument, Result> func) =>
+      Func<WineMsDbContext, WineMsJournalTransactionBatch[]> loadData,
+      Func<WineMsJournalTransactionBatch, Result> func) =>
       WineMsDbContextFunctions
         .WrapInDbContext(loadData)
         .ForEachNewTransaction(backgroundWorker, func);
 
     private static Result ForEachNewTransaction(
-      this WineMsOrderTransactionDocument[] orderTransactions,
+      this WineMsJournalTransactionBatch[] journalTransactionsBatches,
       IBackgroundWorker backgroundWorker,
-      Func<WineMsOrderTransactionDocument, Result> func)
+      Func<WineMsJournalTransactionBatch, Result> func)
     {
       var errors = new StringBuilder();
       var count = 0;
-      var maxCount = orderTransactions.Length;
-      foreach (var transaction in orderTransactions) {
+      var maxCount = journalTransactionsBatches.Length;
+      foreach (var transaction in journalTransactionsBatches)
+      {
         func(transaction)
           .OnFailure(err => errors.AppendLine(err));
         var percentProgress = ProgressReportFunctions.CalcPercentProgress(++count, maxCount);

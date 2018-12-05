@@ -11,8 +11,27 @@ namespace WineMS.WineMS.DataAccess {
     public DbSet<WineMsBufferEntry> WineMsBufferEntries { get; set; }
     public DbSet<WineMsPurchaseOrderTransaction> WineMsPurchaseOrderTransactions { get; set; }
     public DbSet<WineMsSalesOrderTransaction> WineMsSalesOrderTransactions { get; set; }
+    public DbSet<WineMsJournalTransaction> WineMsJournalTransactions { get; set; }
 
     public WineMsDbContext() : base(DatabaseConstants.WineMsConnectionStringName) { }
+
+    public WineMsJournalTransactionBatch[] ListNewWineMsJournalTransactions() =>
+      WineMsJournalTransactions
+        .Where(
+          a => a.PostedToAccountingSystem == 0)
+        .ToArray()
+        .GroupBy(a => new {a.CompanyId, a.TransactionType, a.DocumentNumber})
+        .Select(
+          a => new WineMsJournalTransactionBatch {
+            CompanyId = a.Key.CompanyId,
+            DocumentNumber = a.Key.DocumentNumber,
+            TransactionType = a.Key.TransactionType,
+            Transactions = a.ToArray()
+          })
+        .OrderBy(a => a.CompanyId)
+        .ThenBy(a => a.TransactionType)
+        .ThenBy(a => a.DocumentNumber)
+        .ToArray();
 
     public WineMsOrderTransactionDocument[] ListNewWineMsSalesOrderTransactions() =>
       WineMsSalesOrderTransactions
@@ -55,7 +74,7 @@ namespace WineMS.WineMS.DataAccess {
         .ThenBy(a => a.DocumentNumber)
         .ToArray();
 
-    public void SetAsPosted(IWineMsTransactionLine[] wineMsBufferEntries)
+    public void SetAsPosted(IWineMsBufferEntry[] wineMsBufferEntries)
     {
       foreach (var transactionLine in wineMsBufferEntries)
         SetAsPosted(transactionLine);
