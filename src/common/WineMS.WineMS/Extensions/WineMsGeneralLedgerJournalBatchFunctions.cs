@@ -21,7 +21,7 @@ namespace WineMS.WineMS.Extensions {
             context.SetAsPosted(transactionLines);
             context.AddIntegrationMappings(
               new IntegrationMappingDescriptor {
-                IntegrationDocumentNumber = generalLedgerJournalTransactionBatch.IntegrationDocumentNumber,
+                IntegrationDocumentNumber = generalLedgerJournalTransactionBatch.DocumentNumber,
                 IntegrationDocumentType = integrationDocumentType,
                 TransactionLines = transactionLines
               });
