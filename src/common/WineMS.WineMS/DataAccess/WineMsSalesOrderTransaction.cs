@@ -32,6 +32,8 @@ namespace WineMS.WineMS.DataAccess {
     [Column("GUID")]
     public Guid Guid { get; set; }
 
+    public string ItemNote { get; set; }
+
     public decimal LineDiscountPercentage { get; set; }
 
     public string LineType { get; set; }

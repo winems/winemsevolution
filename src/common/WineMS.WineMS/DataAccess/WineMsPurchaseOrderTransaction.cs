@@ -28,6 +28,8 @@ namespace WineMS.WineMS.DataAccess {
     [Column("GUID")]
     public Guid Guid { get; set; }
 
+    public string ItemNote { get; set; }
+
     [NotMapped]
     public decimal LineDiscountPercentage { get; set; }
 

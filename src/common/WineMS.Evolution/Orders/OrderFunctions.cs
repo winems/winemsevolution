@@ -54,6 +54,9 @@ namespace WineMS.Evolution.Orders {
                   orderLine.DiscountPercent = (double) transactionLine.LineDiscountPercentage;
                   orderLine.Description = transactionLine.Description1;
 
+                  if (!transactionLine.ItemNote.IsNullOrWhiteSpace())
+                    orderLine.Note = transactionLine.ItemNote;
+
                   SetUserDefinedFields(orderTransactionType, orderLine, transactionLine);
 
                   return Result.Ok();

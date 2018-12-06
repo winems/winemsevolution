@@ -15,6 +15,7 @@ namespace WineMS.WineMS.DataAccess {
     decimal TransactionAmountExVat { get; set; }
     decimal TransactionAmountInVat { get; set; }
     string WarehouseCode { get; set; }
+    string ItemNote { get; set; }
 
   }
 
