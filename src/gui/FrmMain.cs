@@ -2,10 +2,8 @@
 using System.Diagnostics;
 using System.Windows.Forms;
 using CSharpFunctionalExtensions;
-using RadiusCSharp.Core.Logging;
 using RadiusCSharp.WinForms.Dialogs;
 using WineMsEvolutionGui.Extensions;
-using WineMS.BusinessLogic;
 using WineMS.BusinessLogic.Extensions;
 using WineMS.Common;
 
