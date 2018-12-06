@@ -40,18 +40,23 @@ namespace WineMS.WineMS.DataAccess {
         .ToArray()
         .GroupBy(a => new {a.CompanyId, a.TransactionType, a.DocumentNumber})
         .Select(
-          a => (WineMsOrderTransactionDocument) new WineMsSalesOrderTransactionDocument {
-            CustomerAccountCode = a.FirstOrDefault()?.CustomerAccountCode ?? "",
-            CompanyId = a.Key.CompanyId,
-            DocumentDiscountPercentage = a.FirstOrDefault()?.DocumentDiscountPercentage ?? 0,
-            DocumentNumber = a.Key.DocumentNumber,
-            ExchangeRate = a.FirstOrDefault()?.ExchangeRate ?? 0,
-            MessageLine1 = a.FirstOrDefault()?.MessageLine1 ?? "",
-            MessageLine2 = a.FirstOrDefault()?.MessageLine2 ?? "",
-            MessageLine3 = a.FirstOrDefault()?.MessageLine3 ?? "",
-            TransactionDate = a.FirstOrDefault()?.TransactionDate ?? DateTime.MinValue,
-            TransactionType = a.Key.TransactionType,
-            TransactionLines = a.Cast<IWineMsTransactionLine>().ToArray()
+          a =>
+          {
+            var firstTransaction = a.FirstOrDefault();
+
+            return (WineMsOrderTransactionDocument) new WineMsSalesOrderTransactionDocument {
+              CustomerAccountCode = firstTransaction?.CustomerAccountCode ?? "",
+              CompanyId = a.Key.CompanyId,
+              DocumentDiscountPercentage = firstTransaction?.DocumentDiscountPercentage ?? 0,
+              DocumentNumber = a.Key.DocumentNumber,
+              ExchangeRate = firstTransaction?.ExchangeRate ?? 0,
+              MessageLine1 = firstTransaction?.MessageLine1 ?? "",
+              MessageLine2 = firstTransaction?.MessageLine2 ?? "",
+              MessageLine3 = firstTransaction?.MessageLine3 ?? "",
+              TransactionDate = firstTransaction?.TransactionDate ?? DateTime.MinValue,
+              TransactionType = a.Key.TransactionType,
+              TransactionLines = a.Cast<IWineMsTransactionLine>().ToArray()
+            };
           })
         .OrderBy(a => a.CompanyId)
         .ThenBy(a => a.TransactionType)
