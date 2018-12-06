@@ -72,8 +72,8 @@
     <Compile Include="DataAccess\IWineMsTransactionLine.cs" />
     <Compile Include="DataAccess\WineMsBufferEntry.cs" />
     <Compile Include="DataAccess\WineMsDbContext.cs" />
-    <Compile Include="DataAccess\WineMsJournalTransactionBatch.cs" />
-    <Compile Include="DataAccess\WineMsJournalTransaction.cs" />
+    <Compile Include="DataAccess\WineMsGeneralLedgerJournalTransactionBatch.cs" />
+    <Compile Include="DataAccess\WineMsGeneralLedgerJournalTransaction.cs" />
     <Compile Include="DataAccess\WineMsOrderTransactionDocument.cs" />
     <Compile Include="DataAccess\WineMsPurchaseOrderTransaction.cs" />
     <Compile Include="DataAccess\WineMsPurchaseOrderTransactionDocument.cs" />
@@ -81,7 +81,7 @@
     <Compile Include="DataAccess\WineMsSalesOrderTransactionDocument.cs" />
     <Compile Include="DataAccess\WineMsTransaction.cs" />
     <Compile Include="Extensions\WineMsDbContextFunctions.cs" />
-    <Compile Include="Extensions\WineMsJournalBatchFunctions.cs" />
+    <Compile Include="Extensions\WineMsGeneralLedgerJournalBatchFunctions.cs" />
     <Compile Include="Extensions\WineMsTransactionDocumentFunctions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

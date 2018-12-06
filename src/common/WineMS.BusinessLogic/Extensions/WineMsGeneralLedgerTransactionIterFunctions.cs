@@ -13,8 +13,8 @@ namespace WineMS.BusinessLogic.Extensions {
 
     public static Result ForEachNewTransactionEvolutionContext(
       this IBackgroundWorker backgroundWorker,
-      Func<WineMsDbContext, WineMsJournalTransactionBatch[]> loadData,
-      Func<WineMsJournalTransactionBatch, Result> func)
+      Func<WineMsDbContext, WineMsGeneralLedgerJournalTransactionBatch[]> loadData,
+      Func<WineMsGeneralLedgerJournalTransactionBatch, Result> func)
     {
       return backgroundWorker
         .ForEachNewTransaction(loadData,
@@ -26,21 +26,21 @@ namespace WineMS.BusinessLogic.Extensions {
     }
     private static Result ForEachNewTransaction(
       this IBackgroundWorker backgroundWorker,
-      Func<WineMsDbContext, WineMsJournalTransactionBatch[]> loadData,
-      Func<WineMsJournalTransactionBatch, Result> func) =>
+      Func<WineMsDbContext, WineMsGeneralLedgerJournalTransactionBatch[]> loadData,
+      Func<WineMsGeneralLedgerJournalTransactionBatch, Result> func) =>
       WineMsDbContextFunctions
         .WrapInDbContext(loadData)
         .ForEachNewTransaction(backgroundWorker, func);
 
     private static Result ForEachNewTransaction(
-      this WineMsJournalTransactionBatch[] journalTransactionsBatches,
+      this WineMsGeneralLedgerJournalTransactionBatch[] generalLedgerJournalTransactionsBatches,
       IBackgroundWorker backgroundWorker,
-      Func<WineMsJournalTransactionBatch, Result> func)
+      Func<WineMsGeneralLedgerJournalTransactionBatch, Result> func)
     {
       var errors = new StringBuilder();
       var count = 0;
-      var maxCount = journalTransactionsBatches.Length;
-      foreach (var transaction in journalTransactionsBatches)
+      var maxCount = generalLedgerJournalTransactionsBatches.Length;
+      foreach (var transaction in generalLedgerJournalTransactionsBatches)
       {
         func(transaction)
           .OnFailure(err => errors.AppendLine(err));

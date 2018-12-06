@@ -39,6 +39,8 @@ namespace WineMS.Common.Configuration {
       };
     }
 
+    public static string GetJournalTransactionCode() => "journal-transaction-code".GetKeyValueAsString();
+
   }
 
 }

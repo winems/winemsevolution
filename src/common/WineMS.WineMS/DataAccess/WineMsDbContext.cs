@@ -9,20 +9,20 @@ namespace WineMS.WineMS.DataAccess {
 
     public DbSet<IntegrationMapping> IntegrationMappings { get; set; }
     public DbSet<WineMsBufferEntry> WineMsBufferEntries { get; set; }
-    public DbSet<WineMsJournalTransaction> WineMsJournalTransactions { get; set; }
+    public DbSet<WineMsGeneralLedgerJournalTransaction> WineMsJournalTransactions { get; set; }
     public DbSet<WineMsPurchaseOrderTransaction> WineMsPurchaseOrderTransactions { get; set; }
     public DbSet<WineMsSalesOrderTransaction> WineMsSalesOrderTransactions { get; set; }
 
     public WineMsDbContext() : base(DatabaseConstants.WineMsConnectionStringName) { }
 
-    public WineMsJournalTransactionBatch[] ListNewWineMsJournalTransactions() =>
+    public WineMsGeneralLedgerJournalTransactionBatch[] ListNewWineMsGeneralLedgerJournalTransactions() =>
       WineMsJournalTransactions
         .Where(
           a => a.PostedToAccountingSystem == 0)
         .ToArray()
         .GroupBy(a => new {a.CompanyId, a.TransactionType, a.DocumentNumber})
         .Select(
-          a => new WineMsJournalTransactionBatch {
+          a => new WineMsGeneralLedgerJournalTransactionBatch {
             CompanyId = a.Key.CompanyId,
             DocumentNumber = a.Key.DocumentNumber,
             TransactionType = a.Key.TransactionType,

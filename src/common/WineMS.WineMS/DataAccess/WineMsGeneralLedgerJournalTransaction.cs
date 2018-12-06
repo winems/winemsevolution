@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace WineMS.WineMS.DataAccess {
 
   [Table("_IntegrationJournalBuffer")]
-  public class WineMsJournalTransaction: IWineMsBufferEntry {
+  public class WineMsGeneralLedgerJournalTransaction : IWineMsBufferEntry {
 
     [Column("Company")]
     public string CompanyId { get; set; }
@@ -29,9 +29,6 @@ namespace WineMS.WineMS.DataAccess {
 
     [Column("Posting Date")]
     public DateTime PostingDate { get; set; }
-
-    [Column("VAT Indicator")]
-    public byte TaxTypeId { get; set; }
 
     [Column("LineTotalAmountExVat")]
     public decimal TransactionAmountExVat { get; set; }

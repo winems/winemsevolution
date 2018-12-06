@@ -7,14 +7,14 @@ using WineMS.WineMS.Extensions;
 
 namespace WineMS.BusinessLogic.GeneralLedger {
 
-  public static class WineMsJournalTransactionFunctions {
+  public static class WineMsGeneralLedgerJournalTransactionFunctions {
 
     public static Result Execute(IBackgroundWorker backgroundWorker) =>
       backgroundWorker
         .ForEachNewTransactionEvolutionContext(
-          context => context.ListNewWineMsJournalTransactions(),
+          context => context.ListNewWineMsGeneralLedgerJournalTransactions(),
           journalTransactionBatch =>
-            EvolutionJournalTransactionFunctions
+            EvolutionGeneralLedgerJournalTransactionFunctions
               .ProcessTransaction(journalTransactionBatch)
               .OnSuccess(
                 transactionBatch => { transactionBatch.CompletePosting(IntegrationDocumentTypes.Journal); }));
