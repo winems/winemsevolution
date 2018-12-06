@@ -9,9 +9,9 @@ namespace WineMS.WineMS.DataAccess {
 
     public DbSet<IntegrationMapping> IntegrationMappings { get; set; }
     public DbSet<WineMsBufferEntry> WineMsBufferEntries { get; set; }
+    public DbSet<WineMsJournalTransaction> WineMsJournalTransactions { get; set; }
     public DbSet<WineMsPurchaseOrderTransaction> WineMsPurchaseOrderTransactions { get; set; }
     public DbSet<WineMsSalesOrderTransaction> WineMsSalesOrderTransactions { get; set; }
-    public DbSet<WineMsJournalTransaction> WineMsJournalTransactions { get; set; }
 
     public WineMsDbContext() : base(DatabaseConstants.WineMsConnectionStringName) { }
 
@@ -45,6 +45,10 @@ namespace WineMS.WineMS.DataAccess {
             CompanyId = a.Key.CompanyId,
             DocumentDiscountPercentage = a.FirstOrDefault()?.DocumentDiscountPercentage ?? 0,
             DocumentNumber = a.Key.DocumentNumber,
+            ExchangeRate = a.FirstOrDefault()?.ExchangeRate ?? 0,
+            MessageLine1 = a.FirstOrDefault()?.MessageLine1 ?? "",
+            MessageLine2 = a.FirstOrDefault()?.MessageLine2 ?? "",
+            MessageLine3 = a.FirstOrDefault()?.MessageLine3 ?? "",
             TransactionDate = a.FirstOrDefault()?.TransactionDate ?? DateTime.MinValue,
             TransactionType = a.Key.TransactionType,
             TransactionLines = a.Cast<IWineMsTransactionLine>().ToArray()

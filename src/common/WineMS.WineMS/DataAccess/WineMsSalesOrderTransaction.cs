@@ -20,10 +20,13 @@ namespace WineMS.WineMS.DataAccess {
 
     [Column("Description 1")]
     public string Description1 { get; set; }
+
     public decimal DocumentDiscountPercentage { get; set; }
 
     [Column("Document No_")]
     public string DocumentNumber { get; set; }
+
+    public decimal ExchangeRate { get; set; }
 
     [Column("GeneralLedgerItemCode")]
     public string GeneralLedgerItemCode { get; set; }
@@ -37,6 +40,12 @@ namespace WineMS.WineMS.DataAccess {
     public decimal LineDiscountPercentage { get; set; }
 
     public string LineType { get; set; }
+    
+    public string MessageLine1 { get; set; }
+
+    public string MessageLine2 { get; set; }
+
+    public string MessageLine3 { get; set; }
 
     [Column("OriginalGUID")]
     public Guid OriginalGuid { get; set; }
