@@ -47,8 +47,8 @@ namespace WineMS.Evolution.SalesOrders {
       debit.Transaction.Debit = (double) wineMsGeneralLedgerJournalTransaction.TransactionAmountExVat;
 
       var credit = NewGeneralJournalTransaction();
-      debit.Transaction.Account = new GLAccount(wineMsGeneralLedgerJournalTransaction.CreditGeneralLedgerAccountCode);
-      debit.Transaction.Credit = (double) wineMsGeneralLedgerJournalTransaction.TransactionAmountExVat;
+      credit.Transaction.Account = new GLAccount(wineMsGeneralLedgerJournalTransaction.CreditGeneralLedgerAccountCode);
+      credit.Transaction.Credit = (double) wineMsGeneralLedgerJournalTransaction.TransactionAmountExVat;
 
       return (debit: debit, credit: credit);
 
