@@ -1,5 +1,6 @@
 ﻿using CSharpFunctionalExtensions;
 using Pastel.Evolution;
+using RadiusCSharp.Core.Strings;
 using WineMS.Common.Extensions;
 using WineMS.Evolution.Orders;
 using WineMS.WineMS.DataAccess;
@@ -34,23 +35,23 @@ namespace WineMS.Evolution.SalesOrders {
             var salesOrder = new SalesOrder {
               Customer = customer,
               DeliverTo = new Address(
-                customer.PhysicalAddress.Line1,
-                customer.PhysicalAddress.Line2,
-                customer.PhysicalAddress.Line3,
-                customer.PhysicalAddress.Line4,
-                customer.PhysicalAddress.Line5,
-                customer.PhysicalAddress.Line6),
+                customer.PhysicalAddress.Line1.EmptyIfNull(),
+                customer.PhysicalAddress.Line2.EmptyIfNull(),
+                customer.PhysicalAddress.Line3.EmptyIfNull(),
+                customer.PhysicalAddress.Line4.EmptyIfNull(),
+                customer.PhysicalAddress.Line5.EmptyIfNull(),
+                customer.PhysicalAddress.Line6.EmptyIfNull()),
               DeliveryDate = salesOrderTransactionDocument.TransactionDate,
               Description = "Tax Invoice",
               DiscountPercent = (double) salesOrderTransactionDocument.DocumentDiscountPercentage,
               DueDate = salesOrderTransactionDocument.TransactionDate,
               InvoiceTo = new Address(
-                customer.PostalAddress.Line1,
-                customer.PostalAddress.Line2,
-                customer.PostalAddress.Line3,
-                customer.PostalAddress.Line4,
-                customer.PostalAddress.Line5,
-                customer.PostalAddress.Line6),
+                customer.PostalAddress.Line1.EmptyIfNull(),
+                customer.PostalAddress.Line2.EmptyIfNull(),
+                customer.PostalAddress.Line3.EmptyIfNull(),
+                customer.PostalAddress.Line4.EmptyIfNull(),
+                customer.PostalAddress.Line5.EmptyIfNull(),
+                customer.PostalAddress.Line6.EmptyIfNull()),
               MessageLine1 = salesOrderTransactionDocument.MessageLine1,
               MessageLine2 = salesOrderTransactionDocument.MessageLine2,
               MessageLine3 = salesOrderTransactionDocument.MessageLine3,
