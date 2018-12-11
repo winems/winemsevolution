@@ -66,9 +66,8 @@ namespace WineMS.Evolution.Orders {
 
     private static OrderDetail NewOrderDetail(OrderBase order)
     {
-      var orderLine = new OrderDetail();
+      var orderLine = new OrderDetail {TaxMode = order.TaxMode};
       order.Detail.Add(orderLine);
-      orderLine.TaxMode = order.TaxMode;
       return orderLine;
     }
 
