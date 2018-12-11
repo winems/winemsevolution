@@ -76,12 +76,12 @@ namespace WineMS.Evolution.Orders {
 
     private static void SetGeneralLedgerAccount(OrderDetail orderLine, IWineMsTransactionLine transactionLine)
     {
-      orderLine.GLAccount = new GLAccount(transactionLine.GeneralLedgerItemCode);
+      orderLine.GLAccount = new GLAccount(transactionLine.GeneralLedgerItemCode.EmptyIfNull().Trim());
     }
 
     private static void SetInventoryItem(OrderDetail orderLine, IWineMsTransactionLine transactionLine)
     {
-      orderLine.InventoryItem = new InventoryItem(transactionLine.GeneralLedgerItemCode);
+      orderLine.InventoryItem = new InventoryItem(transactionLine.GeneralLedgerItemCode.EmptyIfNull().Trim());
       if (!transactionLine.WarehouseCode.IsNullOrWhiteSpace())
         orderLine.Warehouse = new Warehouse(transactionLine.WarehouseCode);
     }
