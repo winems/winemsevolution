@@ -45,6 +45,7 @@ namespace WineMS.Evolution.SalesOrders {
               Description = "Tax Invoice",
               DiscountPercent = (double) salesOrderTransactionDocument.DocumentDiscountPercentage,
               DueDate = salesOrderTransactionDocument.TransactionDate,
+              InvoiceDate = salesOrderTransactionDocument.TransactionDate,
               InvoiceTo = new Address(
                 customer.PostalAddress.Line1.EmptyIfNull(),
                 customer.PostalAddress.Line2.EmptyIfNull(),
