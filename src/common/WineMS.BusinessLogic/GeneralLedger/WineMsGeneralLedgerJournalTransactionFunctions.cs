@@ -2,7 +2,7 @@
 using WineMS.BusinessLogic.Extensions;
 using WineMS.Common;
 using WineMS.Common.Constants;
-using WineMS.Evolution.SalesOrders;
+using WineMS.Evolution.GeneralLedger;
 using WineMS.WineMS.Extensions;
 
 namespace WineMS.BusinessLogic.GeneralLedger {

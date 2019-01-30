@@ -21,6 +21,51 @@ namespace WineMS.Evolution.Orders {
       WineMsOrderTransactionDocument salesOrderTransactionDocument) =>
       order.AddOrderLines(salesOrderTransactionDocument, OrderTransactionType.PurchaseOrder);
 
+    public static OrderBase SetDeliveryAddress(this OrderBase order, Customer customer)
+    {
+      order.DeliverTo = new Address(
+        customer.PhysicalAddress.Line1.EmptyIfNull(),
+        customer.PhysicalAddress.Line2.EmptyIfNull(),
+        customer.PhysicalAddress.Line3.EmptyIfNull(),
+        customer.PhysicalAddress.Line4.EmptyIfNull(),
+        customer.PhysicalAddress.Line5.EmptyIfNull(),
+        customer.PhysicalAddress.Line6.EmptyIfNull());
+      return order;
+    }
+
+    public static OrderBase SetPostalAddress(this OrderBase order, Customer customer)
+    {
+      order.InvoiceTo = new Address(
+        customer.PostalAddress.Line1.EmptyIfNull(),
+        customer.PostalAddress.Line2.EmptyIfNull(),
+        customer.PostalAddress.Line3.EmptyIfNull(),
+        customer.PostalAddress.Line4.EmptyIfNull(),
+        customer.PostalAddress.Line5.EmptyIfNull(),
+        customer.PostalAddress.Line6.EmptyIfNull());
+      return order;
+    }
+
+    public static OrderBase SetTaxMode(this OrderBase order, Customer customer)
+    {
+      order.TaxMode = customer.IsForeignCurrencyAccount ? TaxMode.Exclusive : TaxMode.Inclusive;
+      return order;
+    }
+
+    public static OrderBase SetExchangeRate(this OrderBase order, Customer customer, decimal exchangeRate)
+    {
+      if (customer.IsForeignCurrencyAccount && exchangeRate > 0)
+        order.ExchangeRate = (double) exchangeRate;
+      return order;
+    }
+
+    public static OrderBase SetMessageLines(this OrderBase order, IOrderMessageLines orderMessageLines)
+    {
+      order.MessageLine1 = orderMessageLines.MessageLine1;
+      order.MessageLine2 = orderMessageLines.MessageLine2;
+      order.MessageLine3 = orderMessageLines.MessageLine3;
+      return order;
+    }
+
     private static Result<OrderBase> AddOrderLines(
       this OrderBase order,
       WineMsOrderTransactionDocument salesOrderTransactionDocument,
@@ -74,10 +119,7 @@ namespace WineMS.Evolution.Orders {
     private static bool IsGeneralLedgerLine(IWineMsTransactionLine transactionLine) =>
       transactionLine.LineType.IsNullOrWhiteSpace() || transactionLine.LineType.ToUpper() == "GL";
 
-    private static void SetGeneralLedgerAccount(OrderDetail orderLine, IWineMsTransactionLine transactionLine)
-    {
-      orderLine.GLAccount = new GLAccount(transactionLine.GeneralLedgerItemCode.EmptyIfNull().Trim());
-    }
+    private static void SetGeneralLedgerAccount(OrderDetail orderLine, IWineMsTransactionLine transactionLine) { orderLine.GLAccount = new GLAccount(transactionLine.GeneralLedgerItemCode.EmptyIfNull().Trim()); }
 
     private static void SetInventoryItem(OrderDetail orderLine, IWineMsTransactionLine transactionLine)
     {

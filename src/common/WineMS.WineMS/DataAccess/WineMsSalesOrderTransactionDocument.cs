@@ -1,6 +1,6 @@
 ﻿namespace WineMS.WineMS.DataAccess {
 
-  public class WineMsSalesOrderTransactionDocument : WineMsOrderTransactionDocument {
+  public class WineMsSalesOrderTransactionDocument : WineMsOrderTransactionDocument, IOrderMessageLines {
 
     public string CustomerAccountCode { get; set; }
 

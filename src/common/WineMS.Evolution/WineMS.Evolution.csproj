@@ -65,8 +65,8 @@
     <Compile Include="EvolutionSdkFunctions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PurchaseOrders\EvolutionPurchaseOrderTransactionFunctions.cs" />
-    <Compile Include="SalesOrders\EvolutionCreditNoteTransactionFunctions.cs" />
-    <Compile Include="SalesOrders\EvolutionGeneralLedgerJournalTransactionFunctions.cs" />
+    <Compile Include="CreditNotes\EvolutionCreditNoteTransactionFunctions.cs" />
+    <Compile Include="GeneralLedger\EvolutionGeneralLedgerJournalTransactionFunctions.cs" />
     <Compile Include="SalesOrders\EvolutionSalesOrderTransactionFunctions.cs" />
     <Compile Include="Orders\OrderFunctions.cs" />
   </ItemGroup>

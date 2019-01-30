@@ -67,6 +67,7 @@
   <ItemGroup>
     <Compile Include="DataAccess\IntegrationMapping.cs" />
     <Compile Include="DataAccess\IntegrationMappingDescriptor.cs" />
+    <Compile Include="DataAccess\IOrderMessageLines.cs" />
     <Compile Include="DataAccess\IWineMsBufferEntry.cs" />
     <Compile Include="DataAccess\IWineMsTransactionDocument.cs" />
     <Compile Include="DataAccess\IWineMsTransactionLine.cs" />

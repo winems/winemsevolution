@@ -6,7 +6,7 @@ using Pastel.Evolution;
 using WineMS.Common.Configuration;
 using WineMS.WineMS.DataAccess;
 
-namespace WineMS.Evolution.SalesOrders {
+namespace WineMS.Evolution.GeneralLedger {
 
   public static class EvolutionGeneralLedgerJournalTransactionFunctions {
 
