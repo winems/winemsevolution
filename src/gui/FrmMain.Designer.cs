@@ -31,6 +31,8 @@
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
       this.menuStrip1 = new System.Windows.Forms.MenuStrip();
       this.mniFile = new System.Windows.Forms.ToolStripMenuItem();
+      this.mniOpenLogFolder = new System.Windows.Forms.ToolStripMenuItem();
+      this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
       this.mniExit = new System.Windows.Forms.ToolStripMenuItem();
       this.mniProcess = new System.Windows.Forms.ToolStripMenuItem();
       this.mniProcessGeneralLedger = new System.Windows.Forms.ToolStripMenuItem();
@@ -42,8 +44,7 @@
       this.tsVersion = new System.Windows.Forms.ToolStripStatusLabel();
       this.tsWineMSDatabase = new System.Windows.Forms.ToolStripStatusLabel();
       this.tsProgressBar = new System.Windows.Forms.ToolStripProgressBar();
-      this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
-      this.mniOpenLogFolder = new System.Windows.Forms.ToolStripMenuItem();
+      this.mniCreditNotes = new System.Windows.Forms.ToolStripMenuItem();
       this.menuStrip1.SuspendLayout();
       this.statusStrip1.SuspendLayout();
       this.SuspendLayout();
@@ -69,20 +70,33 @@
       this.mniFile.Size = new System.Drawing.Size(37, 20);
       this.mniFile.Text = "File";
       // 
+      // mniOpenLogFolder
+      // 
+      this.mniOpenLogFolder.Name = "mniOpenLogFolder";
+      this.mniOpenLogFolder.Size = new System.Drawing.Size(157, 22);
+      this.mniOpenLogFolder.Text = "Open log folder";
+      this.mniOpenLogFolder.Click += new System.EventHandler(this.mniOpenLogFolder_Click);
+      // 
+      // toolStripMenuItem2
+      // 
+      this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+      this.toolStripMenuItem2.Size = new System.Drawing.Size(154, 6);
+      // 
       // mniExit
       // 
       this.mniExit.Name = "mniExit";
       this.mniExit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Q)));
-      this.mniExit.Size = new System.Drawing.Size(180, 22);
+      this.mniExit.Size = new System.Drawing.Size(157, 22);
       this.mniExit.Text = "Exit";
       this.mniExit.Click += new System.EventHandler(this.mniExit_Click);
       // 
       // mniProcess
       // 
       this.mniProcess.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mniCreditNotes,
             this.mniProcessGeneralLedger,
-            this.mniProcessSalesOrders,
             this.mniProcessPurchaseOrders,
+            this.mniProcessSalesOrders,
             this.toolStripMenuItem1,
             this.mniCancel});
       this.mniProcess.Name = "mniProcess";
@@ -92,34 +106,34 @@
       // mniProcessGeneralLedger
       // 
       this.mniProcessGeneralLedger.Name = "mniProcessGeneralLedger";
-      this.mniProcessGeneralLedger.Size = new System.Drawing.Size(160, 22);
+      this.mniProcessGeneralLedger.Size = new System.Drawing.Size(180, 22);
       this.mniProcessGeneralLedger.Text = "General Ledger";
       this.mniProcessGeneralLedger.Click += new System.EventHandler(this.mniProcessGeneralLedger_Click);
       // 
       // mniProcessSalesOrders
       // 
       this.mniProcessSalesOrders.Name = "mniProcessSalesOrders";
-      this.mniProcessSalesOrders.Size = new System.Drawing.Size(160, 22);
+      this.mniProcessSalesOrders.Size = new System.Drawing.Size(180, 22);
       this.mniProcessSalesOrders.Text = "Sales Orders";
       this.mniProcessSalesOrders.Click += new System.EventHandler(this.mniProcessSalesOrders_Click);
       // 
       // mniProcessPurchaseOrders
       // 
       this.mniProcessPurchaseOrders.Name = "mniProcessPurchaseOrders";
-      this.mniProcessPurchaseOrders.Size = new System.Drawing.Size(160, 22);
+      this.mniProcessPurchaseOrders.Size = new System.Drawing.Size(180, 22);
       this.mniProcessPurchaseOrders.Text = "Purchase Orders";
       this.mniProcessPurchaseOrders.Click += new System.EventHandler(this.mniProcessPurchaseOrders_Click);
       // 
       // toolStripMenuItem1
       // 
       this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-      this.toolStripMenuItem1.Size = new System.Drawing.Size(157, 6);
+      this.toolStripMenuItem1.Size = new System.Drawing.Size(177, 6);
       // 
       // mniCancel
       // 
       this.mniCancel.Enabled = false;
       this.mniCancel.Name = "mniCancel";
-      this.mniCancel.Size = new System.Drawing.Size(160, 22);
+      this.mniCancel.Size = new System.Drawing.Size(180, 22);
       this.mniCancel.Text = "Cancel";
       this.mniCancel.Click += new System.EventHandler(this.mniCancel_Click);
       // 
@@ -154,17 +168,12 @@
       this.tsProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
       this.tsProgressBar.Visible = false;
       // 
-      // toolStripMenuItem2
+      // mniCreditNotes
       // 
-      this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-      this.toolStripMenuItem2.Size = new System.Drawing.Size(177, 6);
-      // 
-      // mniOpenLogFolder
-      // 
-      this.mniOpenLogFolder.Name = "mniOpenLogFolder";
-      this.mniOpenLogFolder.Size = new System.Drawing.Size(180, 22);
-      this.mniOpenLogFolder.Text = "Open log folder";
-      this.mniOpenLogFolder.Click += new System.EventHandler(this.mniOpenLogFolder_Click);
+      this.mniCreditNotes.Name = "mniCreditNotes";
+      this.mniCreditNotes.Size = new System.Drawing.Size(180, 22);
+      this.mniCreditNotes.Text = "Credit Notes";
+      this.mniCreditNotes.Click += new System.EventHandler(this.mniCreditNotes_Click);
       // 
       // FrmMain
       // 
@@ -205,6 +214,7 @@
     private System.Windows.Forms.ToolStripProgressBar tsProgressBar;
     private System.Windows.Forms.ToolStripMenuItem mniOpenLogFolder;
     private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
+    private System.Windows.Forms.ToolStripMenuItem mniCreditNotes;
   }
 }
 

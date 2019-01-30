@@ -71,6 +71,8 @@
     <Compile Include="DataAccess\IWineMsTransactionDocument.cs" />
     <Compile Include="DataAccess\IWineMsTransactionLine.cs" />
     <Compile Include="DataAccess\WineMsBufferEntry.cs" />
+    <Compile Include="DataAccess\WineMsCreditNoteTransaction.cs" />
+    <Compile Include="DataAccess\WineMsCreditNoteTransactionDocument.cs" />
     <Compile Include="DataAccess\WineMsDbContext.cs" />
     <Compile Include="DataAccess\WineMsGeneralLedgerJournalTransactionBatch.cs" />
     <Compile Include="DataAccess\WineMsGeneralLedgerJournalTransaction.cs" />

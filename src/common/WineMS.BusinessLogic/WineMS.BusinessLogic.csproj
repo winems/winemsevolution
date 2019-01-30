@@ -65,6 +65,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CreditNotes\WineMsCreditNotesTransactionFunctions.cs" />
     <Compile Include="Extensions\ProgressReportFunctions.cs" />
     <Compile Include="Extensions\WineMsGeneralLedgerTransactionIterFunctions.cs" />
     <Compile Include="Extensions\WineMsOrderTransactionIterFunctions.cs" />

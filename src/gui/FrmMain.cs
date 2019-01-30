@@ -21,10 +21,7 @@ namespace WineMsEvolutionGui {
     {
       BackgroundWorkerFunctions
         .Execute(
-            context =>
-            {
-              context.Result = ApplicationInformationFunctions.GetApplicationInformation();
-            },
+            context => { context.Result = ApplicationInformationFunctions.GetApplicationInformation(); },
             context =>
             {
               var (version, wineMsDatabase) =
@@ -37,20 +34,13 @@ namespace WineMsEvolutionGui {
 
     private void mniExit_Click(object sender, EventArgs e) { Close(); }
 
-    private void mniProcessGeneralLedger_Click(object sender, EventArgs e)
-    {
-      RunProcess(WineMsTransactionFunctions.ProcessGeneralLedgerTransactions);
-    }
+    private void mniCreditNotes_Click(object sender, EventArgs e) { RunProcess(WineMsTransactionFunctions.ProcessCreditNoteTransactions); }
 
-    private void mniProcessSalesOrders_Click(object sender, EventArgs e)
-    {
-      RunProcess(WineMsTransactionFunctions.ProcessSalesOrderTransactions);
-    }
+    private void mniProcessGeneralLedger_Click(object sender, EventArgs e) { RunProcess(WineMsTransactionFunctions.ProcessGeneralLedgerTransactions); }
 
-    private void mniProcessPurchaseOrders_Click(object sender, EventArgs e)
-    {
-      RunProcess(WineMsTransactionFunctions.ProcessPurchaseOrderTransactions);
-    }
+    private void mniProcessPurchaseOrders_Click(object sender, EventArgs e) { RunProcess(WineMsTransactionFunctions.ProcessPurchaseOrderTransactions); }
+    
+    private void mniProcessSalesOrders_Click(object sender, EventArgs e) { RunProcess(WineMsTransactionFunctions.ProcessSalesOrderTransactions); }
 
     private void mniCancel_Click(object sender, EventArgs e)
     {
@@ -106,6 +96,7 @@ namespace WineMsEvolutionGui {
     }
 
     private void mniOpenLogFolder_Click(object sender, EventArgs e) { Process.Start(ApplicationState.LogFolder); }
+
   }
 
   internal enum ProcessRunningState {
