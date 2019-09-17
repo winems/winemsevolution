@@ -1,6 +1,7 @@
 ﻿using CSharpFunctionalExtensions;
 using WineMS.BusinessLogic.Extensions;
 using WineMS.Common;
+using WineMS.Common.Configuration;
 using WineMS.Common.Constants;
 using WineMS.Evolution.PurchaseOrders;
 using WineMS.WineMS.DataAccess;
@@ -17,7 +18,8 @@ namespace WineMS.BusinessLogic.PurchaseOrders {
           wineMsTransactionDocument =>
             EvolutionPurchaseOrderTransactionFunctions
               .ProcessTransaction(
-                (WineMsPurchaseOrderTransactionDocument) wineMsTransactionDocument)
+                (WineMsPurchaseOrderTransactionDocument) wineMsTransactionDocument,
+                SystemConfiguration.PurchaseOrderIntegrationType())
               .OnSuccess(
                 document => { document.CompletePosting(IntegrationDocumentTypes.PurchaseOrder); }));
 

@@ -63,6 +63,7 @@
     <Compile Include="Configuration\EvolutionConnectionStrings.cs" />
     <Compile Include="Configuration\SystemConfiguration.cs" />
     <Compile Include="Constants\IntegrationDocumentTypes.cs" />
+    <Compile Include="Constants\PurchaseOrderIntegrationType.cs" />
     <Compile Include="Constants\WineMsTransactionTypes.cs" />
     <Compile Include="DataAccess\DatabaseConnectionStringFunctions.cs" />
     <Compile Include="DataAccess\DatabaseConstants.cs" />

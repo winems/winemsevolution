@@ -1,12 +1,12 @@
 ﻿using System;
 using RadiusCSharp.Core.DataAccess;
+using WineMS.Common.Constants;
 
 namespace WineMS.Common.Configuration {
 
   public static class SystemConfiguration {
 
-    public static EvolutionConnectionStrings GetEvolutionConnectionStrings(this string companyId)
-    {
+    public static EvolutionConnectionStrings GetEvolutionConnectionStrings(this string companyId) {
       const string commonDatabase = "EvolutionCommonDatabase";
       const string companyDatabase = "EvolutionCompanyDatabase";
 
@@ -40,6 +40,22 @@ namespace WineMS.Common.Configuration {
     }
 
     public static string GetJournalTransactionCode() => "journal-transaction-code".GetKeyValueAsString();
+
+    private static string GetPurchaseOrderIntegrationType() => "purchase-order-integration-type".GetKeyValueAsString();
+
+    public static PurchaseOrderIntegrationType PurchaseOrderIntegrationType() {
+      var purchaseOrderIntegrationType = GetPurchaseOrderIntegrationType();
+      switch (purchaseOrderIntegrationType) {
+        case IntegrationDocumentTypes.PurchaseOrder:
+          return Constants.PurchaseOrderIntegrationType.PurchaseOrder;
+        case IntegrationDocumentTypes.GoodsReceiveVoucher:
+          return Constants.PurchaseOrderIntegrationType.GoodsReceivedVoucher;
+        case IntegrationDocumentTypes.SupplierInvoice:
+          return Constants.PurchaseOrderIntegrationType.SupplierInvoice;
+        default:
+          throw new Exception($"Purchase order integration type '{purchaseOrderIntegrationType}' not found.");
+      }
+    }
 
   }
 
