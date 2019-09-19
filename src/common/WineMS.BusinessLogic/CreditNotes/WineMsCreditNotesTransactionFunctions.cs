@@ -3,7 +3,6 @@ using WineMS.BusinessLogic.Extensions;
 using WineMS.Common;
 using WineMS.Common.Constants;
 using WineMS.Evolution.CreditNotes;
-using WineMS.Evolution.SalesOrders;
 using WineMS.WineMS.DataAccess;
 using WineMS.WineMS.Extensions;
 

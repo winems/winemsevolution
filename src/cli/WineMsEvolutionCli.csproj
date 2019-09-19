@@ -76,6 +76,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions\CommandLineExecuteFunctions.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -89,10 +90,15 @@
     <Content Include="winems.ico" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\common\WineMS.BusinessLogic\WineMS.BusinessLogic.csproj">
+      <Project>{6F707B45-AD77-4BCF-B285-2B2AF0199999}</Project>
+      <Name>WineMS.BusinessLogic</Name>
+    </ProjectReference>
     <ProjectReference Include="..\common\WineMS.Common\WineMS.Common.csproj">
       <Project>{1B8AFB82-E565-4BED-877E-DAEA1A2CE938}</Project>
       <Name>WineMS.Common</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

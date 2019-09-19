@@ -14,16 +14,17 @@ namespace WineMS.BusinessLogic.Extensions {
     public static Result ForEachNewTransactionEvolutionContext(
       this IBackgroundWorker backgroundWorker,
       Func<WineMsDbContext, WineMsGeneralLedgerJournalTransactionBatch[]> loadData,
-      Func<WineMsGeneralLedgerJournalTransactionBatch, Result> func)
-    {
+      Func<WineMsGeneralLedgerJournalTransactionBatch, Result> func) {
       return backgroundWorker
-        .ForEachNewTransaction(loadData,
+        .ForEachNewTransaction(
+          loadData,
           transaction =>
             transaction
               .CompanyId
               .GetEvolutionConnectionStrings()
               .WrapInEvolutionSdk(transaction.BranchId, () => func(transaction)));
     }
+
     private static Result ForEachNewTransaction(
       this IBackgroundWorker backgroundWorker,
       Func<WineMsDbContext, WineMsGeneralLedgerJournalTransactionBatch[]> loadData,
@@ -35,13 +36,11 @@ namespace WineMS.BusinessLogic.Extensions {
     private static Result ForEachNewTransaction(
       this WineMsGeneralLedgerJournalTransactionBatch[] generalLedgerJournalTransactionsBatches,
       IBackgroundWorker backgroundWorker,
-      Func<WineMsGeneralLedgerJournalTransactionBatch, Result> func)
-    {
+      Func<WineMsGeneralLedgerJournalTransactionBatch, Result> func) {
       var errors = new StringBuilder();
       var count = 0;
       var maxCount = generalLedgerJournalTransactionsBatches.Length;
-      foreach (var transaction in generalLedgerJournalTransactionsBatches)
-      {
+      foreach (var transaction in generalLedgerJournalTransactionsBatches) {
         func(transaction)
           .OnFailure(err => errors.AppendLine(err));
         var percentProgress = ProgressReportFunctions.CalcPercentProgress(++count, maxCount);

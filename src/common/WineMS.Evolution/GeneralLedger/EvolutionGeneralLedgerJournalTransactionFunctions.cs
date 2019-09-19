@@ -11,22 +11,19 @@ namespace WineMS.Evolution.GeneralLedger {
   public static class EvolutionGeneralLedgerJournalTransactionFunctions {
 
     public static Result<WineMsGeneralLedgerJournalTransactionBatch> ProcessTransaction(
-      WineMsGeneralLedgerJournalTransactionBatch wineMsGeneralLedgerJournalTransactionBatch)
-    {
+      WineMsGeneralLedgerJournalTransactionBatch wineMsGeneralLedgerJournalTransactionBatch) {
       wineMsGeneralLedgerJournalTransactionBatch
         .Transactions
         .Select(NewGeneralJournalTransactions)
         .ForEach(
-          journalPair =>
-          {
+          journalPair => {
             Post(journalPair.debit);
             Post(journalPair.credit);
           });
 
       return Result.Ok(wineMsGeneralLedgerJournalTransactionBatch);
 
-      void Post(GeneralLedgerTransaction generalLedgerTransaction)
-      {
+      void Post(GeneralLedgerTransaction generalLedgerTransaction) {
         generalLedgerTransaction.Transaction.Post();
         wineMsGeneralLedgerJournalTransactionBatch
           .AddMapping(NewMapping(generalLedgerTransaction));
@@ -40,8 +37,7 @@ namespace WineMS.Evolution.GeneralLedger {
     }
 
     private static (GeneralLedgerTransaction debit, GeneralLedgerTransaction credit) NewGeneralJournalTransactions(
-      WineMsGeneralLedgerJournalTransaction wineMsGeneralLedgerJournalTransaction)
-    {
+      WineMsGeneralLedgerJournalTransaction wineMsGeneralLedgerJournalTransaction) {
       var debit = NewGeneralJournalTransaction();
       debit.Transaction.Account = new GLAccount(wineMsGeneralLedgerJournalTransaction.DebitGeneralLedgerAccountCode);
       debit.Transaction.Debit = (double) wineMsGeneralLedgerJournalTransaction.TransactionAmountExVat;
@@ -50,7 +46,7 @@ namespace WineMS.Evolution.GeneralLedger {
       credit.Transaction.Account = new GLAccount(wineMsGeneralLedgerJournalTransaction.CreditGeneralLedgerAccountCode);
       credit.Transaction.Credit = (double) wineMsGeneralLedgerJournalTransaction.TransactionAmountExVat;
 
-      return (debit: debit, credit: credit);
+      return (debit, credit);
 
       GeneralLedgerTransaction NewGeneralJournalTransaction() =>
         new GeneralLedgerTransaction(
@@ -66,8 +62,7 @@ namespace WineMS.Evolution.GeneralLedger {
 
     private static void ForEach(
       this IEnumerable<(GeneralLedgerTransaction debit, GeneralLedgerTransaction credit)> journals,
-      Action<(GeneralLedgerTransaction debit, GeneralLedgerTransaction credit)> action)
-    {
+      Action<(GeneralLedgerTransaction debit, GeneralLedgerTransaction credit)> action) {
       foreach (var journalPair in journals)
         action(journalPair);
     }
@@ -78,8 +73,7 @@ namespace WineMS.Evolution.GeneralLedger {
 
       public GLTransaction Transaction { get; }
 
-      public GeneralLedgerTransaction(Guid guid, GLTransaction transaction)
-      {
+      public GeneralLedgerTransaction(Guid guid, GLTransaction transaction) {
         Guid = guid;
         Transaction = transaction;
       }

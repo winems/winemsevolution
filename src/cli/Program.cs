@@ -3,6 +3,7 @@ using RadiusCSharp.Core.Bootstrap;
 using RadiusCSharp.Core.FileSystem;
 using RadiusCSharp.Log4Net.Logging;
 using WineMS.Common;
+using WineMsEvolutionCli.Extensions;
 
 namespace WineMsEvolutionCli {
 
@@ -28,7 +29,7 @@ namespace WineMsEvolutionCli {
             ApplicationInformationFunctions.LogApplicationInformation(
               ApplicationInformationFunctions.GetApplicationInformation());
 
-            // TODO: add code to call transaction processing functions.
+            CommandLineExecuteFunctions.Execute(args);
 
           },
           exception => { },

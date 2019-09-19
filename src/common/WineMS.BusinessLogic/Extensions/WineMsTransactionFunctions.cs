@@ -25,6 +25,11 @@ namespace WineMS.BusinessLogic.Extensions {
         .Execute(backgroundWorker)
         .OnFailure(error => error.LogException());
 
+    public static Result ProcessReturnToSupplierTransactions(IBackgroundWorker backgroundWorker) {
+      "Return to supplier not implemented.".LogException();
+      return Result.Fail("Return to supplier not implemented.");
+    }
+
     public static Result ProcessSalesOrderTransactions(IBackgroundWorker backgroundWorker) =>
       WineMsSalesOrdersTransactionFunctions
         .Execute(backgroundWorker)
