@@ -19,7 +19,7 @@ namespace WineMsEvolutionCli.Extensions {
     public static void Execute(string[] args) {
       args
         .ParseCommandLine()
-        .OnSuccess(
+        .Tap(
           commands => {
             var w = new NullBackgroundWorker();
             var _ =
@@ -31,8 +31,7 @@ namespace WineMsEvolutionCli.Extensions {
                   })
                 .ToArray();
           })
-        .OnFailure(err => err.LogException())
-        ;
+        .OnFailure(err => err.LogException());
     }
 
     private static Result<IEnumerable<Command>> ParseCommandLine(this string[] args) {
@@ -78,7 +77,6 @@ namespace WineMsEvolutionCli.Extensions {
         "E.g.:\r\n" +
         $"   WineMsEvolutionCli.exe {GeneralLedgerCommand}\r\n" +
         $"   WineMsEvolutionCli.exe {GeneralLedgerCommand} {SalesOrdersCommand}";
-
     }
 
     private class Command {
