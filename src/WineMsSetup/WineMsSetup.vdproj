@@ -22,13 +22,13 @@
         "Entry"
         {
         "MsmKey" = "8:_044A4E5F85764E918F7B69482BEBCDB2"
-        "OwnerKey" = "8:_AF21A1DC9762463AB6FF5DBAE5DC6E76"
+        "OwnerKey" = "8:_0AA295ADCE0CDFB9D1A4F052073DAA87"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_044A4E5F85764E918F7B69482BEBCDB2"
-        "OwnerKey" = "8:_0AA295ADCE0CDFB9D1A4F052073DAA87"
+        "OwnerKey" = "8:_AF21A1DC9762463AB6FF5DBAE5DC6E76"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -76,19 +76,7 @@
         "Entry"
         {
         "MsmKey" = "8:_58A1D0308B21371882869AE0868E8927"
-        "OwnerKey" = "8:_B5EFCEF8004DB43FBBFD39B4A945E502"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_58A1D0308B21371882869AE0868E8927"
-        "OwnerKey" = "8:_CF4604AB56463D5EE40A6EE3E655D247"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_58A1D0308B21371882869AE0868E8927"
-        "OwnerKey" = "8:_AF21A1DC9762463AB6FF5DBAE5DC6E76"
+        "OwnerKey" = "8:_CEB75A54D1AB1A1A6D2AFBE1E87C46D3"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -100,7 +88,19 @@
         "Entry"
         {
         "MsmKey" = "8:_58A1D0308B21371882869AE0868E8927"
-        "OwnerKey" = "8:_CEB75A54D1AB1A1A6D2AFBE1E87C46D3"
+        "OwnerKey" = "8:_AF21A1DC9762463AB6FF5DBAE5DC6E76"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_58A1D0308B21371882869AE0868E8927"
+        "OwnerKey" = "8:_CF4604AB56463D5EE40A6EE3E655D247"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_58A1D0308B21371882869AE0868E8927"
+        "OwnerKey" = "8:_B5EFCEF8004DB43FBBFD39B4A945E502"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -130,13 +130,13 @@
         "Entry"
         {
         "MsmKey" = "8:_7491641216C19586C93D39981CA76E4B"
-        "OwnerKey" = "8:_0D670DB529FF6899014B4A180D4DD8AD"
+        "OwnerKey" = "8:_AF21A1DC9762463AB6FF5DBAE5DC6E76"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_7491641216C19586C93D39981CA76E4B"
-        "OwnerKey" = "8:_AF21A1DC9762463AB6FF5DBAE5DC6E76"
+        "OwnerKey" = "8:_0D670DB529FF6899014B4A180D4DD8AD"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -154,13 +154,13 @@
         "Entry"
         {
         "MsmKey" = "8:_A8FD6B56FD961BA665A14A6EC8607E29"
-        "OwnerKey" = "8:_AF21A1DC9762463AB6FF5DBAE5DC6E76"
+        "OwnerKey" = "8:_0AA295ADCE0CDFB9D1A4F052073DAA87"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_A8FD6B56FD961BA665A14A6EC8607E29"
-        "OwnerKey" = "8:_0AA295ADCE0CDFB9D1A4F052073DAA87"
+        "OwnerKey" = "8:_AF21A1DC9762463AB6FF5DBAE5DC6E76"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -214,13 +214,7 @@
         "Entry"
         {
         "MsmKey" = "8:_D18F3C4EB48CDEE559798EB200FDC865"
-        "OwnerKey" = "8:_AF21A1DC9762463AB6FF5DBAE5DC6E76"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_D18F3C4EB48CDEE559798EB200FDC865"
-        "OwnerKey" = "8:_0AA295ADCE0CDFB9D1A4F052073DAA87"
+        "OwnerKey" = "8:_044A4E5F85764E918F7B69482BEBCDB2"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -232,7 +226,13 @@
         "Entry"
         {
         "MsmKey" = "8:_D18F3C4EB48CDEE559798EB200FDC865"
-        "OwnerKey" = "8:_044A4E5F85764E918F7B69482BEBCDB2"
+        "OwnerKey" = "8:_0AA295ADCE0CDFB9D1A4F052073DAA87"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_D18F3C4EB48CDEE559798EB200FDC865"
+        "OwnerKey" = "8:_AF21A1DC9762463AB6FF5DBAE5DC6E76"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -262,91 +262,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_E1EFBB0D77CDDD150E4660009AB0D989"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_B5EFCEF8004DB43FBBFD39B4A945E502"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_CF4604AB56463D5EE40A6EE3E655D247"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_9416C20265A8057AAC429000258236B3"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_212F52A34F1750FDA2E7268B7B5C4F52"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_0D670DB529FF6899014B4A180D4DD8AD"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_0AA295ADCE0CDFB9D1A4F052073DAA87"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_CEB75A54D1AB1A1A6D2AFBE1E87C46D3"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_044A4E5F85764E918F7B69482BEBCDB2"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_58A1D0308B21371882869AE0868E8927"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_1BAC9896A8C57A36E6591F61ACBA130B"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_5FEACB478BF4E048317272F76E5EA58C"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_A8FD6B56FD961BA665A14A6EC8607E29"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_7491641216C19586C93D39981CA76E4B"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_D18F3C4EB48CDEE559798EB200FDC865"
+        "OwnerKey" = "8:_D0A1B127B09EC3ED8C2C2B580F00ACC3"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -358,7 +274,91 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_D0A1B127B09EC3ED8C2C2B580F00ACC3"
+        "OwnerKey" = "8:_D18F3C4EB48CDEE559798EB200FDC865"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_7491641216C19586C93D39981CA76E4B"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_A8FD6B56FD961BA665A14A6EC8607E29"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_5FEACB478BF4E048317272F76E5EA58C"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_1BAC9896A8C57A36E6591F61ACBA130B"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_58A1D0308B21371882869AE0868E8927"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_044A4E5F85764E918F7B69482BEBCDB2"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_CEB75A54D1AB1A1A6D2AFBE1E87C46D3"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_0AA295ADCE0CDFB9D1A4F052073DAA87"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_0D670DB529FF6899014B4A180D4DD8AD"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_212F52A34F1750FDA2E7268B7B5C4F52"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_9416C20265A8057AAC429000258236B3"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_CF4604AB56463D5EE40A6EE3E655D247"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_B5EFCEF8004DB43FBBFD39B4A945E502"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_E1EFBB0D77CDDD150E4660009AB0D989"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -463,11 +463,6 @@
             "AssemblyAsmDisplayName" = "8:WineMS.Common, Version=1.2.7214.17283, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_044A4E5F85764E918F7B69482BEBCDB2"
-                    {
-                    "Name" = "8:WineMS.Common.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:WineMS.Common.dll"
             "TargetName" = "8:"
@@ -494,11 +489,6 @@
             "AssemblyAsmDisplayName" = "8:WineMS.BusinessLogic, Version=1.2.7214.17283, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_0AA295ADCE0CDFB9D1A4F052073DAA87"
-                    {
-                    "Name" = "8:WineMS.BusinessLogic.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:WineMS.BusinessLogic.dll"
             "TargetName" = "8:"
@@ -525,11 +515,6 @@
             "AssemblyAsmDisplayName" = "8:EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_0D670DB529FF6899014B4A180D4DD8AD"
-                    {
-                    "Name" = "8:EntityFramework.SqlServer.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:EntityFramework.SqlServer.dll"
             "TargetName" = "8:"
@@ -556,11 +541,6 @@
             "AssemblyAsmDisplayName" = "8:System.Net.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
                 "ScatterAssemblies"
                 {
-                    "_1BAC9896A8C57A36E6591F61ACBA130B"
-                    {
-                    "Name" = "8:System.Net.Http.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:System.Net.Http.dll"
             "TargetName" = "8:"
@@ -587,11 +567,6 @@
             "AssemblyAsmDisplayName" = "8:log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_212F52A34F1750FDA2E7268B7B5C4F52"
-                    {
-                    "Name" = "8:log4net.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:log4net.dll"
             "TargetName" = "8:"
@@ -618,11 +593,6 @@
             "AssemblyAsmDisplayName" = "8:RadiusCSharp.Core, Version=3.0.6870.30880, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_58A1D0308B21371882869AE0868E8927"
-                    {
-                    "Name" = "8:RadiusCSharp.Core.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:RadiusCSharp.Core.dll"
             "TargetName" = "8:"
@@ -669,11 +639,6 @@
             "AssemblyAsmDisplayName" = "8:System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_5FEACB478BF4E048317272F76E5EA58C"
-                    {
-                    "Name" = "8:System.ValueTuple.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:System.ValueTuple.dll"
             "TargetName" = "8:"
@@ -700,11 +665,6 @@
             "AssemblyAsmDisplayName" = "8:EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_7491641216C19586C93D39981CA76E4B"
-                    {
-                    "Name" = "8:EntityFramework.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:EntityFramework.dll"
             "TargetName" = "8:"
@@ -731,11 +691,6 @@
             "AssemblyAsmDisplayName" = "8:Microsoft.IdentityModel.Logging, Version=5.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_9416C20265A8057AAC429000258236B3"
-                    {
-                    "Name" = "8:Microsoft.IdentityModel.Logging.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:Microsoft.IdentityModel.Logging.dll"
             "TargetName" = "8:"
@@ -762,11 +717,6 @@
             "AssemblyAsmDisplayName" = "8:WineMS.WineMS, Version=1.2.7214.17283, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_A8FD6B56FD961BA665A14A6EC8607E29"
-                    {
-                    "Name" = "8:WineMS.WineMS.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:WineMS.WineMS.dll"
             "TargetName" = "8:"
@@ -793,11 +743,6 @@
             "AssemblyAsmDisplayName" = "8:RadiusCSharp.WinForms, Version=2.0.6871.32642, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_B5EFCEF8004DB43FBBFD39B4A945E502"
-                    {
-                    "Name" = "8:RadiusCSharp.WinForms.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:RadiusCSharp.WinForms.dll"
             "TargetName" = "8:"
@@ -824,11 +769,6 @@
             "AssemblyAsmDisplayName" = "8:WineMS.Evolution, Version=1.1.7214.17283, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_CEB75A54D1AB1A1A6D2AFBE1E87C46D3"
-                    {
-                    "Name" = "8:WineMS.Evolution.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:WineMS.Evolution.dll"
             "TargetName" = "8:"
@@ -855,11 +795,6 @@
             "AssemblyAsmDisplayName" = "8:RadiusCSharp.Log4Net, Version=3.0.6870.30881, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_CF4604AB56463D5EE40A6EE3E655D247"
-                    {
-                    "Name" = "8:RadiusCSharp.Log4Net.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:RadiusCSharp.Log4Net.dll"
             "TargetName" = "8:"
@@ -886,11 +821,6 @@
             "AssemblyAsmDisplayName" = "8:Pastel.Evolution.Common, Version=9.20.0.0, Culture=neutral, PublicKeyToken=86fac4c1500a3756, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_D0A1B127B09EC3ED8C2C2B580F00ACC3"
-                    {
-                    "Name" = "8:Pastel.Evolution.Common.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:Pastel.Evolution.Common.dll"
             "TargetName" = "8:"
@@ -917,11 +847,6 @@
             "AssemblyAsmDisplayName" = "8:CSharpFunctionalExtensions, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_D18F3C4EB48CDEE559798EB200FDC865"
-                    {
-                    "Name" = "8:CSharpFunctionalExtensions.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:CSharpFunctionalExtensions.dll"
             "TargetName" = "8:"
@@ -948,11 +873,6 @@
             "AssemblyAsmDisplayName" = "8:System.Linq, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
                 "ScatterAssemblies"
                 {
-                    "_E1EFBB0D77CDDD150E4660009AB0D989"
-                    {
-                    "Name" = "8:System.Linq.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:System.Linq.dll"
             "TargetName" = "8:"
@@ -979,11 +899,6 @@
             "AssemblyAsmDisplayName" = "8:Pastel.Evolution, Version=9.20.0.0, Culture=neutral, PublicKeyToken=86fac4c1500a3756, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_F6DF571836C8F1A23A5BB75D193DF546"
-                    {
-                    "Name" = "8:Pastel.Evolution.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:Pastel.Evolution.dll"
             "TargetName" = "8:"
@@ -1059,15 +974,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:WineMS to Sage 100/200 Integration"
-        "ProductCode" = "8:{76F5B5C4-6134-413F-94D9-1D18589B2D0B}"
-        "PackageCode" = "8:{12B8C036-02FD-4657-AF5B-9C697A1FC541}"
+        "ProductCode" = "8:{1CBF6D05-5071-433F-87B9-30D4C017D1D9}"
+        "PackageCode" = "8:{AFBE6908-E9D4-40E7-9395-6956BEF9347D}"
         "UpgradeCode" = "8:{09D63A6B-07D2-4221-A443-A4C4058F0E88}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.15.0"
+        "ProductVersion" = "8:1.16.0"
         "Manufacturer" = "8:WineMS"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
