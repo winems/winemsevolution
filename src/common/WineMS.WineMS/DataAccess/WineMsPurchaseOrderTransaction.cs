@@ -69,7 +69,7 @@ namespace WineMS.WineMS.DataAccess {
     [Column("Transaction Type")]
     public string TransactionType { get; set; }
 
-    [NotMapped]
+    [Column("Location Code")]
     public string WarehouseCode { get; set; }
 
   }
