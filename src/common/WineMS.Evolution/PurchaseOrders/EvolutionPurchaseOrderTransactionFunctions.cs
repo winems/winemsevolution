@@ -14,9 +14,9 @@ namespace WineMS.Evolution.PurchaseOrders {
       WineMsPurchaseOrderTransactionDocument wineMsSalesOrderTransactionDocument,
       PurchaseOrderIntegrationType purchaseOrderIntegrationType) =>
       CreatePurchaseOrder(wineMsSalesOrderTransactionDocument)
-        .OnSuccess(
+        .Bind(
           order => order.AddPurchaseOrderLines(wineMsSalesOrderTransactionDocument))
-        .OnSuccess(
+        .Bind(
           order => ExceptionWrapper
             .Wrap(
               () => {
