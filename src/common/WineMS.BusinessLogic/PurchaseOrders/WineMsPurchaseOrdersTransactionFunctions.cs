@@ -20,7 +20,7 @@ namespace WineMS.BusinessLogic.PurchaseOrders {
               .ProcessTransaction(
                 (WineMsPurchaseOrderTransactionDocument) wineMsTransactionDocument,
                 SystemConfiguration.PurchaseOrderIntegrationType())
-              .OnSuccess(
+              .Tap(
                 document => { document.CompletePosting(IntegrationDocumentTypes.PurchaseOrder); }));
 
   }

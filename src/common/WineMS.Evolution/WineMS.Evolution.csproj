@@ -70,6 +70,7 @@
     <Compile Include="PurchaseOrders\EvolutionPurchaseOrderTransactionFunctions.cs" />
     <Compile Include="CreditNotes\EvolutionCreditNoteTransactionFunctions.cs" />
     <Compile Include="GeneralLedger\EvolutionGeneralLedgerJournalTransactionFunctions.cs" />
+    <Compile Include="Stock\EvolutionStockJournalFunctions.cs" />
     <Compile Include="SalesOrders\EvolutionSalesOrderTransactionFunctions.cs" />
     <Compile Include="Orders\OrderFunctions.cs" />
   </ItemGroup>
