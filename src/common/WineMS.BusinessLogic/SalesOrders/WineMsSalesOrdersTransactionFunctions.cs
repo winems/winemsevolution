@@ -17,7 +17,7 @@ namespace WineMS.BusinessLogic.SalesOrders {
           wineMsTransactionDocument =>
             EvolutionSalesOrderTransactionFunctions
               .ProcessTransaction((WineMsSalesOrderTransactionDocument) wineMsTransactionDocument)
-              .OnSuccess(
+              .Tap(
                 document => { document.CompletePosting(IntegrationDocumentTypes.SalesOrder); }));
 
   }

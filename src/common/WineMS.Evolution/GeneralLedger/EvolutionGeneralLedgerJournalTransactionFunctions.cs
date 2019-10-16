@@ -11,8 +11,8 @@ namespace WineMS.Evolution.GeneralLedger {
   public static class EvolutionGeneralLedgerJournalTransactionFunctions {
 
     public static Result<WineMsGeneralLedgerJournalTransactionBatch> ProcessTransaction(
-      WineMsGeneralLedgerJournalTransactionBatch wineMsGeneralLedgerJournalTransactionBatch) {
-      wineMsGeneralLedgerJournalTransactionBatch
+      WineMsGeneralLedgerJournalTransactionBatch batch) {
+      batch
         .Transactions
         .Select(NewGeneralJournalTransactions)
         .ForEach(
@@ -21,12 +21,11 @@ namespace WineMS.Evolution.GeneralLedger {
             Post(journalPair.credit);
           });
 
-      return Result.Ok(wineMsGeneralLedgerJournalTransactionBatch);
+      return Result.Ok(batch);
 
       void Post(GeneralLedgerTransaction generalLedgerTransaction) {
         generalLedgerTransaction.Transaction.Post();
-        wineMsGeneralLedgerJournalTransactionBatch
-          .AddMapping(NewMapping(generalLedgerTransaction));
+        batch.AddMapping(NewMapping(generalLedgerTransaction));
       }
 
       GeneralLedgerJournalTransactionMapping NewMapping(GeneralLedgerTransaction generalLedgerTransaction) =>
@@ -37,25 +36,25 @@ namespace WineMS.Evolution.GeneralLedger {
     }
 
     private static (GeneralLedgerTransaction debit, GeneralLedgerTransaction credit) NewGeneralJournalTransactions(
-      WineMsGeneralLedgerJournalTransaction wineMsGeneralLedgerJournalTransaction) {
+      WineMsGeneralLedgerJournalTransaction transaction) {
       var debit = NewGeneralJournalTransaction();
-      debit.Transaction.Account = new GLAccount(wineMsGeneralLedgerJournalTransaction.DebitGeneralLedgerAccountCode);
-      debit.Transaction.Debit = (double) wineMsGeneralLedgerJournalTransaction.TransactionAmountExVat;
+      debit.Transaction.Account = new GLAccount(transaction.DebitGeneralLedgerAccountCode);
+      debit.Transaction.Debit = (double) transaction.TransactionAmountExVat;
 
       var credit = NewGeneralJournalTransaction();
-      credit.Transaction.Account = new GLAccount(wineMsGeneralLedgerJournalTransaction.CreditGeneralLedgerAccountCode);
-      credit.Transaction.Credit = (double) wineMsGeneralLedgerJournalTransaction.TransactionAmountExVat;
+      credit.Transaction.Account = new GLAccount(transaction.CreditGeneralLedgerAccountCode);
+      credit.Transaction.Credit = (double) transaction.TransactionAmountExVat;
 
       return (debit, credit);
 
       GeneralLedgerTransaction NewGeneralJournalTransaction() =>
         new GeneralLedgerTransaction(
-          wineMsGeneralLedgerJournalTransaction.Guid,
+          transaction.Guid,
           new GLTransaction {
-            Date = wineMsGeneralLedgerJournalTransaction.TransactionDate,
-            Description = wineMsGeneralLedgerJournalTransaction.Description1,
-            Reference = wineMsGeneralLedgerJournalTransaction.DocumentNumber,
-            Reference2 = wineMsGeneralLedgerJournalTransaction.Guid.ToString(),
+            Date = transaction.TransactionDate,
+            Description = transaction.Description1,
+            Reference = transaction.DocumentNumber,
+            Reference2 = transaction.Guid.ToString(),
             TransactionCode = new TransactionCode(Module.GL, SystemConfiguration.GetJournalTransactionCode())
           });
     }

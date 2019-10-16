@@ -17,8 +17,7 @@ namespace WineMS.BusinessLogic.GeneralLedger {
           journalTransactionBatch =>
             EvolutionGeneralLedgerJournalTransactionFunctions
               .ProcessTransaction((WineMsGeneralLedgerJournalTransactionBatch) journalTransactionBatch)
-              .Tap(
-                transactionBatch => { transactionBatch.CompletePosting(IntegrationDocumentTypes.Journal); }));
+              .Tap(batch => { batch.CompletePosting(IntegrationDocumentTypes.Journal); }));
 
   }
 

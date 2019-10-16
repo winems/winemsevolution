@@ -84,10 +84,10 @@
     <Compile Include="DataAccess\WineMsSalesOrderTransactionDocument.cs" />
     <Compile Include="DataAccess\WineMsStockJournalTransaction.cs" />
     <Compile Include="DataAccess\WineMsStockJournalTransactionBatch.cs" />
-    <Compile Include="DataAccess\WineMsStockJournalTransactionDocument.cs" />
     <Compile Include="DataAccess\WineMsTransaction.cs" />
     <Compile Include="Extensions\WineMsDbContextFunctions.cs" />
     <Compile Include="Extensions\WineMsGeneralLedgerJournalBatchFunctions.cs" />
+    <Compile Include="Extensions\WineMsStockJournalBatchFunctions.cs" />
     <Compile Include="Extensions\WineMsTransactionDocumentFunctions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
