@@ -67,13 +67,14 @@
   <ItemGroup>
     <Compile Include="CreditNotes\WineMsCreditNotesTransactionFunctions.cs" />
     <Compile Include="Extensions\ProgressReportFunctions.cs" />
-    <Compile Include="Extensions\WineMsGeneralLedgerTransactionIterFunctions.cs" />
+    <Compile Include="Extensions\WineMsTransactionIterFunctions.cs" />
     <Compile Include="Extensions\WineMsOrderTransactionIterFunctions.cs" />
     <Compile Include="GeneralLedger\WineMsGeneralLedgerJournalTransactionFunctions.cs" />
     <Compile Include="PurchaseOrders\WineMsPurchaseOrdersTransactionFunctions.cs" />
     <Compile Include="SalesOrders\WineMsSalesOrdersTransactionFunctions.cs" />
     <Compile Include="Extensions\WineMsTransactionFunctions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Stock\WineMsStockJournalTransactionFunctions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -96,5 +97,6 @@
   <ItemGroup>
     <Content Include="Readme-RadiusCSharp.Core.txt" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

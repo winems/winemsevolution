@@ -54,6 +54,10 @@ namespace WineMsEvolutionGui {
       RunProcess(WineMsTransactionFunctions.ProcessSalesOrderTransactions);
     }
 
+    private void MniProcessStockJournals_Click(object sender, EventArgs e) {
+      RunProcess(WineMsTransactionFunctions.ProcessStockTransactions);
+    }
+
     private void mniCancel_Click(object sender, EventArgs e) {
       if ("Cancel process".ShowAskYesNo("Are you sure?") == YesNoResponse.No) return;
       _runningProcesCancelProvider?.Cancel();

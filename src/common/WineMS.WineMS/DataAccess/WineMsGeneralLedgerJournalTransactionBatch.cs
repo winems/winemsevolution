@@ -15,7 +15,9 @@ namespace WineMS.WineMS.DataAccess {
 
     public List<GeneralLedgerJournalTransactionMapping> GeneralLedgerJournalTransactionMappings { get; } = new List<GeneralLedgerJournalTransactionMapping>();
 
-    public void AddMapping(GeneralLedgerJournalTransactionMapping mapping) { GeneralLedgerJournalTransactionMappings.Add(mapping); }
+    public void AddMapping(GeneralLedgerJournalTransactionMapping mapping) {
+      GeneralLedgerJournalTransactionMappings.Add(mapping);
+    }
 
   }
 
@@ -26,5 +28,5 @@ namespace WineMS.WineMS.DataAccess {
     public Guid Guid { get; set; }
 
   }
-  
+
 }

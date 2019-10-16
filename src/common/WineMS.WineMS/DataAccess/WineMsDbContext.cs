@@ -13,10 +13,11 @@ namespace WineMS.WineMS.DataAccess {
     public DbSet<WineMsCreditNoteTransaction> WineMsCreditNoteTransactions { get; set; }
     public DbSet<WineMsPurchaseOrderTransaction> WineMsPurchaseOrderTransactions { get; set; }
     public DbSet<WineMsSalesOrderTransaction> WineMsSalesOrderTransactions { get; set; }
+    public DbSet<WineMsStockJournalTransaction> WineMsStockJournalTransactions { get; set; }
 
     public WineMsDbContext() : base(DatabaseConstants.WineMsConnectionStringName) { }
 
-    public WineMsGeneralLedgerJournalTransactionBatch[] ListNewWineMsGeneralLedgerJournalTransactions() =>
+    public WineMsTransaction[] ListNewWineMsGeneralLedgerJournalTransactions() =>
       WineMsJournalTransactions
         .Where(
           a => a.PostedToAccountingSystem == 0)
@@ -32,6 +33,7 @@ namespace WineMS.WineMS.DataAccess {
         .OrderBy(a => a.CompanyId)
         .ThenBy(a => a.TransactionType)
         .ThenBy(a => a.DocumentNumber)
+        .Cast<WineMsTransaction>()
         .ToArray();
 
     public WineMsOrderTransactionDocument[] ListNewWineMsSalesOrderTransactions() =>
@@ -41,8 +43,7 @@ namespace WineMS.WineMS.DataAccess {
         .ToArray()
         .GroupBy(a => new {a.CompanyId, a.TransactionType, a.DocumentNumber})
         .Select(
-          a =>
-          {
+          a => {
             var firstTransaction = a.FirstOrDefault();
 
             return (WineMsOrderTransactionDocument) new WineMsSalesOrderTransactionDocument {
@@ -64,6 +65,21 @@ namespace WineMS.WineMS.DataAccess {
         .ThenBy(a => a.DocumentNumber)
         .ToArray();
 
+    public WineMsTransaction[] ListNewWineMsStockJournalTransactions() =>
+      WineMsStockJournalTransactions
+        .Where(
+          a => a.PostedToAccountingSystem == 0)
+        .ToArray()
+        .GroupBy(a => new {a.CompanyId})
+        .Select(
+          a => new WineMsStockJournalTransactionBatch {
+            CompanyId = a.Key.CompanyId,
+            Transactions = a.ToArray()
+          })
+        .OrderBy(a => a.CompanyId)
+        .Cast<WineMsTransaction>()
+        .ToArray();
+
     public WineMsOrderTransactionDocument[] ListNewWineMsCreditNoteTransactions() =>
       WineMsCreditNoteTransactions
         .Where(
@@ -71,8 +87,7 @@ namespace WineMS.WineMS.DataAccess {
         .ToArray()
         .GroupBy(a => new {a.CompanyId, a.TransactionType, a.DocumentNumber})
         .Select(
-          a =>
-          {
+          a => {
             var firstTransaction = a.FirstOrDefault();
 
             return (WineMsOrderTransactionDocument) new WineMsCreditNoteTransactionDocument {
@@ -114,14 +129,12 @@ namespace WineMS.WineMS.DataAccess {
         .ThenBy(a => a.DocumentNumber)
         .ToArray();
 
-    public void SetAsPosted(IWineMsBufferEntry[] wineMsBufferEntries)
-    {
+    public void SetAsPosted(IWineMsBufferEntry[] wineMsBufferEntries) {
       foreach (var transactionLine in wineMsBufferEntries)
         SetAsPosted(transactionLine);
     }
 
-    private void SetAsPosted(IWineMsBufferEntry wineMsBufferEntry)
-    {
+    private void SetAsPosted(IWineMsBufferEntry wineMsBufferEntry) {
       var wineMsTransaction =
         WineMsBufferEntries
           .FirstOrDefault(a => a.Guid == wineMsBufferEntry.Guid);
@@ -129,8 +142,7 @@ namespace WineMS.WineMS.DataAccess {
         wineMsTransaction.PostedToAccountingSystem = 1;
     }
 
-    public void AddIntegrationMappings(IntegrationMappingDescriptor integrationMappingDescriptor)
-    {
+    public void AddIntegrationMappings(IntegrationMappingDescriptor integrationMappingDescriptor) {
       foreach (var transactionLine in integrationMappingDescriptor.TransactionLines) {
         transactionLine.PostedToAccountingSystem = 1;
         IntegrationMappings.Add(

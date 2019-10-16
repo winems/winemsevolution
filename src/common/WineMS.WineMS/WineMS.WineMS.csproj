@@ -82,6 +82,8 @@
     <Compile Include="DataAccess\WineMsPurchaseOrderTransactionDocument.cs" />
     <Compile Include="DataAccess\WineMsSalesOrderTransaction.cs" />
     <Compile Include="DataAccess\WineMsSalesOrderTransactionDocument.cs" />
+    <Compile Include="DataAccess\WineMsStockJournalTransaction.cs" />
+    <Compile Include="DataAccess\WineMsStockJournalTransactionBatch.cs" />
     <Compile Include="DataAccess\WineMsStockJournalTransactionDocument.cs" />
     <Compile Include="DataAccess\WineMsTransaction.cs" />
     <Compile Include="Extensions\WineMsDbContextFunctions.cs" />

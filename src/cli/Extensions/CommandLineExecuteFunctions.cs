@@ -15,6 +15,7 @@ namespace WineMsEvolutionCli.Extensions {
     private const string PurchaseOrdersCommand = "-purchaseorders";
     private const string ReturnToSupplierCommand = "-returntosupplier";
     private const string SalesOrdersCommand = "-salesorders";
+    private const string StockJournalsCommand = "-stockjournals";
 
     public static void Execute(string[] args) {
       args
@@ -40,7 +41,8 @@ namespace WineMsEvolutionCli.Extensions {
         SalesOrdersCommand,
         CreditNotesCommand,
         PurchaseOrdersCommand,
-        ReturnToSupplierCommand
+        ReturnToSupplierCommand,
+        StockJournalsCommand
       };
 
       if (args == null || args.Length == 0)
@@ -64,6 +66,9 @@ namespace WineMsEvolutionCli.Extensions {
             break;
           case ReturnToSupplierCommand:
             commands.Add(new Command(ReturnToSupplierCommand, WineMsTransactionFunctions.ProcessReturnToSupplierTransactions));
+            break;
+          case StockJournalsCommand:
+            commands.Add(new Command(StockJournalsCommand, WineMsTransactionFunctions.ProcessStockTransactions));
             break;
           default:
             return Result.Fail<IEnumerable<Command>>($"Command '{command}' is not valid. {HelpMessage()}");
