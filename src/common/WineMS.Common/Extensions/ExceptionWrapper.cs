@@ -6,8 +6,7 @@ namespace WineMS.Common.Extensions {
 
   public static class ExceptionWrapper {
 
-    public static Result Wrap(Func<Result> func)
-    {
+    public static Result Wrap(Func<Result> func) {
       try {
         return func();
       }
@@ -17,8 +16,7 @@ namespace WineMS.Common.Extensions {
       }
     }
 
-    public static Result<T> Wrap<T>(Func<Result<T>> func)
-    {
+    public static Result<T> Wrap<T>(Func<Result<T>> func) {
       try {
         return func();
       }

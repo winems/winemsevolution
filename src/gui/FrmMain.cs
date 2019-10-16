@@ -3,9 +3,9 @@ using System.Diagnostics;
 using System.Windows.Forms;
 using CSharpFunctionalExtensions;
 using RadiusCSharp.WinForms.Dialogs;
-using WineMsEvolutionGui.Extensions;
 using WineMS.BusinessLogic.Extensions;
 using WineMS.Common;
+using WineMsEvolutionGui.Extensions;
 
 namespace WineMsEvolutionGui {
 
@@ -13,17 +13,19 @@ namespace WineMsEvolutionGui {
 
     private BackgroundWorkerCancellationProvider _runningProcesCancelProvider;
 
-    public FrmMain() { InitializeComponent(); }
+    public FrmMain() {
+      InitializeComponent();
+    }
 
-    private void FrmMain_Load(object sender, EventArgs e) { LoadStatusBarInformation(); }
+    private void FrmMain_Load(object sender, EventArgs e) {
+      LoadStatusBarInformation();
+    }
 
-    private void LoadStatusBarInformation()
-    {
+    private void LoadStatusBarInformation() {
       BackgroundWorkerFunctions
         .Execute(
             context => { context.Result = ApplicationInformationFunctions.GetApplicationInformation(); },
-            context =>
-            {
+            context => {
               var (version, wineMsDatabase) =
                 ((string, string)) context.Result;
               tsVersion.Text = version;
@@ -32,24 +34,36 @@ namespace WineMsEvolutionGui {
           );
     }
 
-    private void mniExit_Click(object sender, EventArgs e) { Close(); }
+    private void mniExit_Click(object sender, EventArgs e) {
+      Close();
+    }
 
-    private void mniCreditNotes_Click(object sender, EventArgs e) { RunProcess(WineMsTransactionFunctions.ProcessCreditNoteTransactions); }
+    private void mniCreditNotes_Click(object sender, EventArgs e) {
+      RunProcess(WineMsTransactionFunctions.ProcessCreditNoteTransactions);
+    }
 
-    private void mniProcessGeneralLedger_Click(object sender, EventArgs e) { RunProcess(WineMsTransactionFunctions.ProcessGeneralLedgerTransactions); }
+    private void mniProcessGeneralLedger_Click(object sender, EventArgs e) {
+      RunProcess(WineMsTransactionFunctions.ProcessGeneralLedgerTransactions);
+    }
 
-    private void mniProcessPurchaseOrders_Click(object sender, EventArgs e) { RunProcess(WineMsTransactionFunctions.ProcessPurchaseOrderTransactions); }
-    
-    private void mniProcessSalesOrders_Click(object sender, EventArgs e) { RunProcess(WineMsTransactionFunctions.ProcessSalesOrderTransactions); }
+    private void mniProcessPurchaseOrders_Click(object sender, EventArgs e) {
+      RunProcess(WineMsTransactionFunctions.ProcessPurchaseOrderTransactions);
+    }
 
-    private void mniCancel_Click(object sender, EventArgs e)
-    {
+    private void mniProcessSalesOrders_Click(object sender, EventArgs e) {
+      RunProcess(WineMsTransactionFunctions.ProcessSalesOrderTransactions);
+    }
+
+    private void MniProcessStockJournals_Click(object sender, EventArgs e) {
+      RunProcess(WineMsTransactionFunctions.ProcessStockTransactions);
+    }
+
+    private void mniCancel_Click(object sender, EventArgs e) {
       if ("Cancel process".ShowAskYesNo("Are you sure?") == YesNoResponse.No) return;
       _runningProcesCancelProvider?.Cancel();
     }
 
-    private void RunProcess(Func<IBackgroundWorker, Result> process)
-    {
+    private void RunProcess(Func<IBackgroundWorker, Result> process) {
       if (_runningProcesCancelProvider != null)
         return;
 
@@ -60,8 +74,7 @@ namespace WineMsEvolutionGui {
       _runningProcesCancelProvider =
         BackgroundWorkerFunctions
           .Execute(
-            context =>
-            {
+            context => {
               try {
                 process(context.Sender)
                   .OnFailure(
@@ -71,22 +84,19 @@ namespace WineMsEvolutionGui {
                 e.LogAndShowExceptionDialog();
               }
             },
-            context =>
-            {
+            context => {
               _runningProcesCancelProvider = null;
               "Process completed.".ShowInformationMessage();
               SetMenuState(ProcessRunningState.Stop);
               tsProgressBar.Visible = false;
             },
-            context =>
-            {
+            context => {
               tsProgressBar.Value = context.Args.ProgressPercentage;
               tsProgressBar.ProgressBar?.Update();
             });
     }
 
-    private void SetMenuState(ProcessRunningState state)
-    {
+    private void SetMenuState(ProcessRunningState state) {
       var stopped = state == ProcessRunningState.Stop;
       mniFile.Enabled = stopped;
       mniProcessGeneralLedger.Enabled = stopped;
@@ -95,7 +105,9 @@ namespace WineMsEvolutionGui {
       mniCancel.Enabled = !stopped;
     }
 
-    private void mniOpenLogFolder_Click(object sender, EventArgs e) { Process.Start(ApplicationState.LogFolder); }
+    private void mniOpenLogFolder_Click(object sender, EventArgs e) {
+      Process.Start(ApplicationState.LogFolder);
+    }
 
   }
 

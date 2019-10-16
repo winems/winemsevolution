@@ -11,24 +11,23 @@ namespace WineMS.Evolution.SalesOrders {
     public static Result<WineMsSalesOrderTransactionDocument> ProcessTransaction(
       WineMsSalesOrderTransactionDocument wineMsSalesOrderTransactionDocument) =>
       CreateSalesOrder(wineMsSalesOrderTransactionDocument)
-        .OnSuccess(
+        .Bind(
           order => order.AddSalesOrderLines(wineMsSalesOrderTransactionDocument))
-        .OnSuccess(
-          order => ExceptionWrapper
-            .Wrap(
-              () =>
-              {
-                order.Save();
-                wineMsSalesOrderTransactionDocument.IntegrationDocumentNumber = order.OrderNo;
-                return Result.Ok(wineMsSalesOrderTransactionDocument);
-              }));
+        .Bind(
+          order =>
+            ExceptionWrapper
+              .Wrap(
+                () => {
+                  order.Save();
+                  wineMsSalesOrderTransactionDocument.IntegrationDocumentNumber = order.OrderNo;
+                  return Result.Ok(wineMsSalesOrderTransactionDocument);
+                }));
 
     private static Result<SalesOrder> CreateSalesOrder(
       WineMsSalesOrderTransactionDocument salesOrderTransactionDocument) =>
       ExceptionWrapper
         .Wrap(
-          () =>
-          {
+          () => {
             var customer = new Customer(salesOrderTransactionDocument.CustomerAccountCode);
 
             var salesOrder = (SalesOrder)
@@ -53,8 +52,5 @@ namespace WineMS.Evolution.SalesOrders {
           });
 
   }
-
-
-  
 
 }

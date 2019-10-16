@@ -11,8 +11,7 @@ namespace WineMS.Evolution {
     public static Result WrapInEvolutionSdk(
       this EvolutionConnectionStrings connectionStrings,
       int branchId,
-      Func<Result> func)
-    {
+      Func<Result> func) {
       try {
         DatabaseContext.CreateCommonDBConnection(connectionStrings.CommonDatabase);
         DatabaseContext.SetLicense("DE09110064", "2428759");
@@ -21,9 +20,10 @@ namespace WineMS.Evolution {
         if (branchId > 0)
           DatabaseContext.SetBranchContext(branchId);
 
-        return func()
-          .OnSuccess(() => { DatabaseContext.CommitTran(); })
-          .OnFailure(() => { DatabaseContext.RollbackTran(); });
+        return
+          func()
+            .Tap(() => { DatabaseContext.CommitTran(); })
+            .OnFailure(() => { DatabaseContext.RollbackTran(); });
       }
       catch (Exception ex) {
         ex.LogException();

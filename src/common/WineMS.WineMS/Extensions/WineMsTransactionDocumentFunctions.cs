@@ -8,8 +8,7 @@ namespace WineMS.WineMS.Extensions {
 
     public static Result ForEachTransactionDocumentLine(
       Func<IWineMsTransactionLine, Result> func,
-      IWineMsTransactionLine[] wineMsBufferEntries)
-    {
+      IWineMsTransactionLine[] wineMsBufferEntries) {
       var result = Result.Ok();
       foreach (var transactionLine in wineMsBufferEntries) {
         result = func(transactionLine);
@@ -21,12 +20,10 @@ namespace WineMS.WineMS.Extensions {
 
     public static void CompletePosting(
       this IWineMsTransactionDocument document,
-      string integrationDocumentType)
-    {
+      string integrationDocumentType) {
       WineMsDbContextFunctions
         .WrapInDbContext(
-          context =>
-          {
+          context => {
             context.SetAsPosted(document.TransactionLines);
             context.AddIntegrationMappings(
               new IntegrationMappingDescriptor {

@@ -33,7 +33,6 @@ namespace WineMS.WineMS.DataAccess {
     [NotMapped]
     public decimal LineDiscountPercentage { get; set; }
 
-    [NotMapped]
     public string LineType { get; set; }
 
     [Column("OriginalGUID")]
@@ -69,7 +68,7 @@ namespace WineMS.WineMS.DataAccess {
     [Column("Transaction Type")]
     public string TransactionType { get; set; }
 
-    [NotMapped]
+    [Column("Location Code")]
     public string WarehouseCode { get; set; }
 
   }

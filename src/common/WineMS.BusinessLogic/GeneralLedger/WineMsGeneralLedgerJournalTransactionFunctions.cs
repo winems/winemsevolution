@@ -3,6 +3,7 @@ using WineMS.BusinessLogic.Extensions;
 using WineMS.Common;
 using WineMS.Common.Constants;
 using WineMS.Evolution.GeneralLedger;
+using WineMS.WineMS.DataAccess;
 using WineMS.WineMS.Extensions;
 
 namespace WineMS.BusinessLogic.GeneralLedger {
@@ -15,9 +16,8 @@ namespace WineMS.BusinessLogic.GeneralLedger {
           context => context.ListNewWineMsGeneralLedgerJournalTransactions(),
           journalTransactionBatch =>
             EvolutionGeneralLedgerJournalTransactionFunctions
-              .ProcessTransaction(journalTransactionBatch)
-              .OnSuccess(
-                transactionBatch => { transactionBatch.CompletePosting(IntegrationDocumentTypes.Journal); }));
+              .ProcessTransaction((WineMsGeneralLedgerJournalTransactionBatch) journalTransactionBatch)
+              .Tap(batch => { batch.CompletePosting(IntegrationDocumentTypes.Journal); }));
 
   }
 

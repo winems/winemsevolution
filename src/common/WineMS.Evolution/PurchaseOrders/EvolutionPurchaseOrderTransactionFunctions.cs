@@ -1,5 +1,7 @@
-﻿using CSharpFunctionalExtensions;
+﻿using System;
+using CSharpFunctionalExtensions;
 using Pastel.Evolution;
+using WineMS.Common.Constants;
 using WineMS.Common.Extensions;
 using WineMS.Evolution.Orders;
 using WineMS.WineMS.DataAccess;
@@ -9,16 +11,29 @@ namespace WineMS.Evolution.PurchaseOrders {
   public static class EvolutionPurchaseOrderTransactionFunctions {
 
     public static Result<WineMsPurchaseOrderTransactionDocument> ProcessTransaction(
-      WineMsPurchaseOrderTransactionDocument wineMsSalesOrderTransactionDocument) =>
+      WineMsPurchaseOrderTransactionDocument wineMsSalesOrderTransactionDocument,
+      PurchaseOrderIntegrationType purchaseOrderIntegrationType) =>
       CreatePurchaseOrder(wineMsSalesOrderTransactionDocument)
-        .OnSuccess(
+        .Bind(
           order => order.AddPurchaseOrderLines(wineMsSalesOrderTransactionDocument))
-        .OnSuccess(
+        .Bind(
           order => ExceptionWrapper
             .Wrap(
-              () =>
-              {
-                order.Save();
+              () => {
+                switch (purchaseOrderIntegrationType) {
+                  case PurchaseOrderIntegrationType.PurchaseOrder:
+                    order.Save();
+                    break;
+                  case PurchaseOrderIntegrationType.GoodsReceivedVoucher:
+                    ((PurchaseOrder) order).CompleteStock();
+                    break;
+                  case PurchaseOrderIntegrationType.SupplierInvoice:
+                    order.Complete();
+                    break;
+                  default:
+                    throw new ArgumentOutOfRangeException();
+                }
+
                 wineMsSalesOrderTransactionDocument.IntegrationDocumentNumber = order.OrderNo;
                 return Result.Ok(wineMsSalesOrderTransactionDocument);
               }));

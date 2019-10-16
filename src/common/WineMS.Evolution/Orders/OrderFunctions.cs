@@ -21,8 +21,7 @@ namespace WineMS.Evolution.Orders {
       WineMsOrderTransactionDocument salesOrderTransactionDocument) =>
       order.AddOrderLines(salesOrderTransactionDocument, OrderTransactionType.PurchaseOrder);
 
-    public static OrderBase SetDeliveryAddress(this OrderBase order, Customer customer)
-    {
+    public static OrderBase SetDeliveryAddress(this OrderBase order, Customer customer) {
       order.DeliverTo = new Address(
         customer.PhysicalAddress.Line1.EmptyIfNull(),
         customer.PhysicalAddress.Line2.EmptyIfNull(),
@@ -33,8 +32,7 @@ namespace WineMS.Evolution.Orders {
       return order;
     }
 
-    public static OrderBase SetPostalAddress(this OrderBase order, Customer customer)
-    {
+    public static OrderBase SetPostalAddress(this OrderBase order, Customer customer) {
       order.InvoiceTo = new Address(
         customer.PostalAddress.Line1.EmptyIfNull(),
         customer.PostalAddress.Line2.EmptyIfNull(),
@@ -45,21 +43,18 @@ namespace WineMS.Evolution.Orders {
       return order;
     }
 
-    public static OrderBase SetTaxMode(this OrderBase order, Customer customer)
-    {
+    public static OrderBase SetTaxMode(this OrderBase order, Customer customer) {
       order.TaxMode = customer.IsForeignCurrencyAccount ? TaxMode.Exclusive : TaxMode.Inclusive;
       return order;
     }
 
-    public static OrderBase SetExchangeRate(this OrderBase order, Customer customer, decimal exchangeRate)
-    {
+    public static OrderBase SetExchangeRate(this OrderBase order, Customer customer, decimal exchangeRate) {
       if (customer.IsForeignCurrencyAccount && exchangeRate > 0)
         order.ExchangeRate = (double) exchangeRate;
       return order;
     }
 
-    public static OrderBase SetMessageLines(this OrderBase order, IOrderMessageLines orderMessageLines)
-    {
+    public static OrderBase SetMessageLines(this OrderBase order, IOrderMessageLines orderMessageLines) {
       order.MessageLine1 = orderMessageLines.MessageLine1;
       order.MessageLine2 = orderMessageLines.MessageLine2;
       order.MessageLine3 = orderMessageLines.MessageLine3;
@@ -75,8 +70,7 @@ namespace WineMS.Evolution.Orders {
           transactionLine =>
             ExceptionWrapper
               .Wrap(
-                () =>
-                {
+                () => {
                   var isGeneralLedgerLine = IsGeneralLedgerLine(transactionLine);
                   var orderLine = NewOrderDetail(order);
 
@@ -107,10 +101,9 @@ namespace WineMS.Evolution.Orders {
                   return Result.Ok();
                 }),
           salesOrderTransactionDocument.TransactionLines)
-        .OnSuccess(() => order);
+        .Map(() => order);
 
-    private static OrderDetail NewOrderDetail(OrderBase order)
-    {
+    private static OrderDetail NewOrderDetail(OrderBase order) {
       var orderLine = new OrderDetail {TaxMode = order.TaxMode};
       order.Detail.Add(orderLine);
       return orderLine;
@@ -119,17 +112,17 @@ namespace WineMS.Evolution.Orders {
     private static bool IsGeneralLedgerLine(IWineMsTransactionLine transactionLine) =>
       transactionLine.LineType.IsNullOrWhiteSpace() || transactionLine.LineType.ToUpper() == "GL";
 
-    private static void SetGeneralLedgerAccount(OrderDetail orderLine, IWineMsTransactionLine transactionLine) { orderLine.GLAccount = new GLAccount(transactionLine.GeneralLedgerItemCode.EmptyIfNull().Trim()); }
+    private static void SetGeneralLedgerAccount(OrderDetail orderLine, IWineMsTransactionLine transactionLine) {
+      orderLine.GLAccount = new GLAccount(transactionLine.GeneralLedgerItemCode.EmptyIfNull().Trim());
+    }
 
-    private static void SetInventoryItem(OrderDetail orderLine, IWineMsTransactionLine transactionLine)
-    {
+    private static void SetInventoryItem(OrderDetail orderLine, IWineMsTransactionLine transactionLine) {
       orderLine.InventoryItem = new InventoryItem(transactionLine.GeneralLedgerItemCode.EmptyIfNull().Trim());
       if (!transactionLine.WarehouseCode.IsNullOrWhiteSpace())
         orderLine.Warehouse = new Warehouse(transactionLine.WarehouseCode);
     }
 
-    private static void SetUnitSellingPrice(OrderDetail orderLine, IWineMsTransactionLine transactionLine)
-    {
+    private static void SetUnitSellingPrice(OrderDetail orderLine, IWineMsTransactionLine transactionLine) {
       var transactionAmount = GetTransactionAmount(orderLine, transactionLine);
 
       var unitSellingPrice =
@@ -147,8 +140,7 @@ namespace WineMS.Evolution.Orders {
     private static double GetTransactionAmount(OrderDetail orderLine, IWineMsTransactionLine transactionLine) =>
       (double) (orderLine.TaxMode == TaxMode.Exclusive ? transactionLine.TransactionAmountExVat : transactionLine.TransactionAmountInVat);
 
-    private static Result<TaxRate> GetOrderLineTaxType(IWineMsTransactionLine transactionLine)
-    {
+    private static Result<TaxRate> GetOrderLineTaxType(IWineMsTransactionLine transactionLine) {
       try {
         return Result.Ok(new TaxRate(transactionLine.TaxTypeId));
       }
@@ -158,8 +150,7 @@ namespace WineMS.Evolution.Orders {
       }
     }
 
-    private static void SetUserDefinedFields(OrderTransactionType orderTransactionType, OrderDetail orderLine, IWineMsTransactionLine transactionLine)
-    {
+    private static void SetUserDefinedFields(OrderTransactionType orderTransactionType, OrderDetail orderLine, IWineMsTransactionLine transactionLine) {
       switch (orderTransactionType) {
         case OrderTransactionType.SalesOrder:
           orderLine.SetUserField("ucIDSOrdTxCMwineMSGuid", $"{transactionLine.Guid}");
