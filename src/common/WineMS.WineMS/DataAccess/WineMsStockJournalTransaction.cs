@@ -22,20 +22,20 @@ namespace WineMS.WineMS.DataAccess {
     [Column("Posting Date")]
     public DateTime PostingDate { get; set; }
 
-    public double Quantity { get; set; }
+    public decimal Quantity { get; set; }
 
     public string ReferenceNumber { get; set; }
 
     [Column("Document Date")]
     public DateTime TransactionDate { get; set; }
 
-    [Column("Transaction Type")]
-    public string TransactionType { get; set; }
+    [Column("TransactionCode")]
+    public string TransactionCode { get; set; }
 
     public string StockItemCode { get; set; }
 
     [Column("LineTotalAmountExVat")]
-    public double UnitCostExVat { get; set; }
+    public decimal UnitCostExVat { get; set; }
 
     public string WarehouseCode { get; set; }
 

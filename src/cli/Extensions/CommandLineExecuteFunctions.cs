@@ -51,7 +51,7 @@ namespace WineMsEvolutionCli.Extensions {
       var commands = new List<Command>();
 
       foreach (var command in args)
-        switch (command) {
+        switch ($"-{command}") {
           case GeneralLedgerCommand:
             commands.Add(new Command(GeneralLedgerCommand, WineMsTransactionFunctions.ProcessGeneralLedgerTransactions));
             break;
