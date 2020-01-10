@@ -11,6 +11,8 @@ namespace WineMS.Evolution.SalesOrders {
 
   public static class EvolutionSalesOrderTransactionFunctions {
 
+    private const string EmptyDocumentNumber = "";
+
     public static Result<WineMsSalesOrderTransactionDocument> ProcessTransaction(
       WineMsSalesOrderTransactionDocument wineMsSalesOrderTransactionDocument, 
       SalesOrderOptions salesOrderOptions) =>
@@ -30,7 +32,7 @@ namespace WineMS.Evolution.SalesOrders {
                     case SalesOrderIntegrationType.TaxInvoice:
                       var invoiceNumber =
                         salesOrderOptions.UseEvolutionInvoiceNumber
-                          ? ""
+                          ? EmptyDocumentNumber
                           : wineMsSalesOrderTransactionDocument.DocumentNumber;
                       order.Complete(invoiceNumber);
                       break;
