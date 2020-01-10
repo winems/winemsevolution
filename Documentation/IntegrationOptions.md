@@ -38,5 +38,18 @@ Possible values are:
 - goods-receive-voucher: Will post the purchase order as a completed goods received voucher. This will confirm all quantities on the purchase order.
 - supplier-invoice: Will post the purchase order as a completed supplier invoice. This will confirm all quantities on the purchase order.
 
+#### KeyName: sales-order-integration-type
+
+Sales order integration type. If not defined or not one of the possible values the application will default to sales-order.
+
+Possible values are:
+
+- sales-order: Will save the sales order as an open Evolution sales order.
+- tax-invoice: Will post the sales order as a completed sales invoice. This will confirm all quantities on the sales order.
+
+#### KeyName: sales-order-use-evolution-invoice-number
+
+Set to True to have the application use the next invoice number defined by Evolution. If this key is False or missing the invoice number will be set to the WineMS Document Number (\_IntegrationSalesOrderBuffer.[Document No_]).
+
 
 

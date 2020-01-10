@@ -2,8 +2,8 @@
 
   public interface IWineMsTransactionDocument {
 
-    string IntegrationDocumentNumber { get; set; }
-    IWineMsTransactionLine[] TransactionLines { get; set; }
+    string IntegrationDocumentNumber { get; }
+    IWineMsTransactionLine[] TransactionLines { get; }
 
   }
 

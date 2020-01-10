@@ -41,11 +41,9 @@ namespace WineMS.Common.Configuration {
 
     public static string GetJournalTransactionCode() => "journal-transaction-code".GetKeyValueAsString();
 
-    private static string GetPurchaseOrderIntegrationType() => "purchase-order-integration-type".GetKeyValueAsString();
-
     public static PurchaseOrderIntegrationType PurchaseOrderIntegrationType() {
-      var purchaseOrderIntegrationType = GetPurchaseOrderIntegrationType();
-      switch (purchaseOrderIntegrationType) {
+      var integrationType = GetPurchaseOrderIntegrationType();
+      switch (integrationType) {
         case IntegrationDocumentTypes.PurchaseOrder:
           return Constants.PurchaseOrderIntegrationType.PurchaseOrder;
         case IntegrationDocumentTypes.GoodsReceiveVoucher:
@@ -53,8 +51,30 @@ namespace WineMS.Common.Configuration {
         case IntegrationDocumentTypes.SupplierInvoice:
           return Constants.PurchaseOrderIntegrationType.SupplierInvoice;
         default:
-          throw new Exception($"Purchase order integration type '{purchaseOrderIntegrationType}' not found.");
+          throw new Exception($"Purchase order integration type '{integrationType}' not found.");
       }
+
+      string GetPurchaseOrderIntegrationType() => "purchase-order-integration-type".GetKeyValueAsString();
+    }
+
+    public static SalesOrderOptions GetSalesOrderOptions() =>
+      new SalesOrderOptions(
+          SalesOrderIntegrationType(),
+          "sales-order-use-evolution-invoice-number".GetKeyValueAsBool()
+        );
+
+    private static SalesOrderIntegrationType SalesOrderIntegrationType() {
+      var integrationType = GetSalesOrderIntegrationType();
+      switch (integrationType) {
+        case IntegrationDocumentTypes.SalesOrder:
+          return Constants.SalesOrderIntegrationType.SalesOrder;
+        case IntegrationDocumentTypes.TaxInvoice:
+          return Constants.SalesOrderIntegrationType.TaxInvoice;
+        default:
+          return Constants.SalesOrderIntegrationType.SalesOrder;
+      }
+
+      string GetSalesOrderIntegrationType() => "sales-order-integration-type".GetKeyValueAsString();
     }
 
   }

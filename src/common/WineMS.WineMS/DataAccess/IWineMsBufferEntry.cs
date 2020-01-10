@@ -4,8 +4,8 @@ namespace WineMS.WineMS.DataAccess {
 
   public interface IWineMsBufferEntry {
 
-    string CompanyId { get; set; }
-    Guid Guid { get; set; }
+    string CompanyId { get; }
+    Guid Guid { get; }
     byte PostedToAccountingSystem { get; set; }
 
   }

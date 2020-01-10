@@ -1,21 +1,18 @@
-﻿using System;
-
-namespace WineMS.WineMS.DataAccess {
+﻿namespace WineMS.WineMS.DataAccess {
 
   public interface IWineMsTransactionLine : IWineMsBufferEntry {
 
-    string CurrencyCode { get; set; }
-    string Description1 { get; set; }
-    string GeneralLedgerItemCode { get; set; }
-    Guid Guid { get; set; }
-    decimal LineDiscountPercentage { get; set; }
-    string LineType { get; set; }
-    decimal Quantity { get; set; }
-    byte TaxTypeId { get; set; }
-    decimal TransactionAmountExVat { get; set; }
-    decimal TransactionAmountInVat { get; set; }
-    string WarehouseCode { get; set; }
-    string ItemNote { get; set; }
+    string CurrencyCode { get; }
+    string Description1 { get; }
+    string GeneralLedgerItemCode { get; }
+    string ItemNote { get; }
+    decimal LineDiscountPercentage { get; }
+    string LineType { get; }
+    decimal Quantity { get; }
+    byte TaxTypeId { get; }
+    decimal TransactionAmountExVat { get; }
+    decimal TransactionAmountInVat { get; }
+    string WarehouseCode { get; }
 
   }
 

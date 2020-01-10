@@ -14,13 +14,13 @@ namespace WineMsEvolutionCli {
       RadiusProgramMainFunctions
         .ProgramMain(
           "winems-evolution-processing-cli",
-          () =>
-          {
+          () => {
             Log4NetLoggingFactory.BindLog4Net(
               Log4NetLoggingFactory.DefaultConfig(
-                "log-folder".AppSetting()
-                            .UseFolderOrDefault(
-                              @"C:\Neurasoft\logs\WineMS\Evolution"),
+                "log-folder"
+                  .AppSetting()
+                  .UseFolderOrDefault(
+                    @"C:\Neurasoft\logs\WineMS\Evolution"),
                 "winems-evolution-log.txt"));
             CommonInitFunctions.Init();
           },

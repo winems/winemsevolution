@@ -1,5 +1,8 @@
-﻿using CSharpFunctionalExtensions;
+﻿using System;
+using CSharpFunctionalExtensions;
 using Pastel.Evolution;
+using WineMS.Common.Configuration;
+using WineMS.Common.Constants;
 using WineMS.Common.Extensions;
 using WineMS.Evolution.Orders;
 using WineMS.WineMS.DataAccess;
@@ -9,7 +12,8 @@ namespace WineMS.Evolution.SalesOrders {
   public static class EvolutionSalesOrderTransactionFunctions {
 
     public static Result<WineMsSalesOrderTransactionDocument> ProcessTransaction(
-      WineMsSalesOrderTransactionDocument wineMsSalesOrderTransactionDocument) =>
+      WineMsSalesOrderTransactionDocument wineMsSalesOrderTransactionDocument, 
+      SalesOrderOptions salesOrderOptions) =>
       CreateSalesOrder(wineMsSalesOrderTransactionDocument)
         .Bind(
           order => order.AddSalesOrderLines(wineMsSalesOrderTransactionDocument))
@@ -18,7 +22,22 @@ namespace WineMS.Evolution.SalesOrders {
             ExceptionWrapper
               .Wrap(
                 () => {
-                  order.Save();
+
+                  switch (salesOrderOptions.IntegrationType) {
+                    case SalesOrderIntegrationType.SalesOrder:
+                      order.Save();
+                      break;
+                    case SalesOrderIntegrationType.TaxInvoice:
+                      var invoiceNumber =
+                        salesOrderOptions.UseEvolutionInvoiceNumber
+                          ? ""
+                          : wineMsSalesOrderTransactionDocument.DocumentNumber;
+                      order.Complete(invoiceNumber);
+                      break;
+                    default:
+                      throw new ArgumentOutOfRangeException();
+                  }
+                  
                   wineMsSalesOrderTransactionDocument.IntegrationDocumentNumber = order.OrderNo;
                   return Result.Ok(wineMsSalesOrderTransactionDocument);
                 }));

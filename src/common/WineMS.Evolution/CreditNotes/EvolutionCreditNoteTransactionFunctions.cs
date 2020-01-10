@@ -11,13 +11,12 @@ namespace WineMS.Evolution.CreditNotes {
     public static Result<WineMsCreditNoteTransactionDocument> ProcessTransaction(
       WineMsCreditNoteTransactionDocument wineMsCreditNoteTransactionDocument) =>
       CreateCreditNote(wineMsCreditNoteTransactionDocument)
-        .OnSuccess(
+        .Bind(
           creditNote => creditNote.AddSalesOrderLines(wineMsCreditNoteTransactionDocument))
-        .OnSuccess(
+        .Bind(
           creditNote => ExceptionWrapper
             .Wrap(
-              () =>
-              {
+              () => {
                 creditNote.Save();
                 wineMsCreditNoteTransactionDocument.IntegrationDocumentNumber = creditNote.OrderNo;
                 return Result.Ok(wineMsCreditNoteTransactionDocument);
@@ -27,8 +26,7 @@ namespace WineMS.Evolution.CreditNotes {
       WineMsCreditNoteTransactionDocument creditNoteTransactionDocument) =>
       ExceptionWrapper
         .Wrap(
-          () =>
-          {
+          () => {
             var customer = new Customer(creditNoteTransactionDocument.CustomerAccountCode);
 
             var creditNote = (CreditNote)
