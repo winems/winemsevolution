@@ -2,6 +2,6 @@
 
 # Table of contents
 
-[Integration Options table](Documentation\IntegrationOptions.md)
+[Integration Options table](Documentation/IntegrationOptions.md)
 
-[Notes on Compiling](Documentation\Compiling.md)
+[Notes on Compiling](Documentation/Compiling.md)
