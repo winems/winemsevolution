@@ -125,11 +125,10 @@ namespace WineMS.Evolution.Orders {
     private static void SetUnitSellingPrice(OrderDetail orderLine, IWineMsTransactionLine transactionLine) {
       var transactionAmount = GetTransactionAmount(orderLine, transactionLine);
 
+      var absoluteQuantity = Math.Abs((double)transactionLine.Quantity);
+
       var unitSellingPrice =
-        transactionAmount /
-        (Math.Abs((double) transactionLine.Quantity) > 0.00
-          ? (double) transactionLine.Quantity
-          : 1);
+        transactionAmount / (absoluteQuantity > 0.00 ? absoluteQuantity : 1);
 
       if (transactionLine.CurrencyCode.IsNullOrWhiteSpace())
         orderLine.UnitSellingPrice = unitSellingPrice;
