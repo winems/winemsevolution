@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using CSharpFunctionalExtensions;
 using RadiusCSharp.Core.Logging;
+using RadiusCSharp.Core.Strings;
 using WineMS.BusinessLogic.Extensions;
 using WineMS.Common;
 
@@ -50,8 +51,12 @@ namespace WineMsEvolutionCli.Extensions {
 
       var commands = new List<Command>();
 
-      foreach (var command in args)
-        switch ($"-{command}") {
+      foreach (var command in args) {
+        if (command.IsNullOrWhiteSpace()) continue;
+
+        var c = $"{(command[0] != '-' ? "-" : "")}{command}";
+
+        switch (c) {
           case GeneralLedgerCommand:
             commands.Add(new Command(GeneralLedgerCommand, WineMsTransactionFunctions.ProcessGeneralLedgerTransactions));
             break;
@@ -73,6 +78,7 @@ namespace WineMsEvolutionCli.Extensions {
           default:
             return Result.Fail<IEnumerable<Command>>($"Command '{command}' is not valid. {HelpMessage()}");
         }
+      }
 
       return Result.Ok<IEnumerable<Command>>(commands);
 
