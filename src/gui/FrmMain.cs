@@ -50,6 +50,10 @@ namespace WineMsEvolutionGui {
       RunProcess(WineMsTransactionFunctions.ProcessPurchaseOrderTransactions);
     }
 
+    private void mniProcessReturnToSupplier_Click(object sender, EventArgs e) {
+      RunProcess(WineMsTransactionFunctions.ProcessReturnToSupplierTransactions);
+    }
+
     private void mniProcessSalesOrders_Click(object sender, EventArgs e) {
       RunProcess(WineMsTransactionFunctions.ProcessSalesOrderTransactions);
     }

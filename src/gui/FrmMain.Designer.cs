@@ -39,13 +39,14 @@
       this.mniProcessGeneralLedger = new System.Windows.Forms.ToolStripMenuItem();
       this.mniProcessPurchaseOrders = new System.Windows.Forms.ToolStripMenuItem();
       this.mniProcessSalesOrders = new System.Windows.Forms.ToolStripMenuItem();
+      this.mniProcessStockJournals = new System.Windows.Forms.ToolStripMenuItem();
       this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
       this.mniCancel = new System.Windows.Forms.ToolStripMenuItem();
       this.statusStrip1 = new System.Windows.Forms.StatusStrip();
       this.tsVersion = new System.Windows.Forms.ToolStripStatusLabel();
       this.tsWineMSDatabase = new System.Windows.Forms.ToolStripStatusLabel();
       this.tsProgressBar = new System.Windows.Forms.ToolStripProgressBar();
-      this.mniProcessStockJournals = new System.Windows.Forms.ToolStripMenuItem();
+      this.mniProcessReturnToSupplier = new System.Windows.Forms.ToolStripMenuItem();
       this.menuStrip1.SuspendLayout();
       this.statusStrip1.SuspendLayout();
       this.SuspendLayout();
@@ -97,6 +98,7 @@
             this.mniCreditNotes,
             this.mniProcessGeneralLedger,
             this.mniProcessPurchaseOrders,
+            this.mniProcessReturnToSupplier,
             this.mniProcessSalesOrders,
             this.mniProcessStockJournals,
             this.toolStripMenuItem1,
@@ -132,6 +134,13 @@
       this.mniProcessSalesOrders.Size = new System.Drawing.Size(180, 22);
       this.mniProcessSalesOrders.Text = "Sales Orders";
       this.mniProcessSalesOrders.Click += new System.EventHandler(this.mniProcessSalesOrders_Click);
+      // 
+      // mniProcessStockJournals
+      // 
+      this.mniProcessStockJournals.Name = "mniProcessStockJournals";
+      this.mniProcessStockJournals.Size = new System.Drawing.Size(180, 22);
+      this.mniProcessStockJournals.Text = "Stock Journals";
+      this.mniProcessStockJournals.Click += new System.EventHandler(this.MniProcessStockJournals_Click);
       // 
       // toolStripMenuItem1
       // 
@@ -177,12 +186,12 @@
       this.tsProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
       this.tsProgressBar.Visible = false;
       // 
-      // mniProcessStockJournals
+      // mniProcessReturnToSupplier
       // 
-      this.mniProcessStockJournals.Name = "mniProcessStockJournals";
-      this.mniProcessStockJournals.Size = new System.Drawing.Size(180, 22);
-      this.mniProcessStockJournals.Text = "Stock Journals";
-      this.mniProcessStockJournals.Click += new System.EventHandler(this.MniProcessStockJournals_Click);
+      this.mniProcessReturnToSupplier.Name = "mniProcessReturnToSupplier";
+      this.mniProcessReturnToSupplier.Size = new System.Drawing.Size(180, 22);
+      this.mniProcessReturnToSupplier.Text = "Return to Supplier";
+      this.mniProcessReturnToSupplier.Click += new System.EventHandler(this.mniProcessReturnToSupplier_Click);
       // 
       // FrmMain
       // 
@@ -225,6 +234,7 @@
     private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
     private System.Windows.Forms.ToolStripMenuItem mniCreditNotes;
     private System.Windows.Forms.ToolStripMenuItem mniProcessStockJournals;
-  }
+        private System.Windows.Forms.ToolStripMenuItem mniProcessReturnToSupplier;
+    }
 }
 
