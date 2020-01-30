@@ -11,11 +11,11 @@ namespace WineMS.Evolution.PurchaseOrders {
   public static class EvolutionPurchaseOrderTransactionFunctions {
 
     public static Result<WineMsPurchaseOrderTransactionDocument> ProcessTransaction(
-      WineMsPurchaseOrderTransactionDocument wineMsSalesOrderTransactionDocument,
+      WineMsPurchaseOrderTransactionDocument wineMsPurchaseOrderTransactionDocument,
       PurchaseOrderIntegrationType purchaseOrderIntegrationType) =>
-      CreatePurchaseOrder(wineMsSalesOrderTransactionDocument)
+      CreatePurchaseOrder(wineMsPurchaseOrderTransactionDocument)
         .Bind(
-          order => order.AddPurchaseOrderLines(wineMsSalesOrderTransactionDocument))
+          order => order.AddPurchaseOrderLines(wineMsPurchaseOrderTransactionDocument))
         .Bind(
           order => ExceptionWrapper
             .Wrap(
@@ -34,21 +34,21 @@ namespace WineMS.Evolution.PurchaseOrders {
                     throw new ArgumentOutOfRangeException();
                 }
 
-                wineMsSalesOrderTransactionDocument.IntegrationDocumentNumber = order.OrderNo;
-                return Result.Ok(wineMsSalesOrderTransactionDocument);
+                wineMsPurchaseOrderTransactionDocument.IntegrationDocumentNumber = order.OrderNo;
+                return Result.Ok(wineMsPurchaseOrderTransactionDocument);
               }));
 
     private static Result<PurchaseOrder> CreatePurchaseOrder(
-      WineMsPurchaseOrderTransactionDocument salesOrderTransactionDocument) =>
+      WineMsPurchaseOrderTransactionDocument transactionDocument) =>
       ExceptionWrapper
         .Wrap(
           () => Result.Ok(
             new PurchaseOrder {
-              Supplier = new Supplier(salesOrderTransactionDocument.SupplierAccountCode),
-              DeliveryDate = salesOrderTransactionDocument.TransactionDate,
-              DueDate = salesOrderTransactionDocument.TransactionDate,
-              OrderDate = salesOrderTransactionDocument.TransactionDate,
-              OrderNo = salesOrderTransactionDocument.DocumentNumber,
+              Supplier = new Supplier(transactionDocument.SupplierAccountCode),
+              DeliveryDate = transactionDocument.TransactionDate,
+              DueDate = transactionDocument.TransactionDate,
+              OrderDate = transactionDocument.TransactionDate,
+              OrderNo = transactionDocument.DocumentNumber,
               TaxMode = TaxMode.Exclusive
             }));
 

@@ -30,14 +30,12 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-
   <ItemGroup Condition="$(DefineConstants.Contains('EVO720'))">
     <Reference Include="Pastel.Evolution, Version=7.20.0.0, Culture=neutral, PublicKeyToken=86fac4c1500a3756, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\EvolutionSdk\720\Pastel.Evolution.dll</HintPath>
     </Reference>
   </ItemGroup>
-
   <ItemGroup Condition="$(DefineConstants.Contains('EVO920'))">
     <Reference Include="Pastel.Evolution, Version=7.20.0.0, Culture=neutral, PublicKeyToken=86fac4c1500a3756, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -47,7 +45,6 @@
       <HintPath>..\..\..\EvolutionSdk\920\Pastel.Evolution.Common.dll</HintPath>
     </Reference>
   </ItemGroup>
-  
   <ItemGroup>
     <Reference Include="CSharpFunctionalExtensions, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\CSharpFunctionalExtensions.2.1.0\lib\net461\CSharpFunctionalExtensions.dll</HintPath>
@@ -81,6 +78,7 @@
     <Compile Include="PurchaseOrders\EvolutionPurchaseOrderTransactionFunctions.cs" />
     <Compile Include="CreditNotes\EvolutionCreditNoteTransactionFunctions.cs" />
     <Compile Include="GeneralLedger\EvolutionGeneralLedgerJournalTransactionFunctions.cs" />
+    <Compile Include="PurchaseOrders\EvolutionReturnToSupplierTransactionFunctions.cs" />
     <Compile Include="Stock\EvolutionStockJournalTransactionFunctions.cs" />
     <Compile Include="SalesOrders\EvolutionSalesOrderTransactionFunctions.cs" />
     <Compile Include="Orders\OrderFunctions.cs" />

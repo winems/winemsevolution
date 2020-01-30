@@ -80,6 +80,8 @@
     <Compile Include="DataAccess\WineMsOrderTransactionDocument.cs" />
     <Compile Include="DataAccess\WineMsPurchaseOrderTransaction.cs" />
     <Compile Include="DataAccess\WineMsPurchaseOrderTransactionDocument.cs" />
+    <Compile Include="DataAccess\WineMsReturnToSupplierTransaction.cs" />
+    <Compile Include="DataAccess\WineMsReturnToSupplierTransactionDocument.cs" />
     <Compile Include="DataAccess\WineMsSalesOrderTransaction.cs" />
     <Compile Include="DataAccess\WineMsSalesOrderTransactionDocument.cs" />
     <Compile Include="DataAccess\WineMsStockJournalTransaction.cs" />

@@ -21,6 +21,11 @@ namespace WineMS.Evolution.Orders {
       WineMsOrderTransactionDocument salesOrderTransactionDocument) =>
       order.AddOrderLines(salesOrderTransactionDocument, OrderTransactionType.PurchaseOrder);
 
+    public static Result<OrderBase> AddReturnToSupplierLines(
+      this OrderBase order,
+      WineMsOrderTransactionDocument salesOrderTransactionDocument) =>
+      order.AddOrderLines(salesOrderTransactionDocument, OrderTransactionType.ReturnToSupplier);
+
     public static OrderBase SetDeliveryAddress(this OrderBase order, Customer customer) {
       order.DeliverTo = new Address(
         customer.PhysicalAddress.Line1.EmptyIfNull(),
@@ -157,6 +162,9 @@ namespace WineMS.Evolution.Orders {
         case OrderTransactionType.PurchaseOrder:
           orderLine.SetUserField("ucIDPOrdTxCMwineMSGuid", $"{transactionLine.Guid}");
           break;
+        case OrderTransactionType.ReturnToSupplier:
+          orderLine.SetUserField("ucIDRtsTxCMWineMSGuid", $"{transactionLine.Guid}");
+          break;
         default:
           throw new ArgumentOutOfRangeException(nameof(orderTransactionType), orderTransactionType, null);
       }
@@ -167,7 +175,8 @@ namespace WineMS.Evolution.Orders {
   public enum OrderTransactionType {
 
     SalesOrder,
-    PurchaseOrder
+    PurchaseOrder,
+    ReturnToSupplier
 
   }
 

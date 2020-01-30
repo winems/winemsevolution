@@ -3,6 +3,7 @@ using RadiusCSharp.Core.Logging;
 using WineMS.BusinessLogic.CreditNotes;
 using WineMS.BusinessLogic.GeneralLedger;
 using WineMS.BusinessLogic.PurchaseOrders;
+using WineMS.BusinessLogic.ReturnToSupplier;
 using WineMS.BusinessLogic.SalesOrders;
 using WineMS.BusinessLogic.Stock;
 using WineMS.Common;
@@ -26,10 +27,10 @@ namespace WineMS.BusinessLogic.Extensions {
         .Execute(backgroundWorker)
         .OnFailure(error => error.LogException());
 
-    public static Result ProcessReturnToSupplierTransactions(IBackgroundWorker backgroundWorker) {
-      "Return to supplier not implemented.".LogException();
-      return Result.Fail("Return to supplier not implemented.");
-    }
+    public static Result ProcessReturnToSupplierTransactions(IBackgroundWorker backgroundWorker) =>
+      WineMsReturnToSupplierTransactionFunctions
+        .Execute(backgroundWorker)
+        .OnFailure(error => error.LogException());
 
     public static Result ProcessSalesOrderTransactions(IBackgroundWorker backgroundWorker) =>
       WineMsSalesOrdersTransactionFunctions

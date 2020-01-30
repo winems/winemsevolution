@@ -71,6 +71,7 @@
     <Compile Include="Extensions\WineMsOrderTransactionIterFunctions.cs" />
     <Compile Include="GeneralLedger\WineMsGeneralLedgerJournalTransactionFunctions.cs" />
     <Compile Include="PurchaseOrders\WineMsPurchaseOrdersTransactionFunctions.cs" />
+    <Compile Include="ReturnToSupplier\WineMsReturnToSupplierTransactionFunctions.cs" />
     <Compile Include="SalesOrders\WineMsSalesOrdersTransactionFunctions.cs" />
     <Compile Include="Extensions\WineMsTransactionFunctions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
