@@ -25,10 +25,14 @@ namespace WineMS.Evolution.PurchaseOrders {
                     order.Save();
                     break;
                   case PurchaseOrderIntegrationType.GoodsReceivedVoucher:
-                    ((PurchaseOrder) order).CompleteStock();
+                    var goodsReceivedVoucher = (PurchaseOrder) order;
+                    goodsReceivedVoucher.InvoiceDate = goodsReceivedVoucher.DeliveryDate;
+                    goodsReceivedVoucher.CompleteStock();
                     break;
                   case PurchaseOrderIntegrationType.SupplierInvoice:
-                    order.Complete();
+                    var supplierInvoice = (PurchaseOrder)order;
+                    supplierInvoice.InvoiceDate = supplierInvoice.DeliveryDate;
+                    supplierInvoice.Complete();
                     break;
                   default:
                     throw new ArgumentOutOfRangeException();
