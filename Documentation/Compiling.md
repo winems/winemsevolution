@@ -29,13 +29,19 @@ To compile the application for different versions of the Evolution SDK follow th
       <WarningLevel>4</WarningLevel>
     </PropertyGroup>
     ```
+   
 * Rebuild the solution.
+
 * Build the installer project (WineMsSetup).
-* Compress the installer files into a file using the following naming convention: 
+
+* **Deploy.bat**: Run deploy\deploy.bat to compress the installed build output.
+    
+* **Manual**: Compress the installer files into a file using the following naming convention: 
     WineMsSetup.\<major version>.\<minor version>-\<SDK version>.zip
     E.g.: 
       WineMsSetup.1.16-720.zip
       WineMsSetup.1.16-920.zip
+    
 * Repeat the Build steps for each version of the SDK.
 
 ## How to reference a version of the SDK
