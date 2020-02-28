@@ -4,7 +4,8 @@
 
 ### New version
 
-* Update the application version number.
+* Update the GUI application version number.
+* Update the CLI application version number.
 * Update installer project version number.
 
 ### Build
