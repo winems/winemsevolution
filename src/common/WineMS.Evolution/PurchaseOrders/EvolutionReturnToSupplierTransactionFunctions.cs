@@ -1,5 +1,7 @@
-﻿using CSharpFunctionalExtensions;
+﻿using System;
+using CSharpFunctionalExtensions;
 using Pastel.Evolution;
+using WineMS.Common.Constants;
 using WineMS.Common.Extensions;
 using WineMS.Evolution.Orders;
 using WineMS.WineMS.DataAccess;
@@ -9,7 +11,8 @@ namespace WineMS.Evolution.PurchaseOrders {
   public static class EvolutionReturnToSupplierTransactionFunctions {
 
     public static Result<WineMsReturnToSupplierTransactionDocument> ProcessTransaction(
-      WineMsReturnToSupplierTransactionDocument wineMsReturnToSupplierTransactionDocument) =>
+      WineMsReturnToSupplierTransactionDocument wineMsReturnToSupplierTransactionDocument,
+      ReturnToSupplierIntegrationType returnToSupplierIntegrationType) =>
       CreateReturnToSupplier(wineMsReturnToSupplierTransactionDocument)
         .Bind(
           order => order.AddReturnToSupplierLines(wineMsReturnToSupplierTransactionDocument))
@@ -17,7 +20,17 @@ namespace WineMS.Evolution.PurchaseOrders {
           order => ExceptionWrapper
             .Wrap(
               () => {
-                order.Complete();
+                switch (returnToSupplierIntegrationType) {
+                  case ReturnToSupplierIntegrationType.Post:
+                    order.InvoiceDate = order.DeliveryDate;
+                    order.Complete();
+                    break;
+                  case ReturnToSupplierIntegrationType.SaveOnly:
+                    order.Save();
+                    break;
+                  default:
+                    throw new ArgumentOutOfRangeException(nameof(returnToSupplierIntegrationType), returnToSupplierIntegrationType, null);
+                }
                 wineMsReturnToSupplierTransactionDocument.IntegrationDocumentNumber = order.OrderNo;
                 return Result.Ok(wineMsReturnToSupplierTransactionDocument);
               }));

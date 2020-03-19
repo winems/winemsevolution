@@ -65,6 +65,7 @@
     <Compile Include="Configuration\SystemConfiguration.cs" />
     <Compile Include="Constants\IntegrationDocumentTypes.cs" />
     <Compile Include="Constants\PurchaseOrderIntegrationType.cs" />
+    <Compile Include="Constants\ReturnToSupplierIntegrationType.cs" />
     <Compile Include="Constants\SalesOrderIntegrationType.cs" />
     <Compile Include="Constants\WineMsTransactionTypes.cs" />
     <Compile Include="DataAccess\DatabaseConnectionStringFunctions.cs" />

@@ -1,6 +1,7 @@
 ﻿using CSharpFunctionalExtensions;
 using WineMS.BusinessLogic.Extensions;
 using WineMS.Common;
+using WineMS.Common.Configuration;
 using WineMS.Common.Constants;
 using WineMS.Evolution.PurchaseOrders;
 using WineMS.WineMS.DataAccess;
@@ -16,9 +17,10 @@ namespace WineMS.BusinessLogic.ReturnToSupplier {
           context => context.ListNewWineMsReturnToSupplierTransactions(),
           wineMsTransactionDocument =>
             EvolutionReturnToSupplierTransactionFunctions
-              .ProcessTransaction((WineMsReturnToSupplierTransactionDocument) wineMsTransactionDocument)
+              .ProcessTransaction((WineMsReturnToSupplierTransactionDocument) wineMsTransactionDocument,
+                SystemConfiguration.ReturnToSupplierIntegrationType())
               .Tap(
-                document => { document.CompletePosting(IntegrationDocumentTypes.ReturnToSupplier); }));
+                document => { document.CompletePosting(IntegrationDocumentTypes.ReturnToSupplierPost); }));
 
   }
 

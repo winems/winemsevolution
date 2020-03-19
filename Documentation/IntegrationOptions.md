@@ -38,6 +38,15 @@ Possible values are:
 - goods-receive-voucher: Will post the purchase order as a completed goods received voucher. This will confirm all quantities on the purchase order.
 - supplier-invoice: Will post the purchase order as a completed supplier invoice. This will confirm all quantities on the purchase order.
 
+#### KeyName: return-to-supplier-integration-type
+
+Return to supplier integration type. If not defined or not one of the possible values the application will default to return-to-supplier-post.
+
+Possible values are:
+
+- return-to-supplier-post: Will complete the return to supplier, posting all general ledger entries.
+- return-to-supplier-save-only: Will save the return to supplier as an open Evolution Return to Supplier.
+
 #### KeyName: sales-order-integration-type
 
 Sales order integration type. If not defined or not one of the possible values the application will default to sales-order.

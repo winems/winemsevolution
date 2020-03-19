@@ -57,6 +57,20 @@ namespace WineMS.Common.Configuration {
       string GetPurchaseOrderIntegrationType() => "purchase-order-integration-type".GetKeyValueAsString();
     }
 
+    public static ReturnToSupplierIntegrationType ReturnToSupplierIntegrationType() {
+      var integrationType = GetReturnToSupplierIntegrationType();
+      switch (integrationType) {
+        case IntegrationDocumentTypes.ReturnToSupplierPost:
+          return Constants.ReturnToSupplierIntegrationType.Post;
+        case IntegrationDocumentTypes.ReturnToSupplierSaveOnly:
+          return Constants.ReturnToSupplierIntegrationType.SaveOnly;
+        default:
+          return Constants.ReturnToSupplierIntegrationType.Post;
+      }
+
+      string GetReturnToSupplierIntegrationType() => "return-to-supplier-integration-type".GetKeyValueAsString();
+    }
+
     public static SalesOrderOptions GetSalesOrderOptions() =>
       new SalesOrderOptions(
           SalesOrderIntegrationType(),
