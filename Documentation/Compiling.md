@@ -16,7 +16,7 @@ To compile the application for different versions of the Evolution SDK follow th
    * EVO720
    * EVO920
    
-      E.g.:
+      E.g.: For Evolution SDK 7.20
       
     ```xml
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -34,14 +34,15 @@ To compile the application for different versions of the Evolution SDK follow th
 
 * Build the installer project (WineMsSetup).
 
-* **Deploy.bat**: Run deploy\deploy.bat to compress the installed build output.
-    
-* **Manual**: Compress the installer files into a file using the following naming convention: 
-    WineMsSetup.\<major version>.\<minor version>-\<SDK version>.zip
-    E.g.: 
-      WineMsSetup.1.16-720.zip
-      WineMsSetup.1.16-920.zip
-    
+* Deploy using one of the following
+
+    * **Deploy.bat**: Run deploy\deploy.bat to compress the installed build output.
+    * **Manual**: Compress the installer files into a file using the following naming convention: 
+        WineMsSetup.\<major version>.\<minor version>-\<SDK version>.zip
+        E.g.: 
+          WineMsSetup.1.16-720.zip
+          WineMsSetup.1.16-920.zip
+
 * Repeat the Build steps for each version of the SDK.
 
 ## How to reference a version of the SDK
