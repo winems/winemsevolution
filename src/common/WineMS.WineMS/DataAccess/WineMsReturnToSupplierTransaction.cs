@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace WineMS.WineMS.DataAccess {
 
   [Table("_IntegrationReturnToSupplierBuffer")]
-  public class WineMsReturnToSupplierTransaction : IWineMsTransactionLine {
+  public class WineMsReturnToSupplierTransaction: IWineMsTransactionLine {
 
     [Column("Company")]
     public string CompanyId { get; set; }
@@ -20,6 +20,8 @@ namespace WineMS.WineMS.DataAccess {
 
     [Column("Document No_")]
     public string DocumentNumber { get; set; }
+
+    public decimal ExchangeRate { get; set; }
 
     [Column("GeneralLedgerAccountCode")]
     public string GeneralLedgerItemCode { get; set; }
@@ -53,6 +55,9 @@ namespace WineMS.WineMS.DataAccess {
     [Column("SupplierAccountCode")]
     public string SupplierAccountCode { get; set; }
 
+    [Column("SupplierInvoice")]
+    public string SupplierInvoiceNumber { get; set; }
+
     [Column("VAT Indicator")]
     public byte TaxTypeId { get; set; }
 
@@ -70,7 +75,5 @@ namespace WineMS.WineMS.DataAccess {
 
     [Column("Location Code")]
     public string WarehouseCode { get; set; }
-
   }
-
 }

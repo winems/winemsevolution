@@ -5,25 +5,33 @@ using WineMS.Common.DataAccess;
 
 namespace WineMS.WineMS.DataAccess {
 
-  public class WineMsDbContext : DbContext {
+  public class WineMsDbContext: DbContext {
 
     public DbSet<IntegrationMapping> IntegrationMappings { get; set; }
+
     public DbSet<WineMsBufferEntry> WineMsBufferEntries { get; set; }
+
     public DbSet<WineMsCreditNoteTransaction> WineMsCreditNoteTransactions { get; set; }
+
     public DbSet<WineMsGeneralLedgerJournalTransaction> WineMsJournalTransactions { get; set; }
+
     public DbSet<WineMsPurchaseOrderTransaction> WineMsPurchaseOrderTransactions { get; set; }
+
     public DbSet<WineMsReturnToSupplierTransaction> WineMsReturnToSupplierTransactions { get; set; }
+
     public DbSet<WineMsSalesOrderTransaction> WineMsSalesOrderTransactions { get; set; }
+
     public DbSet<WineMsStockJournalTransaction> WineMsStockJournalTransactions { get; set; }
 
-    public WineMsDbContext() : base(DatabaseConstants.WineMsConnectionStringName) { }
+    public WineMsDbContext() : base(DatabaseConstants.WineMsConnectionStringName) {
+    }
 
     public WineMsTransaction[] ListNewWineMsGeneralLedgerJournalTransactions() =>
       WineMsJournalTransactions
         .Where(
           a => a.PostedToAccountingSystem == 0)
         .ToArray()
-        .GroupBy(a => new {a.CompanyId, a.TransactionType, a.DocumentNumber})
+        .GroupBy(a => new { a.CompanyId, a.TransactionType, a.DocumentNumber })
         .Select(
           a => new WineMsGeneralLedgerJournalTransactionBatch {
             CompanyId = a.Key.CompanyId,
@@ -42,12 +50,12 @@ namespace WineMS.WineMS.DataAccess {
         .Where(
           a => a.PostedToAccountingSystem == 0)
         .ToArray()
-        .GroupBy(a => new {a.CompanyId, a.TransactionType, a.DocumentNumber})
+        .GroupBy(a => new { a.CompanyId, a.TransactionType, a.DocumentNumber })
         .Select(
           a => {
             var firstTransaction = a.FirstOrDefault();
 
-            return (WineMsOrderTransactionDocument) new WineMsSalesOrderTransactionDocument {
+            return (WineMsOrderTransactionDocument)new WineMsSalesOrderTransactionDocument {
               CustomerAccountCode = firstTransaction?.CustomerAccountCode ?? "",
               CompanyId = a.Key.CompanyId,
               DocumentDiscountPercentage = firstTransaction?.DocumentDiscountPercentage ?? 0,
@@ -71,7 +79,7 @@ namespace WineMS.WineMS.DataAccess {
         .Where(
           a => a.PostedToAccountingSystem == 0)
         .ToArray()
-        .GroupBy(a => new {a.CompanyId})
+        .GroupBy(a => new { a.CompanyId })
         .Select(
           a => new WineMsStockJournalTransactionBatch {
             CompanyId = a.Key.CompanyId,
@@ -86,12 +94,12 @@ namespace WineMS.WineMS.DataAccess {
         .Where(
           a => a.PostedToAccountingSystem == 0)
         .ToArray()
-        .GroupBy(a => new {a.CompanyId, a.TransactionType, a.DocumentNumber})
+        .GroupBy(a => new { a.CompanyId, a.TransactionType, a.DocumentNumber })
         .Select(
           a => {
             var firstTransaction = a.FirstOrDefault();
 
-            return (WineMsOrderTransactionDocument) new WineMsCreditNoteTransactionDocument {
+            return (WineMsOrderTransactionDocument)new WineMsCreditNoteTransactionDocument {
               CustomerAccountCode = firstTransaction?.CustomerAccountCode ?? "",
               CompanyId = a.Key.CompanyId,
               DocumentDiscountPercentage = firstTransaction?.DocumentDiscountPercentage ?? 0,
@@ -110,21 +118,23 @@ namespace WineMS.WineMS.DataAccess {
         .ThenBy(a => a.DocumentNumber)
         .ToArray();
 
-    public WineMsOrderTransactionDocument[] ListNewWineMsPurchaseOrderTransactions() =>
-      WineMsPurchaseOrderTransactions
-        .Where(
-          a => a.PostedToAccountingSystem == 0)
+    public WineMsOrderTransactionDocument[] ListNewWineMsPurchaseOrderTransactions() => WineMsPurchaseOrderTransactions
+        .Where(a => a.PostedToAccountingSystem == 0)
         .ToArray()
-        .GroupBy(a => new {a.CompanyId, a.TransactionType, a.DocumentNumber})
-        .Select(
-          a => (WineMsOrderTransactionDocument) new WineMsPurchaseOrderTransactionDocument {
-            SupplierAccountCode = a.FirstOrDefault()?.SupplierAccountCode ?? "",
+        .GroupBy(a => new { a.CompanyId, a.TransactionType, a.DocumentNumber })
+        .Select(a => {
+          var transaction = a.FirstOrDefault();
+          return (WineMsOrderTransactionDocument)new WineMsPurchaseOrderTransactionDocument {
             CompanyId = a.Key.CompanyId,
             DocumentNumber = a.Key.DocumentNumber,
+            ExchangeRate = transaction?.ExchangeRate ?? 1,
+            SupplierAccountCode = transaction?.SupplierAccountCode ?? "",
+            SupplierInvoiceNumber = a.FirstOrDefault()?.SupplierInvoiceNumber ?? "",
             TransactionDate = a.FirstOrDefault()?.TransactionDate ?? DateTime.MinValue,
             TransactionType = a.Key.TransactionType,
             TransactionLines = a.Cast<IWineMsTransactionLine>().ToArray()
-          })
+          };
+        })
         .OrderBy(a => a.CompanyId)
         .ThenBy(a => a.TransactionType)
         .ThenBy(a => a.DocumentNumber)
@@ -135,15 +145,20 @@ namespace WineMS.WineMS.DataAccess {
         .Where(
           a => a.PostedToAccountingSystem == 0)
         .ToArray()
-        .GroupBy(a => new {a.CompanyId, a.TransactionType, a.DocumentNumber})
+        .GroupBy(a => new { a.CompanyId, a.TransactionType, a.DocumentNumber })
         .Select(
-          a => (WineMsOrderTransactionDocument) new WineMsReturnToSupplierTransactionDocument {
-            SupplierAccountCode = a.FirstOrDefault()?.SupplierAccountCode ?? "",
-            CompanyId = a.Key.CompanyId,
-            DocumentNumber = a.Key.DocumentNumber,
-            TransactionDate = a.FirstOrDefault()?.TransactionDate ?? DateTime.MinValue,
-            TransactionType = a.Key.TransactionType,
-            TransactionLines = a.Cast<IWineMsTransactionLine>().ToArray()
+          a => {
+            var transaction = a.FirstOrDefault();
+            return (WineMsOrderTransactionDocument)new WineMsReturnToSupplierTransactionDocument {
+              CompanyId = a.Key.CompanyId,
+              DocumentNumber = a.Key.DocumentNumber,
+              ExchangeRate = transaction?.ExchangeRate ?? 1,
+              SupplierAccountCode = transaction?.SupplierAccountCode ?? "",
+              SupplierInvoiceNumber = a.FirstOrDefault()?.SupplierInvoiceNumber ?? "",
+              TransactionDate = a.FirstOrDefault()?.TransactionDate ?? DateTime.MinValue,
+              TransactionType = a.Key.TransactionType,
+              TransactionLines = a.Cast<IWineMsTransactionLine>().ToArray()
+            };
           })
         .OrderBy(a => a.CompanyId)
         .ThenBy(a => a.TransactionType)
@@ -175,7 +190,5 @@ namespace WineMS.WineMS.DataAccess {
           });
       }
     }
-
   }
-
 }

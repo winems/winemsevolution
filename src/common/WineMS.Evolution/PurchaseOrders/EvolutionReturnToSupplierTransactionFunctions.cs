@@ -14,29 +14,27 @@ namespace WineMS.Evolution.PurchaseOrders {
       WineMsReturnToSupplierTransactionDocument wineMsReturnToSupplierTransactionDocument,
       ReturnToSupplierIntegrationType returnToSupplierIntegrationType) =>
       CreateReturnToSupplier(wineMsReturnToSupplierTransactionDocument)
-        .Bind(
-          order => order.AddReturnToSupplierLines(wineMsReturnToSupplierTransactionDocument))
-        .Bind(
-          order => ExceptionWrapper
-            .Wrap(
-              () => {
-                switch (returnToSupplierIntegrationType) {
-                  case ReturnToSupplierIntegrationType.Post:
-                    order.InvoiceDate = order.DeliveryDate;
-                    order.Complete();
-                    break;
-                  case ReturnToSupplierIntegrationType.SaveOnly:
-                    order.Save();
-                    break;
-                  default:
-                    throw new ArgumentOutOfRangeException(nameof(returnToSupplierIntegrationType), returnToSupplierIntegrationType, null);
-                }
-                wineMsReturnToSupplierTransactionDocument.IntegrationDocumentNumber = order.OrderNo;
-                return Result.Ok(wineMsReturnToSupplierTransactionDocument);
-              }));
+        .Bind(order => order.AddReturnToSupplierLines(wineMsReturnToSupplierTransactionDocument))
+        .Bind(order => ExceptionWrapper
+        .Wrap(() => {
+          switch (returnToSupplierIntegrationType) {
+            case ReturnToSupplierIntegrationType.Post:
+              order.InvoiceDate = order.DeliveryDate;
+              order.Complete();
+              break;
 
-    private static Result<ReturnToSupplier> CreateReturnToSupplier(
-      WineMsReturnToSupplierTransactionDocument transactionDocument) =>
+            case ReturnToSupplierIntegrationType.SaveOnly:
+              order.Save();
+              break;
+
+            default:
+              throw new ArgumentOutOfRangeException(nameof(returnToSupplierIntegrationType), returnToSupplierIntegrationType, null);
+          }
+          wineMsReturnToSupplierTransactionDocument.IntegrationDocumentNumber = order.OrderNo;
+          return Result.Ok(wineMsReturnToSupplierTransactionDocument);
+        }));
+
+    private static Result<ReturnToSupplier> CreateReturnToSupplier(WineMsReturnToSupplierTransactionDocument transactionDocument) =>
       ExceptionWrapper
         .Wrap(
           () => Result.Ok(
@@ -44,11 +42,10 @@ namespace WineMS.Evolution.PurchaseOrders {
               Supplier = new Supplier(transactionDocument.SupplierAccountCode),
               DeliveryDate = transactionDocument.TransactionDate,
               DueDate = transactionDocument.TransactionDate,
+              ExchangeRate = (double)transactionDocument.ExchangeRate,
               OrderDate = transactionDocument.TransactionDate,
               OrderNo = transactionDocument.DocumentNumber,
               TaxMode = TaxMode.Exclusive
             }));
-
   }
-
 }

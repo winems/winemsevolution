@@ -11,19 +11,13 @@ namespace WineMS.Evolution.Orders {
 
   public static class OrderFunctions {
 
-    public static Result<OrderBase> AddSalesOrderLines(
-      this OrderBase order,
-      WineMsOrderTransactionDocument salesOrderTransactionDocument) =>
+    public static Result<OrderBase> AddSalesOrderLines(this OrderBase order, WineMsOrderTransactionDocument salesOrderTransactionDocument) =>
       order.AddOrderLines(salesOrderTransactionDocument, OrderTransactionType.SalesOrder);
 
-    public static Result<OrderBase> AddPurchaseOrderLines(
-      this OrderBase order,
-      WineMsOrderTransactionDocument salesOrderTransactionDocument) =>
+    public static Result<OrderBase> AddPurchaseOrderLines(this OrderBase order, WineMsOrderTransactionDocument salesOrderTransactionDocument) =>
       order.AddOrderLines(salesOrderTransactionDocument, OrderTransactionType.PurchaseOrder);
 
-    public static Result<OrderBase> AddReturnToSupplierLines(
-      this OrderBase order,
-      WineMsOrderTransactionDocument salesOrderTransactionDocument) =>
+    public static Result<OrderBase> AddReturnToSupplierLines(this OrderBase order, WineMsOrderTransactionDocument salesOrderTransactionDocument) =>
       order.AddOrderLines(salesOrderTransactionDocument, OrderTransactionType.ReturnToSupplier);
 
     public static OrderBase SetDeliveryAddress(this OrderBase order, Customer customer) {
@@ -55,7 +49,7 @@ namespace WineMS.Evolution.Orders {
 
     public static OrderBase SetExchangeRate(this OrderBase order, Customer customer, decimal exchangeRate) {
       if (customer.IsForeignCurrencyAccount && exchangeRate > 0)
-        order.ExchangeRate = (double) exchangeRate;
+        order.ExchangeRate = (double)exchangeRate;
       return order;
     }
 
@@ -84,7 +78,7 @@ namespace WineMS.Evolution.Orders {
                   else
                     SetInventoryItem(orderLine, transactionLine);
 
-                  orderLine.Quantity = (double) transactionLine.Quantity;
+                  orderLine.Quantity = (double)transactionLine.Quantity;
                   orderLine.ToProcess = orderLine.Quantity;
                   SetUnitSellingPrice(orderLine, transactionLine);
 
@@ -95,7 +89,7 @@ namespace WineMS.Evolution.Orders {
                     orderLine.TaxType = result.Value;
                   }
 
-                  orderLine.DiscountPercent = (double) transactionLine.LineDiscountPercentage;
+                  orderLine.DiscountPercent = (double)transactionLine.LineDiscountPercentage;
                   orderLine.Description = transactionLine.Description1;
 
                   if (!transactionLine.ItemNote.IsNullOrWhiteSpace())
@@ -109,7 +103,7 @@ namespace WineMS.Evolution.Orders {
         .Map(() => order);
 
     private static OrderDetail NewOrderDetail(OrderBase order) {
-      var orderLine = new OrderDetail {TaxMode = order.TaxMode};
+      var orderLine = new OrderDetail { TaxMode = order.TaxMode };
       order.Detail.Add(orderLine);
       return orderLine;
     }
@@ -130,10 +124,9 @@ namespace WineMS.Evolution.Orders {
     private static void SetUnitSellingPrice(OrderDetail orderLine, IWineMsTransactionLine transactionLine) {
       var transactionAmount = GetTransactionAmount(orderLine, transactionLine);
 
-      var absoluteQuantity = Math.Abs((double) transactionLine.Quantity);
+      var absoluteQuantity = Math.Abs((double)transactionLine.Quantity);
 
-      var unitSellingPrice =
-        transactionAmount / (absoluteQuantity > 0.00 ? absoluteQuantity : 1);
+      var unitSellingPrice = transactionAmount / (absoluteQuantity > 0.00 ? absoluteQuantity : 1);
 
       if (transactionLine.CurrencyCode.IsNullOrWhiteSpace())
         orderLine.UnitSellingPrice = unitSellingPrice;
@@ -142,7 +135,7 @@ namespace WineMS.Evolution.Orders {
     }
 
     private static double GetTransactionAmount(OrderDetail orderLine, IWineMsTransactionLine transactionLine) =>
-      (double) (orderLine.TaxMode == TaxMode.Exclusive ? transactionLine.TransactionAmountExVat : transactionLine.TransactionAmountInVat);
+      (double)(orderLine.TaxMode == TaxMode.Exclusive ? transactionLine.TransactionAmountExVat : transactionLine.TransactionAmountInVat);
 
     private static Result<TaxRate> GetOrderLineTaxType(IWineMsTransactionLine transactionLine) {
       try {
@@ -159,25 +152,24 @@ namespace WineMS.Evolution.Orders {
         case OrderTransactionType.SalesOrder:
           orderLine.SetUserField("ucIDSOrdTxCMwineMSGuid", $"{transactionLine.Guid}");
           break;
+
         case OrderTransactionType.PurchaseOrder:
           orderLine.SetUserField("ucIDPOrdTxCMwineMSGuid", $"{transactionLine.Guid}");
           break;
+
         case OrderTransactionType.ReturnToSupplier:
           orderLine.SetUserField("ucIDRtsTxCMWineMSGuid", $"{transactionLine.Guid}");
           break;
+
         default:
           throw new ArgumentOutOfRangeException(nameof(orderTransactionType), orderTransactionType, null);
       }
     }
-
   }
 
   public enum OrderTransactionType {
-
     SalesOrder,
     PurchaseOrder,
     ReturnToSupplier
-
   }
-
 }

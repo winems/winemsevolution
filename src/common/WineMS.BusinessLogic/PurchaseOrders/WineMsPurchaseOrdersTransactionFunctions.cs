@@ -17,12 +17,7 @@ namespace WineMS.BusinessLogic.PurchaseOrders {
           context => context.ListNewWineMsPurchaseOrderTransactions(),
           wineMsTransactionDocument =>
             EvolutionPurchaseOrderTransactionFunctions
-              .ProcessTransaction(
-                (WineMsPurchaseOrderTransactionDocument) wineMsTransactionDocument,
-                SystemConfiguration.PurchaseOrderIntegrationType())
-              .Tap(
-                document => { document.CompletePosting(IntegrationDocumentTypes.PurchaseOrder); }));
-
+              .ProcessTransaction((WineMsPurchaseOrderTransactionDocument)wineMsTransactionDocument, SystemConfiguration.PurchaseOrderIntegrationType())
+              .Tap(document => { document.CompletePosting(IntegrationDocumentTypes.PurchaseOrder); }));
   }
-
 }

@@ -17,10 +17,8 @@ namespace WineMS.BusinessLogic.ReturnToSupplier {
           context => context.ListNewWineMsReturnToSupplierTransactions(),
           wineMsTransactionDocument =>
             EvolutionReturnToSupplierTransactionFunctions
-              .ProcessTransaction((WineMsReturnToSupplierTransactionDocument) wineMsTransactionDocument,
-                SystemConfiguration.ReturnToSupplierIntegrationType())
-              .Tap(
-                document => { document.CompletePosting(IntegrationDocumentTypes.ReturnToSupplierPost); }));
+              .ProcessTransaction((WineMsReturnToSupplierTransactionDocument)wineMsTransactionDocument, SystemConfiguration.ReturnToSupplierIntegrationType())
+              .Tap(document => { document.CompletePosting(IntegrationDocumentTypes.ReturnToSupplierPost); }));
 
   }
 
