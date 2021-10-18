@@ -40,6 +40,7 @@ namespace WineMS.Evolution.PurchaseOrders {
           () => Result.Ok(
             new ReturnToSupplier {
               Supplier = new Supplier(transactionDocument.SupplierAccountCode),
+              ExternalOrderNo = transactionDocument.SupplierInvoiceNumber,
               DeliveryDate = transactionDocument.TransactionDate,
               DueDate = transactionDocument.TransactionDate,
               ExchangeRate = (double)transactionDocument.ExchangeRate,
