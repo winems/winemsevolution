@@ -12,5 +12,3 @@ echo %zip_file_name%
 7z.exe a %zip_file_name% %setup_bin_folder%\*.*
 
 %SystemRoot%\explorer.exe %output_folder%
-
-pause
