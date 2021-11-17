@@ -568,7 +568,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:WineMS.Common, Version=1.2.7955.21267, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:WineMS.Common, Version=1.2.7991.12556, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_044A4E5F85764E918F7B69482BEBCDB2"
@@ -599,7 +599,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:WineMS.BusinessLogic, Version=1.2.7955.21267, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:WineMS.BusinessLogic, Version=1.2.7991.12557, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_0AA295ADCE0CDFB9D1A4F052073DAA87"
@@ -867,7 +867,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:WineMS.WineMS, Version=1.2.7955.21267, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:WineMS.WineMS, Version=1.2.7991.12556, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_A8FD6B56FD961BA665A14A6EC8607E29"
@@ -929,7 +929,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:WineMS.Evolution, Version=1.1.7955.21267, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:WineMS.Evolution, Version=1.1.7991.12556, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_CEB75A54D1AB1A1A6D2AFBE1E87C46D3"
@@ -991,7 +991,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Pastel.Evolution.Common, Version=9.20.0.0, Culture=neutral, PublicKeyToken=86fac4c1500a3756, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Pastel.Evolution.Common, Version=10.1.0.0, Culture=neutral, PublicKeyToken=1a4bc88fe3044688, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_D0A1B127B09EC3ED8C2C2B580F00ACC3"
@@ -1084,7 +1084,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Pastel.Evolution, Version=9.20.0.0, Culture=neutral, PublicKeyToken=86fac4c1500a3756, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Pastel.Evolution, Version=10.1.0.0, Culture=neutral, PublicKeyToken=1a4bc88fe3044688, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_F6DF571836C8F1A23A5BB75D193DF546"
@@ -1167,15 +1167,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:WineMS to Sage 100/200 Integration"
-        "ProductCode" = "8:{CA72C6E2-C0DC-47A0-B03C-5772609A3018}"
-        "PackageCode" = "8:{FC9BE55A-AED6-48B8-B61E-ADB227D5003F}"
+        "ProductCode" = "8:{D1196409-8262-4889-832F-E341BB428E38}"
+        "PackageCode" = "8:{59220967-294F-47BE-B131-8532463C7262}"
         "UpgradeCode" = "8:{09D63A6B-07D2-4221-A443-A4C4058F0E88}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.24.0"
+        "ProductVersion" = "8:1.25.0"
         "Manufacturer" = "8:WineMS"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
