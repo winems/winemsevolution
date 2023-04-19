@@ -273,24 +273,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_D0A1B127B09EC3ED8C2C2B580F00ACC3"
-        "OwnerKey" = "8:_736B540D9031478793C5744F6AEF1590"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_D0A1B127B09EC3ED8C2C2B580F00ACC3"
-        "OwnerKey" = "8:_AF21A1DC9762463AB6FF5DBAE5DC6E76"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_D0A1B127B09EC3ED8C2C2B580F00ACC3"
-        "OwnerKey" = "8:_F6DF571836C8F1A23A5BB75D193DF546"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_D18F3C4EB48CDEE559798EB200FDC865"
         "OwnerKey" = "8:_A8FD6B56FD961BA665A14A6EC8607E29"
         "MsmSig" = "8:_UNDEFINED"
@@ -463,12 +445,6 @@
         "OwnerKey" = "8:_F6DF571836C8F1A23A5BB75D193DF546"
         "MsmSig" = "8:_UNDEFINED"
         }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_D0A1B127B09EC3ED8C2C2B580F00ACC3"
-        "MsmSig" = "8:_UNDEFINED"
-        }
     }
     "Configurations"
     {
@@ -568,7 +544,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:WineMS.Common, Version=1.2.7991.12556, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:WineMS.Common, Version=1.2.7991.12666, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_044A4E5F85764E918F7B69482BEBCDB2"
@@ -599,7 +575,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:WineMS.BusinessLogic, Version=1.2.7991.12557, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:WineMS.BusinessLogic, Version=1.2.7991.12666, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_0AA295ADCE0CDFB9D1A4F052073DAA87"
@@ -867,7 +843,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:WineMS.WineMS, Version=1.2.7991.12556, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:WineMS.WineMS, Version=1.2.7991.12666, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_A8FD6B56FD961BA665A14A6EC8607E29"
@@ -929,7 +905,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:WineMS.Evolution, Version=1.1.7991.12556, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:WineMS.Evolution, Version=1.1.7991.12666, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_CEB75A54D1AB1A1A6D2AFBE1E87C46D3"
@@ -970,37 +946,6 @@
                     }
                 }
             "SourcePath" = "8:RadiusCSharp.Log4Net.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_EC046CE3A20B4D1AB70D3428C20FD3AB"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_D0A1B127B09EC3ED8C2C2B580F00ACC3"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Pastel.Evolution.Common, Version=10.1.0.0, Culture=neutral, PublicKeyToken=1a4bc88fe3044688, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_D0A1B127B09EC3ED8C2C2B580F00ACC3"
-                    {
-                    "Name" = "8:Pastel.Evolution.Common.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:Pastel.Evolution.Common.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_EC046CE3A20B4D1AB70D3428C20FD3AB"
@@ -1084,7 +1029,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Pastel.Evolution, Version=10.1.0.0, Culture=neutral, PublicKeyToken=1a4bc88fe3044688, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Pastel.Evolution, Version=7.20.0.0, Culture=neutral, PublicKeyToken=86fac4c1500a3756, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_F6DF571836C8F1A23A5BB75D193DF546"
@@ -1167,15 +1112,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:WineMS to Sage 100/200 Integration"
-        "ProductCode" = "8:{D1196409-8262-4889-832F-E341BB428E38}"
-        "PackageCode" = "8:{59220967-294F-47BE-B131-8532463C7262}"
+        "ProductCode" = "8:{815E30D6-E80E-4233-B000-41F78A6BA917}"
+        "PackageCode" = "8:{9DC932CF-2259-4BD3-B286-2438A89401CA}"
         "UpgradeCode" = "8:{09D63A6B-07D2-4221-A443-A4C4058F0E88}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.25.0"
+        "ProductVersion" = "8:1.26.0"
         "Manufacturer" = "8:WineMS"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
